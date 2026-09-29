@@ -1,0 +1,12 @@
+/* Scroll interactions */
+.sw-word{display:inline-block;opacity:.14;transition:opacity .25s linear;will-change:opacity}
+.sw-word.lit{opacity:1}
+.case-media{overflow:hidden}
+.case-media img{will-change:transform}
+.case .case-media{clip-path:inset(var(--clip,0%) round var(--r-lg));transition:clip-path .1s linear}
+.route-list{will-change:transform}
+@media (min-width:1025px){
+  .exp-grid>.section-head,.skills-grid>.section-head{position:sticky;top:110px;align-self:start}
+}
+@media (prefers-reduced-motion:reduce){.sw-word{opacity:1}.case .case-media{clip-path:none}}
+[data-theme="dark"] .sw-word{opacity:.24}[data-theme="dark"] .sw-word.lit{opacity:1}

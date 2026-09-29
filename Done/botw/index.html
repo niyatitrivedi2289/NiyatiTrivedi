@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Bank of the West iPad Onboarding POC — Niyati Trivedi</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#0B2545;color:#fff;font-family:'Figtree',system-ui,sans-serif;-webkit-font-smoothing:antialiased}a{color:#8CCBF7;text-decoration:none}a:hover{color:#B5DDFA}*{box-sizing:border-box}</style>
+</helmet>
+
+<div style="min-height:100vh;background:#0B2545">
+  <header style="height:70px;background:#062040;border-bottom:1px solid #2E5485;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(20px,5vw,72px)">
+    <div style="display:flex;align-items:center;gap:14px">
+      <img src="uploads/app-icon.png" alt="Bank of the West" style="width:34px;height:34px;border-radius:8px"></img>
+      <span style="font:900 14px/1 'Figtree',sans-serif;letter-spacing:.14em">POC CONCEPT</span>
+      <span style="width:1px;height:18px;background:#2E5485"></span>
+      <span style="font:600 14px/1 'Figtree',sans-serif;color:#A9B8CC">Bank of the West · iPad · 2026</span>
+    </div>
+    <a href="#screens" style="font:700 15px 'Figtree',sans-serif;background:#00965E;border:2px solid #00965E;border-radius:8px;color:#fff;padding:9px 24px;color:#fff">View screens</a>
+  </header>
+
+  <section style="position:relative;overflow:hidden;padding:clamp(48px,8vw,110px) clamp(20px,5vw,72px) 64px">
+        <div style="position:relative;max-width:1180px;margin:0 auto">
+      <img src="uploads/0.png" alt="Bank of the West" style="display:block;width:260px;height:110px;object-fit:cover;border-radius:10px;margin-bottom:36px"></img>
+      <h1 style="margin:0;font:400 clamp(38px,5.4vw,68px)/1.06 'Figtree',sans-serif;max-width:900px;text-wrap:balance">Branch onboarding and service, in one ten-minute conversation on iPad</h1>
+      <p style="margin:26px 0 0;font:400 20px/32px 'Figtree',sans-serif;color:#D5DEEA;max-width:680px;text-wrap:pretty">A proof-of-concept iPad app for Bank of the West branches. Customers open accounts and get service in one guided session, with ID scanning, personalized recommendations and a banker close by.</p>
+      <div style="margin-top:48px;display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:2px;background:#24497A;border:1px solid #24497A;border-radius:10px;overflow:hidden;max-width:980px">
+        <div style="background:#133563;padding:20px 22px"><div style="font:700 12px 'Figtree';letter-spacing:.14em;color:#A9B8CC">CLIENT</div><div style="font:700 18px/26px 'Figtree';margin-top:6px">Bank of the West</div></div>
+        <div style="background:#133563;padding:20px 22px"><div style="font:700 12px 'Figtree';letter-spacing:.14em;color:#A9B8CC">PLATFORM</div><div style="font:700 18px/26px 'Figtree';margin-top:6px">iPad, landscape</div></div>
+        <div style="background:#133563;padding:20px 22px"><div style="font:700 12px 'Figtree';letter-spacing:.14em;color:#A9B8CC">USERS</div><div style="font:700 18px/26px 'Figtree';margin-top:6px">Walk-in customers, bankers</div></div>
+        <div style="background:#133563;padding:20px 22px"><div style="font:700 12px 'Figtree';letter-spacing:.14em;color:#A9B8CC">SCOPE</div><div style="font:700 18px/26px 'Figtree';margin-top:6px">UX strategy, UI, prototype</div></div>
+      </div>
+    </div>
+  </section>
+
+  <main style="max-width:1180px;margin:0 auto;padding:0 clamp(20px,5vw,72px) 100px;display:flex;flex-direction:column;gap:88px">
+
+    <section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:40px;padding-top:40px;border-top:1px solid #2E5485">
+      <div>
+        <div style="font:900 13px 'Figtree';letter-spacing:.18em;color:#8CCBF7">01 — OVERVIEW</div>
+        <h2 style="margin:14px 0 0;font:700 34px/1.15 'Figtree',sans-serif">The concept</h2>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:18px;font:400 18px/30px 'Figtree';color:#D5DEEA">
+        <p style="margin:0;text-wrap:pretty">Customers expect to open an account in a branch as easily as they do in their phone’s banking app. This concept is a shared iPad a customer uses on their own, or side by side with a banker, to get from walking in to holding an active card.</p>
+        <p style="margin:0;text-wrap:pretty">The flow has four stages: Identity, Your needs, Review, Done. It uses the iPad’s camera, Face ID and Apple Pencil, and an assistant that answers questions along the way. It doesn’t stop at submit: the same session carries on into service.</p>
+      </div>
+    </section>
+
+    <section style="display:flex;flex-direction:column;gap:32px">
+      <div>
+        <div style="font:900 13px 'Figtree';letter-spacing:.18em;color:#8CCBF7">02 — PROBLEM STATEMENT</div>
+        <h2 style="margin:14px 0 0;font:700 34px/1.2 'Figtree',sans-serif;max-width:820px;text-wrap:balance">In-branch onboarding is slow, paper-heavy and stops the moment the form is submitted</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:16px">
+        <sc-for list="{{ problems }}" as="p" hint-placeholder-count="4">
+          <div style="background:#133563;border-radius:10px;padding:24px;display:flex;flex-direction:column;gap:10px">
+            <div style="font:700 32px/1 'Figtree';color:#00B26B">{{ p.n }}</div>
+            <div style="font:700 20px/26px 'Figtree'">{{ p.t }}</div>
+            <div style="font:400 16px/26px 'Figtree';color:#A9B8CC">{{ p.d }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <section style="display:flex;flex-direction:column;gap:32px">
+      <div>
+        <div style="font:900 13px 'Figtree';letter-spacing:.18em;color:#8CCBF7">03 — SOLUTION</div>
+        <h2 style="margin:14px 0 0;font:700 34px/1.2 'Figtree',sans-serif;max-width:820px;text-wrap:balance">Scan once, confirm instead of type, and get recommendations with a banker on hand</h2>
+      </div>
+      <div style="display:flex;flex-direction:column;border-top:1px solid #24497A">
+        <sc-for list="{{ solutions }}" as="s" hint-placeholder-count="4">
+          <div style="display:grid;grid-template-columns:56px minmax(0,1fr) minmax(0,1.3fr);gap:24px;align-items:start;padding:26px 0;border-bottom:1px solid #24497A">
+            <div style="width:56px;height:56px;border-radius:50%;background:#062040;display:flex;align-items:center;justify-content:center;font:700 16px 'Figtree';color:#8CCBF7">{{ s.n }}</div>
+            <div style="font:700 22px/30px 'Figtree';padding-top:12px">{{ s.t }}</div>
+            <div style="font:400 17px/28px 'Figtree';color:#A9B8CC;padding-top:12px;text-wrap:pretty">{{ s.d }}</div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:2px;background:#24497A;border-radius:10px;overflow:hidden">
+        <sc-for list="{{ metrics }}" as="m" hint-placeholder-count="3">
+          <div style="background:#1A3F70;padding:24px">
+            <div style="font:400 44px/1 'Figtree';color:#fff">{{ m.v }}</div>
+            <div style="font:400 15px/22px 'Figtree';color:#A9B8CC;margin-top:8px">{{ m.l }}</div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="font:400 14px 'Figtree';color:#7E8FA6">Targets for the POC pilot, to be validated in branch testing.</div>
+    </section>
+
+    <section id="screens" style="display:flex;flex-direction:column;gap:36px;scroll-margin-top:20px">
+      <div>
+        <div style="font:900 13px 'Figtree';letter-spacing:.18em;color:#8CCBF7">04 — SCREENS</div>
+        <h2 style="margin:14px 0 0;font:700 34px/1.2 'Figtree',sans-serif">The new flow</h2>
+      </div>
+
+      <div ref="{{ gridRef }}" style="display:grid;grid-template-columns:{{ cols }};gap:48px 32px">
+
+        <!-- 1 Welcome -->
+        <figure data-screen-label="01 Welcome" style="margin:0;display:flex;flex-direction:column;gap:14px">
+          <div style="{{ frameStyle }}">
+            <div style="width:1180px;height:820px;border-radius:26px;overflow:hidden;display:grid;grid-template-columns:560px 1fr;background:#0B2545">
+              <div style="padding:56px 64px;display:flex;flex-direction:column;justify-content:space-between;background:#062040">
+                <div style="display:flex;align-items:center;gap:14px"><img src="uploads/app-icon.png" style="width:48px;height:48px;border-radius:12px"></img><span style="font:900 18px 'Figtree';letter-spacing:.08em">BANK OF THE WEST</span></div>
+                <div style="display:flex;flex-direction:column;gap:20px">
+                  <div style="font:900 14px 'Figtree';letter-spacing:.18em;color:#00B26B">WELCOME</div>
+                  <div style="font:400 50px/1.08 'Figtree'">Open an account in about ten minutes</div>
+                  <div style="font:400 20px/30px 'Figtree';color:#A9B8CC">Scan your ID and we’ll fill in the rest. A banker is nearby if you need one.</div>
+                  <div style="display:flex;flex-direction:column;gap:14px;margin-top:18px">
+                    <div style="height:64px;background:#00965E;border:2px solid #00965E;border-radius:8px;color:#fff;display:flex;align-items:center;justify-content:center;gap:12px;font:700 20px 'Figtree'">
+                      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.75" stroke-linecap="round"><path d="M4 8V6a2 2 0 0 1 2-2h2M16 4h2a2 2 0 0 1 2 2v2M20 16v2a2 2 0 0 1-2 2h-2M8 20H6a2 2 0 0 1-2-2v-2M9 9v1M15 9v1M12 9v4h-1M9 16c1.7 1.3 4.3 1.3 6 0"></path></svg>
+                      I already bank with you
+                    </div>
+                    <div style="height:64px;border:2px solid #fff;border-radius:8px;display:flex;align-items:center;justify-content:center;font:700 20px 'Figtree'">I’m new to Bank of the West</div>
+                  </div>
+                </div>
+                <div style="display:flex;gap:28px;font:600 16px 'Figtree';color:#8CCBF7"><span>English · Español · 中文</span><span>Talk to a banker</span></div>
+              </div>
+              <div style="position:relative;background:repeating-linear-gradient(135deg,#1A3F70 0 14px,#0B2545 14px 28px);display:flex;align-items:flex-end;padding:40px">
+                <div style="position:absolute;top:40px;left:40px;font:600 13px ui-monospace,Menlo,monospace;color:#A9C4E4;background:#133563;padding:6px 10px;border-radius:4px">lifestyle photography — customer in branch</div>
+                <div style="background:rgba(1,24,31,.92);border-radius:10px;padding:22px 24px;display:flex;gap:16px;align-items:center;width:100%">
+                  <div style="width:48px;height:48px;border-radius:50%;background:#062040;display:flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8CCBF7" stroke-width="1.75"><path d="M12 3l2 5 5 2-5 2-2 5-2-5-5-2 5-2z"></path></svg></div>
+                  <div><div style="font:700 18px 'Figtree'">Hi, I’m your assistant</div><div style="font:400 16px 'Figtree';color:#A9B8CC">Ask me anything about accounts, fees or documents.</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <figcaption style="display:flex;gap:12px;align-items:baseline"><span style="font:700 14px 'Figtree';color:#00B26B">01</span><span style="font:400 16px/24px 'Figtree';color:#D5DEEA"><b style="color:#fff">Welcome.</b> Two clear paths: returning customers go straight to Face ID, and new customers start with an ID scan.</span></figcaption>
+        </figure>
+
+        <!-- 2 Identity -->
+        <figure data-screen-label="02 Identity scan" style="margin:0;display:flex;flex-direction:column;gap:14px">
+          <div style="{{ frameStyle }}">
+            <div style="width:1180px;height:820px;border-radius:26px;overflow:hidden;display:flex;flex-direction:column;background:#0B2545">
+              <div style="height:76px;background:#062040;border-bottom:1px solid #2E5485;display:flex;align-items:center;justify-content:space-between;padding:0 36px">
+                <span style="font:700 18px 'Figtree';color:#A9B8CC">Cancel</span>
+                <div style="display:flex;gap:36px;height:76px">
+                  <sc-for list="{{ steps1 }}" as="st" hint-placeholder-count="4"><div style="display:flex;align-items:center;gap:8px;font:600 17px 'Figtree';color:{{ st.c }};border-bottom:2px solid {{ st.b }}">{{ st.l }}</div></sc-for>
+                </div>
+                <span style="font:700 18px 'Figtree';color:#8CCBF7">Help</span>
+              </div>
+              <div style="flex:1;display:grid;grid-template-columns:1fr 470px;gap:28px;padding:32px 36px">
+                <div style="background:#000;border-radius:10px;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden">
+                  <div style="position:absolute;top:22px;left:22px;font:600 13px ui-monospace,Menlo,monospace;color:#A9C4E4">live camera</div>
+                  <div style="width:460px;height:290px;border-radius:18px;background:#1A3F70;border:2px solid #00B26B;box-shadow:0 0 0 2000px rgba(0,0,0,.45);padding:26px;display:flex;gap:22px">
+                    <div style="width:120px;height:150px;border-radius:8px;background:repeating-linear-gradient(135deg,#2F5F99 0 8px,#24497A 8px 16px)"></div>
+                    <div style="flex:1;display:flex;flex-direction:column;gap:12px;padding-top:6px">
+                      <div style="font:900 13px 'Figtree';letter-spacing:.14em;color:#D5DEEA">DRIVER LICENSE</div>
+                      <div style="height:10px;width:80%;background:#2E5485;border-radius:4px"></div><div style="height:10px;width:60%;background:#2E5485;border-radius:4px"></div><div style="height:10px;width:70%;background:#2E5485;border-radius:4px"></div><div style="height:10px;width:40%;background:#2E5485;border-radius:4px"></div>
+                    </div>
+                  </div>
+                  <div style="position:absolute;bottom:26px;left:50%;transform:translateX(-50%);background:#133563;border-radius:42px;padding:12px 22px;display:flex;align-items:center;gap:10px;font:600 17px 'Figtree'"><span style="width:10px;height:10px;border-radius:50%;background:#00B26B"></span>License detected. Now flip it over.</div>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:16px">
+                  <div style="font:400 32px/1.15 'Figtree'">We read this from your ID</div>
+                  <div style="font:400 17px/26px 'Figtree';color:#A9B8CC">Check each detail. Tap any field to fix it.</div>
+                  <div style="display:flex;flex-direction:column;gap:10px;margin-top:6px">
+                    <sc-for list="{{ idFields }}" as="f" hint-placeholder-count="5">
+                      <div style="background:#133563;border:1px solid #24497A;border-radius:10px;padding:12px 16px;display:flex;justify-content:space-between;align-items:center">
+                        <div><div style="font:600 13px 'Figtree';color:#A9B8CC">{{ f.k }}</div><div style="font:700 19px 'Figtree';margin-top:2px">{{ f.v }}</div></div>
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00B26B" stroke-width="2" stroke-linecap="round"><path d="M5 12l5 5 9-10"></path></svg>
+                      </div>
+                    </sc-for>
+                  </div>
+                  <div style="margin-top:auto;height:58px;background:#00965E;border:2px solid #00965E;border-radius:8px;color:#fff;display:flex;align-items:center;justify-content:center;font:700 19px 'Figtree'">Looks right</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <figcaption style="display:flex;gap:12px;align-items:baseline"><span style="font:700 14px 'Figtree';color:#00B26B">02</span><span style="font:400 16px/24px 'Figtree';color:#D5DEEA"><b style="color:#fff">Scan and confirm.</b> The camera reads the licence, prefills the form and runs KYC. Customers confirm five details instead of filling in a form.</span></figcaption>
+        </figure>
+
+        <!-- 3 Recommendations -->
+        <figure data-screen-label="03 Recommendations" style="margin:0;display:flex;flex-direction:column;gap:14px">
+          <div style="{{ frameStyle }}">
+            <div style="width:1180px;height:820px;border-radius:26px;overflow:hidden;display:flex;flex-direction:column;background:#0B2545">
+              <div style="height:76px;background:#062040;border-bottom:1px solid #2E5485;display:flex;align-items:center;justify-content:space-between;padding:0 36px">
+                <span style="font:700 18px 'Figtree';color:#A9B8CC">Back</span>
+                <div style="display:flex;gap:36px;height:76px">
+                  <sc-for list="{{ steps2 }}" as="st" hint-placeholder-count="4"><div style="display:flex;align-items:center;gap:8px;font:600 17px 'Figtree';color:{{ st.c }};border-bottom:2px solid {{ st.b }}">{{ st.l }}</div></sc-for>
+                </div>
+                <span style="font:700 18px 'Figtree';color:#8CCBF7">Help</span>
+              </div>
+              <div style="flex:1;display:grid;grid-template-columns:1fr 340px;min-height:0">
+                <div style="padding:32px 36px;display:flex;flex-direction:column;gap:18px">
+                  <div style="font:400 32px/1.15 'Figtree'">Recommended for you, Étienne</div>
+                  <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+                    <span style="font:600 15px 'Figtree';color:#A9B8CC">You told us:</span>
+                    <sc-for list="{{ goals }}" as="g" hint-placeholder-count="3"><span style="white-space:nowrap;flex:none;font:600 15px 'Figtree';color:#D5E8FF;background:#1A3F70;border:1px solid #2F5F99;border-radius:42px;padding:7px 16px">{{ g }}</span></sc-for>
+                    <span style="font:600 15px 'Figtree';color:#8CCBF7">Edit</span>
+                  </div>
+                  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:6px">
+                    <sc-for list="{{ products }}" as="p" hint-placeholder-count="3">
+                      <div onClick="{{ p.toggle }}" style="cursor:pointer;background:#133563;border-radius:10px;padding:22px;display:flex;flex-direction:column;gap:12px;border:2px solid {{ p.border }};min-height:380px">
+                        <div style="display:flex;justify-content:space-between;align-items:center">
+                          <span style="font:900 12px 'Figtree';letter-spacing:.14em;color:#00B26B">{{ p.tag }}</span>
+                          <span style="width:28px;height:28px;border-radius:50%;border:2px solid {{ p.border }};background:{{ p.fill }};display:flex;align-items:center;justify-content:center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0B2545" stroke-width="3"><path d="M5 12l5 5 9-10"></path></svg></span>
+                        </div>
+                        <div style="font:700 22px/28px 'Figtree'">{{ p.name }}</div>
+                        <div style="font:400 16px/24px 'Figtree';color:#A9B8CC">{{ p.why }}</div>
+                        <div style="margin-top:auto;border-top:1px solid #24497A;padding-top:14px;display:flex;flex-direction:column;gap:6px">
+                          <div style="font:400 30px 'Figtree'">{{ p.price }}</div>
+                          <div style="font:400 14px 'Figtree';color:#A9B8CC">{{ p.note }}</div>
+                        </div>
+                      </div>
+                    </sc-for>
+                  </div>
+                  <div style="font:600 16px 'Figtree';color:#8CCBF7">Browse all accounts, cards and loans</div>
+                </div>
+                <div style="background:#062040;border-left:1px solid #2E5485;padding:32px 28px;display:flex;flex-direction:column;gap:16px">
+                  <div style="font:900 13px 'Figtree';letter-spacing:.16em;color:#A9B8CC">YOUR BUNDLE</div>
+                  <sc-for list="{{ bundle }}" as="b" hint-placeholder-count="2"><div style="display:flex;justify-content:space-between;font:600 17px 'Figtree'"><span>{{ b.name }}</span><span style="color:#A9B8CC">{{ b.price }}</span></div></sc-for>
+                  <div style="border-top:1px solid #2E5485;padding-top:14px;display:flex;justify-content:space-between;align-items:baseline"><span style="font:700 17px 'Figtree'">Monthly</span><span style="font:400 34px 'Figtree';color:#00B26B">{{ total }}</span></div>
+                  <div style="margin-top:auto;background:#133563;border-radius:10px;padding:16px;font:400 15px/22px 'Figtree';color:#D5DEEA">“Premier waives the fee with a $1,500 balance. Want me to set up direct deposit?”<div style="margin-top:8px;font:700 14px 'Figtree';color:#8CCBF7">Ask the assistant</div></div>
+                  <div style="height:58px;background:#00965E;border:2px solid #00965E;border-radius:8px;color:#fff;display:flex;align-items:center;justify-content:center;font:700 19px 'Figtree'">Continue with {{ count }}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <figcaption style="display:flex;gap:12px;align-items:baseline"><span style="font:700 14px 'Figtree';color:#00B26B">03</span><span style="font:400 16px/24px 'Figtree';color:#D5DEEA"><b style="color:#fff">Recommendations.</b> Three picks based on the customer’s goals, not a full catalogue. Each card says why it fits and shows the price. Tap a card to toggle it.</span></figcaption>
+        </figure>
+
+        <!-- 4 Review & sign -->
+        <figure data-screen-label="04 Review and sign" style="margin:0;display:flex;flex-direction:column;gap:14px">
+          <div style="{{ frameStyle }}">
+            <div style="width:1180px;height:820px;border-radius:26px;overflow:hidden;display:flex;flex-direction:column;background:#0B2545">
+              <div style="height:76px;background:#062040;border-bottom:1px solid #2E5485;display:flex;align-items:center;justify-content:space-between;padding:0 36px">
+                <span style="font:700 18px 'Figtree';color:#A9B8CC">Back</span>
+                <div style="display:flex;gap:36px;height:76px">
+                  <sc-for list="{{ steps3 }}" as="st" hint-placeholder-count="4"><div style="display:flex;align-items:center;gap:8px;font:600 17px 'Figtree';color:{{ st.c }};border-bottom:2px solid {{ st.b }}">{{ st.l }}</div></sc-for>
+                </div>
+                <span style="font:700 18px 'Figtree';color:#8CCBF7">Help</span>
+              </div>
+              <div style="flex:1;display:grid;grid-template-columns:1fr 1fr;gap:28px;padding:32px 36px">
+                <div style="display:flex;flex-direction:column;gap:14px">
+                  <div style="font:400 32px/1.15 'Figtree'">Review and sign</div>
+                  <sc-for list="{{ review }}" as="r" hint-placeholder-count="3">
+                    <div style="background:#133563;border-radius:10px;padding:18px 20px">
+                      <div style="display:flex;justify-content:space-between"><span style="font:900 12px 'Figtree';letter-spacing:.14em;color:#A9B8CC">{{ r.h }}</span><span style="font:700 15px 'Figtree';color:#8CCBF7">Edit</span></div>
+                      <div style="font:600 18px/28px 'Figtree';margin-top:8px">{{ r.a }}</div>
+                      <div style="font:400 16px/24px 'Figtree';color:#A9B8CC">{{ r.b }}</div>
+                    </div>
+                  </sc-for>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:16px">
+                  <div style="display:flex;flex-direction:column;gap:12px;padding-top:52px">
+                    <sc-for list="{{ consents }}" as="c" hint-placeholder-count="3">
+                      <div style="display:flex;gap:12px;align-items:flex-start;font:400 16px/24px 'Figtree';color:#D5DEEA">
+                        <span style="flex:none;width:24px;height:24px;border-radius:4px;background:#00B26B;display:flex;align-items:center;justify-content:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0B2545" stroke-width="3.5"><path d="M5 12l5 5 9-10"></path></svg></span>
+                        <span>{{ c }}</span>
+                      </div>
+                    </sc-for>
+                  </div>
+                  <div style="flex:1;background:#F5F7F8;border-radius:10px;position:relative;display:flex;align-items:flex-end;padding:26px">
+                    <svg viewBox="0 0 400 120" style="position:absolute;left:40px;top:40px;width:380px;height:120px" fill="none" stroke="#0B2545" stroke-width="3" stroke-linecap="round"><path d="M10 80c20-50 40-60 45-30s-20 50-5 30 30-60 40-40-10 40 10 20 20-30 35-20 5 20 20 10 25-25 40-15 10 15 25 5 30-10 45-5"></path><path d="M240 60c15 0 60-5 120-10"></path></svg>
+                    <div style="width:100%;border-top:1px solid #A9B8CC;padding-top:10px;display:flex;justify-content:space-between;font:600 14px 'Figtree';color:#6E82A0"><span>Étienne Dufresne</span><span>Sign with Apple Pencil or finger</span></div>
+                  </div>
+                  <div style="height:58px;background:#00965E;border:2px solid #00965E;border-radius:8px;color:#fff;display:flex;align-items:center;justify-content:center;font:700 19px 'Figtree'">Sign and open accounts</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <figcaption style="display:flex;gap:12px;align-items:baseline"><span style="font:700 14px 'Figtree';color:#00B26B">04</span><span style="font:400 16px/24px 'Figtree';color:#D5DEEA"><b style="color:#fff">Review and sign.</b> Everything on one editable page, with plain-language disclosures and an Apple Pencil signature.</span></figcaption>
+        </figure>
+
+        <!-- 5 Ready / service -->
+        <figure data-screen-label="05 Account ready" style="margin:0;display:flex;flex-direction:column;gap:14px">
+          <div style="{{ frameStyle }}">
+            <div style="width:1180px;height:820px;border-radius:26px;overflow:hidden;display:grid;grid-template-columns:1fr 400px;background:#0B2545">
+              <div style="padding:48px 48px;display:flex;flex-direction:column;gap:22px">
+                <div style="width:64px;height:64px;border-radius:50%;border:2px solid #00B26B;display:flex;align-items:center;justify-content:center"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#00B26B" stroke-width="2.2" stroke-linecap="round"><path d="M5 12l5 5 9-10"></path></svg></div>
+                <div style="font:400 46px/1.08 'Figtree'">You’re all set, Étienne</div>
+                <div style="font:400 19px/29px 'Figtree';color:#A9B8CC;max-width:560px">Premier Checking and Classic Savings are open. Your card is in Apple Wallet and you can use it today.</div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:6px">
+                  <div style="background:#133563;border-radius:10px;padding:20px"><div style="font:600 14px 'Figtree';color:#A9B8CC">Premier Checking</div><div style="font:400 30px 'Figtree';margin-top:4px">•••• 4821</div><div style="font:600 14px 'Figtree';color:#00B26B;margin-top:6px">Active</div></div>
+                  <div style="background:#133563;border-radius:10px;padding:20px"><div style="font:600 14px 'Figtree';color:#A9B8CC">Classic Savings</div><div style="font:400 30px 'Figtree';margin-top:4px">•••• 9107</div><div style="font:600 14px 'Figtree';color:#00B26B;margin-top:6px">Active</div></div>
+                </div>
+                <div style="font:900 13px 'Figtree';letter-spacing:.16em;color:#A9B8CC;margin-top:10px">NEXT STEPS</div>
+                <div style="display:flex;flex-direction:column;border-top:1px solid #24497A">
+                  <sc-for list="{{ nextSteps }}" as="n" hint-placeholder-count="3"><div style="display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid #24497A;font:600 18px 'Figtree'"><span>{{ n }}</span><span style="color:#8CCBF7">Start</span></div></sc-for>
+                </div>
+              </div>
+              <div style="background:#062040;border-left:1px solid #2E5485;padding:32px 26px;display:flex;flex-direction:column;gap:14px">
+                <div style="font:900 13px 'Figtree';letter-spacing:.16em;color:#A9B8CC">ASSISTANT</div>
+                <div style="align-self:flex-end;background:#2F5F99;border-radius:10px 10px 4px 10px;padding:12px 16px;font:400 16px/23px 'Figtree';max-width:280px">Can I move my paycheck over today?</div>
+                <div style="background:#133563;border-radius:10px 10px 10px 4px;padding:12px 16px;font:400 16px/23px 'Figtree';color:#D5DEEA;max-width:300px">Yes. I’ve prefilled a direct deposit form for your employer. Want to send it now?</div>
+                <div style="display:flex;gap:8px;flex-wrap:wrap"><span style="font:700 14px 'Figtree';background:#00965E;border:2px solid #00965E;border-radius:8px;color:#fff;padding:6px 14px">Send form</span><span style="font:700 14px 'Figtree';border:2px solid #fff;border-radius:8px;padding:6px 14px">Talk to Maya, banker</span></div>
+                <div style="margin-top:auto;display:flex;align-items:center;gap:12px;background:#133563;border:1px solid #24497A;border-radius:42px;padding:12px 18px;font:400 16px 'Figtree';color:#7E8FA6">Ask about fees, cards, transfers…</div>
+              </div>
+            </div>
+          </div>
+          <figcaption style="display:flex;gap:12px;align-items:baseline"><span style="font:700 14px 'Figtree';color:#00B26B">05</span><span style="font:400 16px/24px 'Figtree';color:#D5DEEA"><b style="color:#fff">Ready to use, then service.</b> The session doesn’t end at a reference number. It carries on into service: card in Wallet, next steps, and an assistant that can hand off to a named banker.</span></figcaption>
+        </figure>
+
+      </div>
+    </section>
+
+    <section style="border-top:1px solid #2E5485;padding-top:40px;display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between;align-items:center">
+      <div style="font:400 26px/1.3 'Figtree';max-width:640px">Next: test in two branches, then add Spanish and Mandarin voice support and a banker-side view.</div>
+      <a href="#screens" style="font:700 16px 'Figtree';border:2px solid #fff;border-radius:8px;padding:11px 28px;color:#fff">Back to screens</a>
+    </section>
+  </main>
+</div>
+</x-dc>
+<script src="/casestudy/portfolio-bar.js" data-cs="botw" data-home="/index.html" data-resume="/uploads/Niyati-Trivedi-Resume.pdf"></script>
+<script type="text/x-dc" data-dc-script data-props="{&quot;layout&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;stacked&quot;,&quot;grid&quot;],&quot;default&quot;:&quot;stacked&quot;,&quot;tsType&quot;:&quot;'stacked'|'grid'&quot;}}">
+class Component extends DCLogic {
+  state = { w: 1100, sel: { premier: true, savings: true, card: false } };
+  gridRef = React.createRef();
+  componentDidMount() {
+    const el = this.gridRef.current; if (!el) return;
+    this.ro = new ResizeObserver(() => this.setState({ w: el.clientWidth }));
+    this.ro.observe(el); this.setState({ w: el.clientWidth });
+  }
+  componentWillUnmount() { this.ro && this.ro.disconnect(); }
+  steps(active) {
+    const L = ['Identity', 'Your needs', 'Review', 'Done'];
+    return L.map((l, i) => ({ l: (i < active ? '✓ ' : '') + l, c: i === active ? '#fff' : i < active ? '#00B26B' : '#6E82A0', b: i === active ? '#00B26B' : 'transparent' }));
+  }
+  renderVals() {
+    const grid = (this.props.layout ?? 'stacked') === 'grid' && this.state.w > 900;
+    const cols = grid ? 2 : 1;
+    const colW = (this.state.w - (cols - 1) * 32) / cols;
+    const w = this.state.w > 100 ? this.state.w : 832;
+    const z = Math.max(0.2, Math.min(1, ((w - (cols - 1) * 32) / cols) / 1216));
+    const frameStyle = { zoom: z, width: 1216, height: 856, padding: 18, borderRadius: 44, background: '#0a0f12', boxShadow: '0 20px 30px rgba(0,0,0,.2)' };
+    const P = [
+      { id: 'premier', tag: 'BEST MATCH', name: 'Premier Checking', why: 'Free ATMs nationwide and no foreign fees when you travel.', price: '$0/mo', note: 'with $1,500 average balance', fee: 0 },
+      { id: 'savings', tag: 'FOR YOUR HOME GOAL', name: 'Classic Savings', why: 'Auto-transfer $300 a month toward your down payment.', price: '3.10% APY', note: 'no minimum to open', fee: 0 },
+      { id: 'card', tag: 'OPTIONAL', name: 'Platinum Rewards Mastercard', why: '2× points on travel and dining. Pre-qualified, with no hard pull.', price: '$0 annual', note: 'subject to approval', fee: 0 },
+    ];
+    const sel = this.state.sel;
+    const products = P.map(p => ({ ...p, border: sel[p.id] ? '#00B26B' : '#24497A', fill: sel[p.id] ? '#00B26B' : 'transparent',
+      toggle: () => this.setState(s => ({ sel: { ...s.sel, [p.id]: !s.sel[p.id] } })) }));
+    const chosen = P.filter(p => sel[p.id]);
+    return {
+      gridRef: this.gridRef, z, frameStyle, cols: `repeat(${cols}, minmax(0,1fr))`,
+      problems: [
+        { n: '40+', t: 'Fields typed by hand', d: 'Customers type in their name, address and income by hand, even though their ID already holds most of it.' },
+        { n: '30+', t: 'Products to choose from', d: 'Checking, savings, cards and loans are shown as a list, with nothing to say which ones fit the customer.' },
+        { n: '25 min', t: 'Average branch visit', d: 'Paper documents, manual KYC and waiting for a banker make an account opening a half-hour appointment.' },
+        { n: '0', t: 'Service after submit', d: 'Customers leave with a reference number, not an active account, a card or a next step.' },
+      ],
+      solutions: [
+        { n: '01', t: 'Identity first', d: 'Face ID for existing customers. For new ones, a live ID scan with NFC or barcode read prefills about 80% of the application and runs KYC while they check the details.' },
+        { n: '02', t: 'Confirm, don’t type', d: 'Detected data shows up as cards to check off. A quiet assistant answers questions in context and hands off to a banker when needed.' },
+        { n: '03', t: 'Recommend, don’t list', d: 'Two or three goal questions lead to a shortlist of three products, each with its reason and price. The full catalogue is still one tap away.' },
+        { n: '04', t: 'Continue into service', d: 'Pencil e-sign, instant account numbers, card sent to Apple Wallet, then next steps and a named-banker handoff on the same iPad.' },
+      ],
+      metrics: [
+        { v: '< 10 min', l: 'target time to open an account in branch' },
+        { v: '80%', l: 'fields prefilled from ID and bank data' },
+        { v: '3', l: 'recommended products instead of 30+' },
+      ],
+      steps1: this.steps(0), steps2: this.steps(1), steps3: this.steps(2),
+      idFields: [
+        { k: 'Full name', v: 'Étienne Dufresne' }, { k: 'Date of birth', v: 'March 14, 1996' },
+        { k: 'Address', v: '1450 Market St, San Francisco, CA 94103' }, { k: 'License no.', v: 'D4829•••' },
+        { k: 'Identity check', v: 'Verified in 4 seconds' },
+      ],
+      goals: ['Saving for a home', 'Travel often', 'Paid monthly'],
+      products, bundle: chosen.map(p => ({ name: p.name, price: p.price })),
+      total: '$0', count: chosen.length === 1 ? '1 product' : `${chosen.length} products`,
+      review: [
+        { h: 'ABOUT YOU', a: 'Étienne Dufresne · 30', b: '1450 Market St, San Francisco · (415) 555-0126' },
+        { h: 'ACCOUNTS', a: 'Premier Checking + Classic Savings', b: '$0/month · $300 monthly auto-transfer' },
+        { h: 'FUNDING', a: '$500 from Chase •••• 2210', b: 'Linked instantly with Plaid' },
+      ],
+      consents: ['I’ve read the account agreement (2-min summary)', 'Send statements and alerts electronically', 'Add my debit card to Apple Wallet'],
+      nextSteps: ['Set up direct deposit', 'Turn on spending alerts', 'Book a home-buying consultation'],
+    };
+  }
+}
+</script>
+</body>
+</html>

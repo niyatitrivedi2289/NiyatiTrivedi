@@ -1,0 +1,74 @@
+/* ============================================================
+   Niyati Trivedi — Portfolio
+   Design tokens: color, type, spacing, motion
+   ============================================================ */
+
+/* ---- Fonts ---- */
+@import url('https://api.fontshare.com/v2/css?f[]=general-sans@300,400,500,600,700&f[]=switzer@300,400,500,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600&display=swap');
+
+:root {
+  /* Accent (tweakable) */
+  --accent: #7CFF3A;
+  --accent-ink: #0A0A0A;          /* text that sits on accent */
+  --accent-soft: rgba(124, 255, 58, 0.14);
+
+  /* Light surfaces */
+  --bg: #FFFFFF;
+  --bg-warm: #FAFAF9;
+  --bg-sunken: #F2F2EF;
+  --ink: #111111;
+  --ink-soft: #3A3A38;
+  --muted: #8A8A8A;
+  --line: #EAEAEA;
+  --line-strong: #DADAD6;
+
+  /* Dark surfaces */
+  --dark-bg: #0A0A0A;
+  --dark-bg-2: #121212;
+  --dark-card: #161616;
+  --dark-fg: #F5F5F5;
+  --dark-muted: #8E8E8C;
+  --dark-line: rgba(255, 255, 255, 0.10);
+
+  /* Fonts (tweakable) — clean geometric grotesques */
+  --font-display: 'General Sans', 'Inter Tight', sans-serif;
+  --font-body: 'Switzer', 'General Sans', sans-serif;
+  --font-meta: var(--font-body);
+
+  /* Weights — light/editorial hierarchy (no heavy display) */
+  --w-light: 300;
+  --w-reg: 400;
+  --w-med: 500;
+  --w-semi: 600;
+
+  /* Type scale */
+  --fs-hero: clamp(2.9rem, 6.2vw, 5.5rem);
+  --fs-display: clamp(2.5rem, 5vw, 4.25rem);
+  --fs-h2: clamp(2rem, 3.6vw, 3.25rem);
+  --fs-h3: clamp(1.4rem, 2vw, 1.95rem);
+  --fs-card: clamp(1.2rem, 1.5vw, 1.5rem);
+  --fs-lead: clamp(1.05rem, 1.3vw, 1.28rem);
+  --fs-body: 1.0625rem;
+  --fs-meta: 0.76rem;
+
+  /* Layout */
+  --maxw: 1240px;
+  --gutter: clamp(20px, 5vw, 80px);
+
+  /* Radii */
+  --r-sm: 8px;
+  --r-md: 14px;
+  --r-lg: 22px;
+  --r-xl: 32px;
+  --r-pill: 999px;
+
+  /* Motion */
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur: 0.55s;
+
+  /* Shadow */
+  --shadow-card: 0 1px 2px rgba(17,17,17,0.04), 0 18px 40px -24px rgba(17,17,17,0.18);
+  --shadow-float: 0 30px 70px -30px rgba(17,17,17,0.35);
+}
