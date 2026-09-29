@@ -1,0 +1,693 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Merchant APIs — Worldpay from FIS</title>
+<script>
+  // Early theme init — must run before paint to prevent flash.
+  (function () {
+    try {
+      var t = localStorage.getItem('fisDevTheme') || 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+<link rel="stylesheet" href="styles.css" />
+<style>
+  /* ---- API listing styles ---- */
+  .page-head {
+    padding: 56px 0 24px;
+    border-bottom: 1px solid var(--line);
+  }
+  .page-head h1 { font-size: 38px; line-height: 1.1; letter-spacing: -0.02em; margin-top: 12px; }
+  .page-head p { color: var(--fg-2); max-width: 640px; margin-top: 12px; font-size: 16px; }
+
+  .layout {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 48px;
+    padding: 40px 0 80px;
+  }
+
+  /* Filter rail */
+  .filters {
+    position: sticky;
+    top: calc(var(--nav-h) + 16px);
+    align-self: start;
+    max-height: calc(100vh - 80px);
+    overflow-y: auto;
+    padding-right: 8px;
+  }
+  .filter-group { margin-bottom: 32px; }
+  .filter-head {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 14px;
+  }
+  .filter-head h3 {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--fg-3);
+    font-weight: 700;
+  }
+  .filter-head .clear {
+    font-size: 11px;
+    color: var(--fg-4);
+    cursor: pointer;
+    background: none; border: 0;
+    padding: 0;
+  }
+  .filter-head .clear:hover { color: var(--cyan); }
+
+  .filter-opt {
+    display: flex; align-items: center; gap: 10px;
+    padding: 7px 0;
+    cursor: pointer;
+    font-size: 14px;
+    color: var(--fg-2);
+    user-select: none;
+  }
+  .filter-opt:hover { color: var(--fg); }
+  .filter-opt input { display: none; }
+  .filter-opt .box {
+    width: 16px; height: 16px;
+    border-radius: 4px;
+    border: 1.5px solid var(--line-strong);
+    flex: 0 0 auto;
+    display: inline-flex; align-items: center; justify-content: center;
+    transition: background 150ms var(--ease), border-color 150ms var(--ease);
+  }
+  .filter-opt .box.radio { border-radius: 50%; }
+  .filter-opt input:checked + .box {
+    background: var(--green);
+    border-color: var(--green);
+  }
+  .filter-opt input:checked + .box svg { display: block; color: #001C25; }
+  .filter-opt input:checked + .box.radio::after {
+    content: "";
+    width: 5px; height: 5px;
+    background: #001C25; border-radius: 50%;
+  }
+  .filter-opt .box svg { display: none; width: 11px; height: 11px; }
+  .filter-opt .count { margin-left: auto; font-size: 12px; color: var(--fg-4); font-family: var(--font-mono); }
+
+  /* Content */
+  .filter-bar {
+    display: flex; align-items: center; gap: 14px;
+    margin-bottom: 22px;
+  }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+  .chip {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--bg-elev2);
+    border: 1px solid var(--line-mid);
+    border-radius: 999px;
+    padding: 4px 10px 4px 12px;
+    font-size: 12.5px;
+    color: var(--fg-2);
+    font-weight: 500;
+  }
+  .chip .x {
+    width: 14px; height: 14px;
+    display: inline-flex; align-items: center; justify-content: center;
+    background: var(--line);
+    border-radius: 50%;
+    color: var(--fg-3);
+    cursor: pointer;
+  }
+  .chip .x:hover { color: var(--fg); }
+
+  .tabs {
+    display: flex; gap: 4px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 32px;
+  }
+  .tab {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 14px 18px;
+    color: var(--fg-3);
+    font-size: 14px;
+    font-weight: 600;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    transition: color 150ms var(--ease), border-color 150ms var(--ease);
+    background: none; border-top: 0; border-left: 0; border-right: 0;
+  }
+  .tab:hover { color: var(--fg-2); }
+  .tab.active { color: var(--fg); border-bottom-color: var(--green); }
+  .tab .count {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--fg-4);
+    background: var(--bg-elev2);
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+  .tab.active .count { background: var(--green-dim); color: var(--green); }
+
+  .search-box {
+    margin-left: auto;
+    display: flex; align-items: center; gap: 8px;
+    background: var(--bg-elev2);
+    border: 1px solid var(--line);
+    border-radius: var(--r-sm);
+    padding: 7px 12px;
+    width: 280px;
+  }
+  .search-box svg { color: var(--fg-4); flex: 0 0 auto; }
+  .search-box input {
+    flex: 1; background: transparent; border: 0; outline: 0;
+    color: var(--fg); font: inherit; font-size: 13.5px;
+  }
+  .search-box input::placeholder { color: var(--fg-4); }
+  .search-box .kbd {
+    font-family: var(--font-mono); font-size: 10.5px;
+    background: var(--bg-elev3); color: var(--fg-3);
+    padding: 1px 5px; border-radius: 3px;
+    border: 1px solid var(--line);
+  }
+
+  .results-bar {
+    display: flex; align-items: baseline; justify-content: space-between;
+    margin-bottom: 16px;
+  }
+  .results-bar .count {
+    font-size: 13px;
+    color: var(--fg-3);
+  }
+  .results-bar .count strong { color: var(--fg); font-weight: 700; }
+  .sort {
+    display: flex; gap: 14px;
+    align-items: center;
+    font-size: 13px;
+    color: var(--fg-3);
+  }
+  .sort select {
+    background: transparent;
+    color: var(--fg-2);
+    border: 1px solid var(--line);
+    border-radius: var(--r-sm);
+    padding: 5px 10px;
+    font-size: 13px;
+    font: inherit; font-size: 13px;
+    font-weight: 600;
+  }
+
+  /* API cards */
+  .api-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .api-card {
+    position: relative;
+    background: var(--bg-elev2);
+    border: 1px solid var(--line);
+    border-radius: var(--r-lg);
+    padding: 22px;
+    transition: border-color 200ms var(--ease), background 200ms var(--ease);
+  }
+  .api-card:hover {
+    border-color: var(--line-strong);
+    background: var(--bg-elev3);
+  }
+  .api-card .tag-row {
+    display: flex; align-items: center; gap: 6px;
+    margin-bottom: 14px;
+  }
+  .api-card .tag {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--fg-3);
+    background: var(--bg-elev3);
+    padding: 3px 8px;
+    border-radius: 4px;
+    border: 1px solid var(--line);
+  }
+  .api-card .tag.live { color: var(--green); border-color: rgba(75,205,62,0.3); background: rgba(75,205,62,0.08); }
+  .api-card .tag.beta { color: var(--yellow); border-color: rgba(255,205,0,0.25); background: rgba(255,205,0,0.05); }
+  .api-card h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--fg);
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+  .api-card .ttl-link { display: inline-flex; align-items: center; gap: 8px; }
+  .api-card .ttl-link::after {
+    content: "↗";
+    color: var(--fg-4);
+    font-weight: 400;
+    font-size: 14px;
+    transition: color 150ms var(--ease), transform 150ms var(--ease);
+  }
+  .api-card:hover .ttl-link::after { color: var(--cyan); transform: translate(2px, -2px); }
+  .api-card .desc {
+    color: var(--fg-3);
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+  .api-card .meta {
+    display: flex; gap: 16px;
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+    font-size: 12.5px;
+    color: var(--fg-3);
+  }
+  .api-card .meta .item { display: inline-flex; align-items: center; gap: 6px; }
+  .api-card .meta .item svg { color: var(--fg-4); }
+  .api-card .meta .item .v { color: var(--fg-2); font-weight: 600; font-family: var(--font-mono); font-size: 12px; }
+
+  .api-card .know {
+    margin-top: 16px;
+    display: inline-flex; align-items: center; gap: 6px;
+    color: var(--cyan);
+    font-size: 13.5px;
+    font-weight: 600;
+  }
+  .api-card .know .arr { transition: transform 150ms var(--ease); }
+  .api-card:hover .know .arr { transform: translateX(3px); }
+</style>
+</head>
+<body data-screen-label="02 APIs">
+
+<!-- ============ NAV ============ -->
+<header class="nav">
+  <div class="shell nav-inner">
+    <a href="landing.html" class="brand" aria-label="Worldpay from FIS — Developer">
+      <span class="brand-worldpay">Worldpay</span>
+      <span class="brand-from">
+        <span class="brand-from-label">from</span>
+<span class="brand-fis-text">FIS</span>
+      </span>
+      <span class="brand-product">Developer</span>
+    </a>
+    <nav class="nav-tabs">
+      <a href="apis.html" class="active">Merchant APIs</a>
+      <a href="#">Partner APIs</a>
+      <a href="landing.html#api-finder">API Finder</a>
+      <a href="documentation.html">Docs</a>
+    </nav>
+    <div class="nav-right">
+      <button class="icon-btn" aria-label="Search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </button>
+      <button class="icon-btn theme-toggle" aria-label="Toggle theme" aria-pressed="false">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="icon-btn" aria-label="Region">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
+      </button>
+      <a href="#" class="nav-login">Sign in</a>
+    </div>
+  </div>
+</header>
+
+<!-- ============ PAGE HEAD ============ -->
+<section class="page-head">
+  <div class="shell">
+    <div class="crumb">
+      <a href="landing.html">Home</a>
+      <span class="sep">/</span>
+      <span class="current">Merchant APIs</span>
+    </div>
+    <h1>Merchant APIs</h1>
+    <p>Pick the right API for your business size, region and payment mix. Each entry below is a complete integration — fully documented, sandboxed, and certified for production.</p>
+  </div>
+</section>
+
+<!-- ============ LAYOUT ============ -->
+<div class="shell layout">
+
+  <!-- Filters -->
+  <aside class="filters">
+    <div class="filter-group">
+      <div class="filter-head">
+        <h3>Business size</h3>
+      </div>
+      <label class="filter-opt">
+        <input type="radio" name="size" />
+        <span class="box radio"></span>
+        <span>Small</span>
+        <span class="count">12</span>
+      </label>
+      <label class="filter-opt">
+        <input type="radio" name="size" checked />
+        <span class="box radio"></span>
+        <span>Medium</span>
+        <span class="count">18</span>
+      </label>
+      <label class="filter-opt">
+        <input type="radio" name="size" />
+        <span class="box radio"></span>
+        <span>Enterprise</span>
+        <span class="count">9</span>
+      </label>
+    </div>
+
+    <div class="filter-group">
+      <div class="filter-head">
+        <h3>Availability</h3>
+      </div>
+      <label class="filter-opt">
+        <input type="radio" name="avail" checked />
+        <span class="box radio"></span>
+        <span>United Kingdom</span>
+        <span class="count">15</span>
+      </label>
+      <label class="filter-opt">
+        <input type="radio" name="avail" />
+        <span class="box radio"></span>
+        <span>United States</span>
+        <span class="count">11</span>
+      </label>
+      <label class="filter-opt">
+        <input type="radio" name="avail" />
+        <span class="box radio"></span>
+        <span>Global</span>
+        <span class="count">23</span>
+      </label>
+    </div>
+
+    <div class="filter-group">
+      <div class="filter-head">
+        <h3>Payment type</h3>
+        <button class="clear">Clear</button>
+      </div>
+      <label class="filter-opt">
+        <input type="checkbox" checked />
+        <span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+        <span>Mastercard</span>
+      </label>
+      <label class="filter-opt">
+        <input type="checkbox" />
+        <span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+        <span>Visa</span>
+      </label>
+      <label class="filter-opt">
+        <input type="checkbox" />
+        <span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+        <span>American Express</span>
+      </label>
+      <label class="filter-opt">
+        <input type="checkbox" />
+        <span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+        <span>Diners Club</span>
+      </label>
+      <label class="filter-opt">
+        <input type="checkbox" />
+        <span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+        <span>Apple Pay</span>
+      </label>
+      <label class="filter-opt">
+        <input type="checkbox" />
+        <span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+        <span>Google Pay</span>
+      </label>
+      <label class="filter-opt">
+        <input type="checkbox" />
+        <span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+        <span>PayPal</span>
+      </label>
+    </div>
+
+    <div class="filter-group">
+      <div class="filter-head">
+        <h3>Features</h3>
+        <button class="clear">Clear</button>
+      </div>
+      <label class="filter-opt">
+        <input type="checkbox" checked />
+        <span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+        <span>Pay by email</span>
+      </label>
+      <label class="filter-opt">
+        <input type="checkbox" />
+        <span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+        <span>Pay by phone</span>
+      </label>
+      <label class="filter-opt">
+        <input type="checkbox" />
+        <span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+        <span>Tokenisation</span>
+      </label>
+      <label class="filter-opt">
+        <input type="checkbox" />
+        <span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+        <span>3-D Secure</span>
+      </label>
+      <label class="filter-opt">
+        <input type="checkbox" />
+        <span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+        <span>Recurring payments</span>
+      </label>
+      <label class="filter-opt">
+        <input type="checkbox" />
+        <span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+        <span>Additional notifications</span>
+      </label>
+      <label class="filter-opt">
+        <input type="checkbox" />
+        <span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+        <span>Risk &amp; fraud</span>
+      </label>
+    </div>
+  </aside>
+
+  <!-- Content -->
+  <main>
+    <!-- Tabs -->
+    <div class="tabs">
+      <button class="tab active">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+        Online payments
+        <span class="count">6</span>
+      </button>
+      <button class="tab">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M3 17l-1 4h20l-1-4"/></svg>
+        Point of sale
+        <span class="count">3</span>
+      </button>
+      <button class="tab">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+        All
+        <span class="count">18</span>
+      </button>
+      <div class="search-box" style="margin-left: auto; align-self: center; margin-bottom: 8px;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" placeholder="Search APIs…" />
+        <span class="kbd">⌘ K</span>
+      </div>
+    </div>
+
+    <!-- Active filter chips -->
+    <div class="filter-bar">
+      <span style="font-size: 12px; color: var(--fg-3); font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em;">Active</span>
+      <div class="chips">
+        <span class="chip">Medium <span class="x">×</span></span>
+        <span class="chip">UK <span class="x">×</span></span>
+        <span class="chip">Mastercard <span class="x">×</span></span>
+        <span class="chip">Pay by email <span class="x">×</span></span>
+        <span class="chip" style="background: transparent; border-color: var(--line); color: var(--fg-3);">Clear all</span>
+      </div>
+    </div>
+
+    <div class="results-bar">
+      <div class="count"><strong>6</strong> APIs matching your filters</div>
+      <div class="sort">
+        <span>Sort by</span>
+        <select>
+          <option>Most popular</option>
+          <option>Recently updated</option>
+          <option>Alphabetical</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="api-grid">
+
+      <article class="api-card">
+        <div class="tag-row">
+          <span class="tag live">Generally available</span>
+          <span class="tag">REST · JSON</span>
+        </div>
+        <h3><a href="reference.html" class="ttl-link" style="color: inherit;">Access Worldpay</a></h3>
+        <p class="desc">Our modern, cloud-based RESTful API. Authorize, settle, refund and tokenise — all from a single hyper-media journey.</p>
+        <div class="meta">
+          <span class="item"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37Z"/><circle cx="12" cy="12" r="10"/></svg> v<span class="v">6.2</span></span>
+          <span class="item"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Updated 03 Jan</span>
+        </div>
+        <a href="reference.html" class="know">Know more <span class="arr">→</span></a>
+      </article>
+
+      <article class="api-card">
+        <div class="tag-row">
+          <span class="tag live">Generally available</span>
+          <span class="tag">XML · SOAP</span>
+        </div>
+        <h3><a href="reference.html" class="ttl-link" style="color: inherit;">Worldwide Payment Gateway</a></h3>
+        <p class="desc">An XML integration into our gateway, offering a robust suite of products including alternative payment methods.</p>
+        <div class="meta">
+          <span class="item"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg> v<span class="v">11.4</span></span>
+          <span class="item"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Updated 17 Dec</span>
+        </div>
+        <a href="reference.html" class="know">Know more <span class="arr">→</span></a>
+      </article>
+
+      <article class="api-card">
+        <div class="tag-row">
+          <span class="tag live">Generally available</span>
+          <span class="tag">REST · JSON</span>
+        </div>
+        <h3><a href="reference.html" class="ttl-link" style="color: inherit;">Worldpay Online Payments</a></h3>
+        <p class="desc">Ideal for small and medium UK-based merchants looking for a fast RESTful JSON integration.</p>
+        <div class="meta">
+          <span class="item"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg> v<span class="v">4.1</span></span>
+          <span class="item"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Updated 09 Dec</span>
+        </div>
+        <a href="reference.html" class="know">Know more <span class="arr">→</span></a>
+      </article>
+
+      <article class="api-card">
+        <div class="tag-row">
+          <span class="tag live">Generally available</span>
+          <span class="tag">Hardware</span>
+        </div>
+        <h3><a href="reference.html" class="ttl-link" style="color: inherit;">Worldpay Total</a></h3>
+        <p class="desc">In-person payment devices that connect to your till, tablet or smartphone — fully managed by us.</p>
+        <div class="meta">
+          <span class="item"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg> v<span class="v">3.0</span></span>
+          <span class="item"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Updated 21 Nov</span>
+        </div>
+        <a href="reference.html" class="know">Know more <span class="arr">→</span></a>
+      </article>
+
+      <article class="api-card">
+        <div class="tag-row">
+          <span class="tag beta">Beta</span>
+          <span class="tag">iOS · Android</span>
+        </div>
+        <h3><a href="reference.html" class="ttl-link" style="color: inherit;">Mobile SDK</a></h3>
+        <p class="desc">A native client SDK that lets you accept card-present payments using your own iOS or Android device.</p>
+        <div class="meta">
+          <span class="item"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg> v<span class="v">2.4-beta</span></span>
+          <span class="item"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Updated 02 Jan</span>
+        </div>
+        <a href="reference.html" class="know">Know more <span class="arr">→</span></a>
+      </article>
+
+      <article class="api-card">
+        <div class="tag-row">
+          <span class="tag live">Generally available</span>
+          <span class="tag">REST · JSON</span>
+        </div>
+        <h3><a href="reference.html" class="ttl-link" style="color: inherit;">Value Added Services</a></h3>
+        <p class="desc">Reporting, reconciliation, settlement and chargeback management exposed as composable REST endpoints.</p>
+        <div class="meta">
+          <span class="item"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg> v<span class="v">2.1</span></span>
+          <span class="item"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Updated 14 Dec</span>
+        </div>
+        <a href="reference.html" class="know">Know more <span class="arr">→</span></a>
+      </article>
+
+    </div>
+  </main>
+</div>
+
+<!-- ============ FEEDBACK ============ -->
+<div class="shell">
+  <div class="feedback">
+    <span class="lbl">Was this page helpful?</span>
+    <div class="btns">
+      <button>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10v12"/><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H7a2 2 0 0 1-2-2V10a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11l3.43-6.78A1.5 1.5 0 0 1 16.6.85a2.62 2.62 0 0 1 1.4 2.3z"/></svg>
+        Yes
+      </button>
+      <button>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 14V2"/><path d="M9 18.12 10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H17a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-2.76a2 2 0 0 0-1.79 1.11l-3.43 6.78A1.5 1.5 0 0 1 7.4 23.15a2.62 2.62 0 0 1-1.4-2.3z"/></svg>
+        No
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="shell">
+    <div class="footer-grid">
+      <div>
+        <div class="tagline">Still can't find <span class="accent">what you're<br/>looking for?</span></div>
+        <p>We're around — try one of the channels below.</p>
+      </div>
+      <div>
+        <h4>Conversation</h4>
+        <p style="margin-bottom: 10px;">Talk to our sales team about choosing the right API solution for your business.</p>
+        <div class="contact-row">
+          <div>
+            <span class="label">Call us</span>
+            <a href="tel:+18777763706">+1 877.776.3706</a>
+          </div>
+          <div>
+            <span class="label">Email us</span>
+            <a href="mailto:fis@fisglobal.com">fis@fisglobal.com</a>
+          </div>
+        </div>
+        <div class="social-row">
+          <a href="#" aria-label="Email"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a>
+          <a href="#" aria-label="Facebook"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M9 8H6v4h3v12h5V12h3.6l.4-4h-4V6.3c0-1 .2-1.3 1.2-1.3H18V0h-3.8C10.6 0 9 1.6 9 4.7V8z"/></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14C2.2 0 0 2.2 0 5v14c0 2.8 2.2 5 5 5h14c2.8 0 5-2.2 5-5V5c0-2.8-2.2-5-5-5zM8 19H5V8h3v11zM6.5 6.7c-1 0-1.7-.8-1.7-1.7s.7-1.7 1.7-1.7 1.7.8 1.7 1.7c0 1-.7 1.7-1.7 1.7zM20 19h-3v-5.6c0-1.5-.6-2-1.5-2-.9 0-1.5.6-1.5 2V19h-3V8h3v1.4c.5-.7 1.4-1.4 2.5-1.4 2 0 3.5 1.2 3.5 4V19z"/></svg></a>
+          <a href="#" aria-label="Twitter"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M24 4.6c-.9.4-1.8.7-2.8.8 1-.6 1.8-1.6 2.2-2.7-1 .6-2 1-3.1 1.2-.9-1-2.2-1.6-3.6-1.6-2.7 0-4.9 2.2-4.9 4.9 0 .4 0 .8.1 1.1C7.7 8.1 4.1 6.1 1.7 3.1c-.4.7-.7 1.6-.7 2.5 0 1.7.9 3.2 2.2 4.1-.8 0-1.6-.3-2.3-.6 0 2.4 1.7 4.4 4 4.9-.4.1-.8.2-1.3.2-.3 0-.6 0-.9-.1.6 2 2.4 3.4 4.6 3.4C5.6 18.9 3.4 19.7 1 19.7c-.4 0-.8 0-1.2-.1 2.2 1.4 4.8 2.2 7.6 2.2 9.1 0 14-7.5 14-14v-.6c1-.7 1.8-1.6 2.6-2.6z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4>Support</h4>
+        <p style="margin-bottom: 14px;">Stuck on an integration? Our developer success team is here to help unblock you.</p>
+        <a href="#" class="btn btn-ghost btn-sm">Open a support case</a>
+
+        <h4 style="margin-top: 28px;">Stay connected</h4>
+        <ul>
+          <li><a href="#">Release notes</a></li>
+          <li><a href="#">Status page</a></li>
+          <li><a href="#">Developer blog</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 FIS. All rights reserved.</div>
+      <div class="links">
+        <a href="#">Terms</a>
+        <a href="#">Privacy</a>
+        <a href="#">Cookies</a>
+        <a href="#">Modern Slavery</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ SCREEN PAGER ============ -->
+<nav class="pager" aria-label="Case study screens">
+  <a href="landing.html"><span class="num">01</span> Landing</a>
+  <a href="apis.html" class="active"><span class="num">02</span> APIs</a>
+  <a href="reference.html"><span class="num">03</span> Reference</a>
+  <a href="documentation.html"><span class="num">04</span> Docs</a>
+</nav>
+
+<script>
+  // Tab toggle
+  document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
+    t.classList.add('active');
+  }));
+</script>
+
+<script src="search.js"></script>
+<script src="theme.js"></script>
+</body>
+</html>
