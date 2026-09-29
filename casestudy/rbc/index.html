@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>RBC Express Mobile — Niyati Trivedi</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#f5f4f0;color:#16181f;font-family:'Geist',Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#28377f;text-decoration:underline;text-underline-offset:3px}
+a:hover{color:#16181f}
+img{display:block}
+</style>
+</helmet>
+<div style="max-width:1240px;margin:0 auto;padding:0 clamp(20px,4vw,56px)">
+
+  <header style="display:flex;justify-content:space-between;align-items:center;gap:16px;padding:28px 0;border-bottom:1px solid #d9d7cf;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#5d5f66">
+    <span>Case study</span>
+    <span>RBC Express Mobile · 2016</span>
+  </header>
+
+  <section data-screen-label="01 Hero" style="padding:clamp(56px,9vw,120px) 0 64px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:48px;align-items:end">
+      <div style="display:flex;flex-direction:column;gap:28px">
+        <img src="assets/after/icon.png" alt="RBC app icon" style="width:72px;height:72px;border-radius:17px"></img>
+        <h1 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(48px,6.4vw,88px);line-height:.98;letter-spacing:-.02em;text-wrap:balance">Rebuilding corporate banking around the <em style="font-style:italic;color:#28377f">treasurer’s day</em></h1>
+      </div>
+      <p style="margin:0;font-size:clamp(18px,1.6vw,21px);line-height:1.5;font-weight:300;color:#3a3c44;text-wrap:pretty;max-width:520px">A redesign of RBC Express Mobile — the mobile extension of RBC’s online cash‑management platform — from a text‑heavy list app into a dashboard‑first tool for checking position, approving payments and moving money.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:24px;margin-top:56px;padding-top:24px;border-top:1px solid #d9d7cf">
+      <div style="display:flex;flex-direction:column;gap:6px"><span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7c83">Role</span><span style="font-size:15px">Product design — UX &amp; UI</span></div>
+      <div style="display:flex;flex-direction:column;gap:6px"><span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7c83">Users</span><span style="font-size:15px">RBC corporate clients</span></div>
+      <div style="display:flex;flex-direction:column;gap:6px"><span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7c83">Platform</span><span style="font-size:15px">iOS · hybrid (IBM Worklight)</span></div>
+      <div style="display:flex;flex-direction:column;gap:6px"><span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7c83">Output</span><span style="font-size:15px">24 screens + 1 concept</span></div>
+    </div>
+  </section>
+
+  <section data-screen-label="01b Hero image" style="border-radius:28px;overflow:hidden;background:linear-gradient(180deg,#28377e 0%,#5a689e 50%,#a3abcb 100%);display:flex;justify-content:center"><img src="uploads/pasted-1790520216337-0.png" alt="RBC Express Mobile redesign — device mockups" style="width:100%;max-width:752px;height:auto;display:block"></img></section>
+
+  <section data-screen-label="02 Context" style="padding:clamp(72px,10vw,140px) 0 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:48px">
+    <div style="display:flex;flex-direction:column;gap:20px">
+      <span style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#28377f">01 — Context</span>
+      <h2 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(34px,4vw,52px);line-height:1.04;letter-spacing:-.01em;text-wrap:balance">A capable app that hadn’t changed since launch</h2>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:20px;font-size:17px;line-height:1.6;color:#3a3c44;text-wrap:pretty">
+      <p style="margin:0">RBC Express Mobile lets corporate clients see balances, create transfers, and approve and release payments away from their desks. It launched in July 2014 on a hybrid stack (IBM Worklight, HTML5, jQuery, Cordova) and has since received only maintenance releases — OS certifications, library upgrades and deferred fixes.</p>
+      <p style="margin:0">Feature coverage was strong. The experience wasn’t: every screen was a dense list of labels and account numbers, and the task clients open the app for — approving payments — sat three levels deep.</p>
+    </div>
+  </section>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:1px;background:#d9d7cf;border:1px solid #d9d7cf;border-radius:16px;overflow:hidden;margin-top:56px">
+    <div style="background:#f5f4f0;padding:24px;display:flex;flex-direction:column;gap:8px"><span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7c83">Certified on</span><span style="font-size:15px;line-height:1.5">iOS 6+ · Android 4.1–4.4 · BlackBerry 7 &amp; 10+</span></div>
+    <div style="background:#f5f4f0;padding:24px;display:flex;flex-direction:column;gap:8px"><span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7c83">Languages</span><span style="font-size:15px;line-height:1.5">English and French</span></div>
+    <div style="background:#f5f4f0;padding:24px;display:flex;flex-direction:column;gap:8px"><span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7c83">Security</span><span style="font-size:15px;line-height:1.5">Two‑factor login with a hardware token</span></div>
+    <div style="background:#f5f4f0;padding:24px;display:flex;flex-direction:column;gap:8px"><span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7c83">Accounts</span><span style="font-size:15px;line-height:1.5">BDA, PDA, business loan, mortgage and credit card</span></div>
+    <div style="background:#f5f4f0;padding:24px;display:flex;flex-direction:column;gap:8px"><span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7c83">Approve &amp; release</span><span style="font-size:15px;line-height:1.5">Transfers, bill, wire, ACH and SWIFT payments</span></div>
+    <div style="background:#f5f4f0;padding:24px;display:flex;flex-direction:column;gap:8px"><span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7c83">Also</span><span style="font-size:15px;line-height:1.5">Find the nearest branch or ATM</span></div>
+  </div>
+
+  <sc-if value="{{ showAudit }}" hint-placeholder-val="{{ true }}">
+  <section data-screen-label="03 Audit" style="padding:clamp(72px,10vw,140px) 0 0">
+    <div style="display:flex;flex-direction:column;gap:20px;max-width:720px">
+      <span style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#28377f">02 — Audit</span>
+      <h2 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(34px,4vw,52px);line-height:1.04;letter-spacing:-.01em;text-wrap:balance">Walking the shipped app, screen by screen</h2>
+      <p style="margin:0;font-size:17px;line-height:1.6;color:#3a3c44;text-wrap:pretty">I reviewed all 28 production screens and grouped the problems into three themes: <strong style="font-weight:500">effort</strong>, <strong style="font-weight:500">hierarchy</strong> and <strong style="font-weight:500">navigation</strong>.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:16px;margin-top:56px">
+      <figure style="margin:0;display:flex;flex-direction:column;gap:16px">
+        <img src="assets/before/image1.png" alt="Legacy login" style="width:100%;aspect-ratio:750/1294;object-fit:cover;object-position:bottom;border-radius:16px;border:1px solid #d9d7cf"></img>
+        <figcaption style="display:flex;flex-direction:column;gap:6px"><span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#b03a2e">Effort</span><span style="font-size:15px;font-weight:500">Sign‑in takes three screens</span><span style="font-size:14px;line-height:1.5;color:#5d5f66">Credentials, then a long company list, then a separate token entry with a keypad.</span></figcaption>
+      </figure>
+      <figure style="margin:0;display:flex;flex-direction:column;gap:16px">
+        <img src="assets/before/image4.png" alt="Legacy balance summary" style="width:100%;aspect-ratio:750/1294;object-fit:cover;object-position:bottom;border-radius:16px;border:1px solid #d9d7cf"></img>
+        <figcaption style="display:flex;flex-direction:column;gap:6px"><span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#b03a2e">Hierarchy</span><span style="font-size:15px;font-weight:500">Numbers without meaning</span><span style="font-size:14px;line-height:1.5;color:#5d5f66">A flat list of account numbers and balances — no total, no trend, nothing flagged.</span></figcaption>
+      </figure>
+      <figure style="margin:0;display:flex;flex-direction:column;gap:16px">
+        <img src="assets/before/image5.png" alt="Legacy global menu" style="width:100%;aspect-ratio:750/1294;object-fit:cover;object-position:bottom;border-radius:16px;border:1px solid #d9d7cf"></img>
+        <figcaption style="display:flex;flex-direction:column;gap:6px"><span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#b03a2e">Navigation</span><span style="font-size:15px;font-weight:500">Core tasks behind a menu</span><span style="font-size:14px;line-height:1.5;color:#5d5f66">Approvals and releases — the reason most clients open the app — live in the hamburger.</span></figcaption>
+      </figure>
+      <figure style="margin:0;display:flex;flex-direction:column;gap:16px">
+        <img src="assets/before/image11.png" alt="Legacy approval manager" style="width:100%;aspect-ratio:750/1294;object-fit:cover;object-position:bottom;border-radius:16px;border:1px solid #d9d7cf"></img>
+        <figcaption style="display:flex;flex-direction:column;gap:6px"><span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#b03a2e">Effort</span><span style="font-size:15px;font-weight:500">Approval by accordion</span><span style="font-size:14px;line-height:1.5;color:#5d5f66">Expand a type, tick items, approve, re‑enter token password and code, then confirm.</span></figcaption>
+      </figure>
+      <figure style="margin:0;display:flex;flex-direction:column;gap:16px">
+        <img src="assets/before/image18.png" alt="Legacy approval details" style="width:100%;aspect-ratio:750/1294;object-fit:cover;object-position:bottom;border-radius:16px;border:1px solid #d9d7cf"></img>
+        <figcaption style="display:flex;flex-direction:column;gap:6px"><span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#b03a2e">Hierarchy</span><span style="font-size:15px;font-weight:500">Walls of labels</span><span style="font-size:14px;line-height:1.5;color:#5d5f66">Detail views print every field at one weight; amount and beneficiary don’t stand out.</span></figcaption>
+      </figure>
+      <figure style="margin:0;display:flex;flex-direction:column;gap:16px">
+        <img src="assets/before/image27.png" alt="Legacy find a location" style="width:100%;aspect-ratio:750/1294;object-fit:cover;object-position:bottom;border-radius:16px;border:1px solid #d9d7cf"></img>
+        <figcaption style="display:flex;flex-direction:column;gap:6px"><span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#b03a2e">Navigation</span><span style="font-size:15px;font-weight:500">Utilities feel bolted on</span><span style="font-size:14px;line-height:1.5;color:#5d5f66">Branch finder works, but shares no visual language with the banking screens.</span></figcaption>
+      </figure>
+    </div>
+  </section>
+  </sc-if>
+
+  <section data-screen-label="04 Principles" style="padding:clamp(72px,10vw,140px) 0 0">
+    <div style="display:flex;flex-direction:column;gap:20px;max-width:720px">
+      <span style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#28377f">03 — Principles</span>
+      <h2 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(34px,4vw,52px);line-height:1.04;letter-spacing:-.01em;text-wrap:balance">Four rules for the redesign</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,170px),1fr));gap:40px 24px;margin-top:48px">
+      <div style="display:flex;flex-direction:column;gap:12px;padding-top:20px;border-top:2px solid #16181f"><span style="font-family:'Instrument Serif',serif;font-size:40px;line-height:1;color:#28377f">1</span><span style="font-size:18px;font-weight:500">Position first</span><span style="font-size:15px;line-height:1.55;color:#5d5f66;text-wrap:pretty">Open on one view of financial health, receivables and payables — not a list of accounts.</span></div>
+      <div style="display:flex;flex-direction:column;gap:12px;padding-top:20px;border-top:2px solid #16181f"><span style="font-family:'Instrument Serif',serif;font-size:40px;line-height:1;color:#28377f">2</span><span style="font-size:18px;font-weight:500">Approvals are the job</span><span style="font-size:14px;line-height:1.55;color:#5d5f66;text-wrap:pretty;font-size:15px">Counts by payment type, then a list with bulk Approve, Reject and Hold.</span></div>
+      <div style="display:flex;flex-direction:column;gap:12px;padding-top:20px;border-top:2px solid #16181f"><span style="font-family:'Instrument Serif',serif;font-size:40px;line-height:1;color:#28377f">3</span><span style="font-size:18px;font-weight:500">Flat navigation</span><span style="font-size:15px;line-height:1.55;color:#5d5f66;text-wrap:pretty">A persistent five‑item tab bar replaces the global menu.</span></div>
+      <div style="display:flex;flex-direction:column;gap:12px;padding-top:20px;border-top:2px solid #16181f"><span style="font-family:'Instrument Serif',serif;font-size:40px;line-height:1;color:#28377f">4</span><span style="font-size:18px;font-weight:500">Unmistakably RBC</span><span style="font-size:15px;line-height:1.55;color:#5d5f66;text-wrap:pretty">Navy and gold, light Helvetica, white cards on a navy field.</span></div>
+    </div>
+  </section>
+
+  <section data-screen-label="05 IA" style="padding:clamp(72px,10vw,140px) 0 0">
+    <div style="display:flex;flex-direction:column;gap:20px;max-width:720px">
+      <span style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#28377f">04 — Information architecture</span>
+      <h2 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(34px,4vw,52px);line-height:1.04;letter-spacing:-.01em;text-wrap:balance">From a hidden menu to five tabs</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:24px;margin-top:48px">
+      <div style="border:1px solid #d9d7cf;border-radius:20px;padding:32px;display:flex;flex-direction:column;gap:20px">
+        <span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7c83">Before · global menu</span>
+        <div style="display:flex;flex-direction:column;gap:0;font-size:16px">
+          <span style="padding:12px 0;border-bottom:1px solid #e4e2da">Balance Summary</span>
+          <span style="padding:12px 0;border-bottom:1px solid #e4e2da">Transfers</span>
+          <span style="padding:12px 0;border-bottom:1px solid #e4e2da">Approvals</span>
+          <span style="padding:12px 0;border-bottom:1px solid #e4e2da">Releases</span>
+          <span style="padding:12px 0;border-bottom:1px solid #e4e2da">Contact Us</span>
+          <span style="padding:12px 0">Sign Out</span>
+        </div>
+        <span style="font-size:14px;line-height:1.5;color:#5d5f66">Every destination is two taps away and invisible until the menu opens.</span>
+      </div>
+      <div style="background:#28377f;color:#fff;border-radius:20px;padding:32px;display:flex;flex-direction:column;gap:20px">
+        <span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#ffd51d">After · tab bar</span>
+        <div style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px">
+          <span style="background:#ffd51d;color:#28377f;border-radius:10px;padding:12px 2px;text-align:center;font-size:clamp(10px,1.1vw,13px);min-width:0;overflow-wrap:anywhere;font-weight:500">Dashboard</span>
+          <span style="background:rgba(255,255,255,.1);border-radius:10px;padding:12px 2px;text-align:center;font-size:clamp(10px,1.1vw,13px);min-width:0;overflow-wrap:anywhere">Transfers</span>
+          <span style="background:rgba(255,255,255,.1);border-radius:10px;padding:12px 2px;text-align:center;font-size:clamp(10px,1.1vw,13px);min-width:0;overflow-wrap:anywhere">Payments</span>
+          <span style="background:rgba(255,255,255,.1);border-radius:10px;padding:12px 2px;text-align:center;font-size:clamp(10px,1.1vw,13px);min-width:0;overflow-wrap:anywhere">Approvals</span>
+          <span style="background:rgba(255,255,255,.1);border-radius:10px;padding:12px 2px;text-align:center;font-size:clamp(10px,1.1vw,13px);min-width:0;overflow-wrap:anywhere">More</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#c9cde3">More opens a grid of</span>
+          <div style="display:flex;flex-wrap:wrap;gap:8px">
+            <span style="border:1px solid rgba(255,255,255,.3);border-radius:99px;padding:6px 14px;font-size:14px">Address Book</span>
+            <span style="border:1px solid rgba(255,255,255,.3);border-radius:99px;padding:6px 14px;font-size:14px">Financial Market</span>
+            <span style="border:1px solid rgba(255,255,255,.3);border-radius:99px;padding:6px 14px;font-size:14px">Offers</span>
+            <span style="border:1px solid rgba(255,255,255,.3);border-radius:99px;padding:6px 14px;font-size:14px">Contact Us</span>
+            <span style="border:1px solid rgba(255,255,255,.3);border-radius:99px;padding:6px 14px;font-size:14px">News</span>
+            <span style="border:1px solid rgba(255,255,255,.3);border-radius:99px;padding:6px 14px;font-size:14px">Deposits</span>
+          </div>
+        </div>
+        <span style="font-size:14px;line-height:1.5;color:#dfe2f0">Alerts move to a badge on the dashboard header; releases fold into Approvals.</span>
+      </div>
+    </div>
+  </section>
+
+  <section data-screen-label="06 Sign in" style="padding:clamp(72px,10vw,140px) 0 0">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:48px;align-items:start">
+      <div style="display:flex;flex-direction:column;gap:20px">
+        <span style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#28377f">05 — Flows · Sign in</span>
+        <h2 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(34px,4vw,52px);line-height:1.04;letter-spacing:-.01em;text-wrap:balance">Three steps become one</h2>
+        <p style="margin:0;font-size:17px;line-height:1.6;color:#3a3c44;text-wrap:pretty">Clients choose how to sign in — User ID and password, or face recognition. The credential screen asks for username and one‑time password together, keeping two‑factor security without the separate token step.</p>
+        <div style="display:flex;flex-direction:column;gap:12px;margin-top:8px">
+          <span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7c83">Before</span>
+          <div style="display:flex;align-items:center;gap:14px"><div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;max-width:300px;flex:1">
+            <img src="assets/before/image1.png" alt="" style="width:100%;aspect-ratio:750/1294;object-fit:cover;object-position:bottom;border-radius:10px;border:1px solid #d9d7cf;opacity:.85"></img>
+            <img src="assets/before/image2.png" alt="" style="width:100%;aspect-ratio:750/1294;object-fit:cover;object-position:bottom;border-radius:10px;border:1px solid #d9d7cf;opacity:.85"></img>
+            <img src="assets/before/image3.png" alt="" style="width:100%;aspect-ratio:750/1294;object-fit:cover;object-position:bottom;border-radius:10px;border:1px solid #d9d7cf;opacity:.85"></img>
+          </div><div style="flex:none;width:clamp(110px,12vw,160px);display:flex;flex-direction:column;align-items:center;gap:0;margin-right:-40px;position:relative;z-index:2"><span style="font-family:'Caveat',cursive;font-size:26px;line-height:1;color:#28377f;transform:rotate(-6deg);margin-left:-10px">now just one!</span><svg viewBox="0 0 160 90" style="width:100%;height:auto;overflow:visible" fill="none" stroke="#28377f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 70 C 30 82, 58 84, 82 66 S 118 18, 150 22"></path><path d="M132 10 L 151 22 L 134 38"></path></svg></div></div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px">
+        <div style="position:relative;width:100%;box-sizing:border-box;padding:0 6%;background:linear-gradient(160deg,#ffffff 0%,#eef0f3 55%,#dde0e6 100%);border-radius:14%/6.6%;box-shadow:inset 0 0 0 1px #c6c9d1,inset 0 0 0 4px #f8f9fa,inset 0 0 0 5px #d6d9e0,0 44px 70px -36px rgba(16,22,60,.55),0 14px 26px -14px rgba(16,22,60,.28);"><div style="aspect-ratio:88/19;display:flex;align-items:center;justify-content:center;gap:5%"><div style="width:3.6%;aspect-ratio:1;border-radius:50%;background:#262932;box-shadow:inset 0 0 0 1px #4a4e5a"></div><div style="width:17%;height:8%;border-radius:99px;background:#c0c4cc;box-shadow:inset 0 1px 1px rgba(0,0,0,.18)"></div></div><img src="assets/comp/login-options.png" alt="Login options" style="width:100%;aspect-ratio:640/1136;object-fit:cover;display:block;box-shadow:0 0 0 1.5px #1b1d24;"></img><div style="aspect-ratio:88/19;display:flex;align-items:center;justify-content:center"><div style="width:15%;aspect-ratio:1;box-sizing:border-box;border-radius:50%;border:1.5px solid #c6c9d1;background:linear-gradient(180deg,#f4f5f7,#e4e6eb)"></div></div></div>
+        <div style="position:relative;width:100%;box-sizing:border-box;padding:0 6%;background:linear-gradient(160deg,#ffffff 0%,#eef0f3 55%,#dde0e6 100%);border-radius:14%/6.6%;box-shadow:inset 0 0 0 1px #c6c9d1,inset 0 0 0 4px #f8f9fa,inset 0 0 0 5px #d6d9e0,0 44px 70px -36px rgba(16,22,60,.55),0 14px 26px -14px rgba(16,22,60,.28);margin-top:48px;"><div style="aspect-ratio:88/19;display:flex;align-items:center;justify-content:center;gap:5%"><div style="width:3.6%;aspect-ratio:1;border-radius:50%;background:#262932;box-shadow:inset 0 0 0 1px #4a4e5a"></div><div style="width:17%;height:8%;border-radius:99px;background:#c0c4cc;box-shadow:inset 0 1px 1px rgba(0,0,0,.18)"></div></div><img src="assets/after/login.png" alt="Login" style="width:100%;aspect-ratio:640/1136;object-fit:cover;display:block;box-shadow:0 0 0 1.5px #1b1d24;"></img><div style="aspect-ratio:88/19;display:flex;align-items:center;justify-content:center"><div style="width:15%;aspect-ratio:1;box-sizing:border-box;border-radius:50%;border:1.5px solid #c6c9d1;background:linear-gradient(180deg,#f4f5f7,#e4e6eb)"></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section data-screen-label="07 Dashboard" style="padding:clamp(72px,10vw,140px) 0 0">
+    <div style="background:#e9ebf2;border-radius:28px;padding:clamp(28px,5vw,64px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:48px;align-items:center">
+      <div style="position:relative;width:100%;box-sizing:border-box;padding:0 6%;background:linear-gradient(160deg,#ffffff 0%,#eef0f3 55%,#dde0e6 100%);border-radius:14%/6.6%;box-shadow:inset 0 0 0 1px #c6c9d1,inset 0 0 0 4px #f8f9fa,inset 0 0 0 5px #d6d9e0,0 44px 70px -36px rgba(16,22,60,.55),0 14px 26px -14px rgba(16,22,60,.28);max-width:380px;justify-self:center;"><div style="aspect-ratio:88/19;display:flex;align-items:center;justify-content:center;gap:5%"><div style="width:3.6%;aspect-ratio:1;border-radius:50%;background:#262932;box-shadow:inset 0 0 0 1px #4a4e5a"></div><div style="width:17%;height:8%;border-radius:99px;background:#c0c4cc;box-shadow:inset 0 1px 1px rgba(0,0,0,.18)"></div></div><img src="assets/comp/Dashboard.png" alt="Dashboard" style="width:100%;aspect-ratio:640/1136;object-fit:cover;display:block;box-shadow:0 0 0 1.5px #1b1d24;"></img><div style="aspect-ratio:88/19;display:flex;align-items:center;justify-content:center"><div style="width:15%;aspect-ratio:1;box-sizing:border-box;border-radius:50%;border:1.5px solid #c6c9d1;background:linear-gradient(180deg,#f4f5f7,#e4e6eb)"></div></div></div>
+      <div style="display:flex;flex-direction:column;gap:20px">
+        <span style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#28377f">Flows · Dashboard</span>
+        <h2 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(34px,4vw,52px);line-height:1.04;letter-spacing:-.01em;text-wrap:balance">The day’s position, before a single tap</h2>
+        <p style="margin:0;font-size:17px;line-height:1.6;color:#3a3c44;text-wrap:pretty">The Balance Summary list is replaced by a financial‑health view: a trend line with the consolidated balance and last‑updated time, then the numbers a treasurer actually reconciles.</p>
+        <div style="display:flex;flex-direction:column;gap:0;border-top:1px solid #c9cde0">
+          <div style="display:grid;grid-template-columns:140px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid #c9cde0;font-size:15px"><span style="font-weight:500">Variance</span><span style="color:#5d5f66">Donut splits the month into debit and credit.</span></div>
+          <div style="display:grid;grid-template-columns:140px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid #c9cde0;font-size:15px"><span style="font-weight:500">Receivables</span><span style="color:#5d5f66">Progress bar plus overdue vs current.</span></div>
+          <div style="display:grid;grid-template-columns:140px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid #c9cde0;font-size:15px"><span style="font-weight:500">Payables</span><span style="color:#5d5f66">Same pattern, gold bar, for outgoing.</span></div>
+          <div style="display:grid;grid-template-columns:140px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid #c9cde0;font-size:15px"><span style="font-weight:500">Alerts</span><span style="color:#5d5f66">Badge in the header carries the pending count.</span></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:16px;margin-top:8px">
+          <img src="assets/before/image4.png" alt="Legacy balance summary" style="width:72px;aspect-ratio:750/1294;object-fit:cover;object-position:bottom;border-radius:8px;border:1px solid #c9cde0"></img>
+          <span style="font-size:14px;line-height:1.5;color:#5d5f66;max-width:280px">Replaces the legacy Balance Summary — a list of 10+ accounts with no aggregate.</span>
+        </div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:24px;margin-top:24px">
+      <figure style="margin:0;display:flex;flex-direction:column;gap:12px"><div style="position:relative;width:100%;box-sizing:border-box;padding:0 6%;background:linear-gradient(160deg,#ffffff 0%,#eef0f3 55%,#dde0e6 100%);border-radius:14%/6.6%;box-shadow:inset 0 0 0 1px #c6c9d1,inset 0 0 0 4px #f8f9fa,inset 0 0 0 5px #d6d9e0,0 44px 70px -36px rgba(16,22,60,.55),0 14px 26px -14px rgba(16,22,60,.28);"><div style="aspect-ratio:88/19;display:flex;align-items:center;justify-content:center;gap:5%"><div style="width:3.6%;aspect-ratio:1;border-radius:50%;background:#262932;box-shadow:inset 0 0 0 1px #4a4e5a"></div><div style="width:17%;height:8%;border-radius:99px;background:#c0c4cc;box-shadow:inset 0 1px 1px rgba(0,0,0,.18)"></div></div><img src="assets/comp/Accounts.png" alt="Accounts" style="width:100%;aspect-ratio:640/1136;object-fit:cover;display:block;box-shadow:0 0 0 1.5px #1b1d24;"></img><div style="aspect-ratio:88/19;display:flex;align-items:center;justify-content:center"><div style="width:15%;aspect-ratio:1;box-sizing:border-box;border-radius:50%;border:1.5px solid #c6c9d1;background:linear-gradient(180deg,#f4f5f7,#e4e6eb)"></div></div></div><figcaption style="font-size:14px;line-height:1.5;color:#5d5f66"><strong style="color:#16181f;font-weight:500">Accounts</strong> — available and ledger balance side by side.</figcaption></figure>
+      <figure style="margin:0;display:flex;flex-direction:column;gap:12px"><div style="position:relative;width:100%;box-sizing:border-box;padding:0 6%;background:linear-gradient(160deg,#ffffff 0%,#eef0f3 55%,#dde0e6 100%);border-radius:14%/6.6%;box-shadow:inset 0 0 0 1px #c6c9d1,inset 0 0 0 4px #f8f9fa,inset 0 0 0 5px #d6d9e0,0 44px 70px -36px rgba(16,22,60,.55),0 14px 26px -14px rgba(16,22,60,.28);"><div style="aspect-ratio:88/19;display:flex;align-items:center;justify-content:center;gap:5%"><div style="width:3.6%;aspect-ratio:1;border-radius:50%;background:#262932;box-shadow:inset 0 0 0 1px #4a4e5a"></div><div style="width:17%;height:8%;border-radius:99px;background:#c0c4cc;box-shadow:inset 0 1px 1px rgba(0,0,0,.18)"></div></div><img src="assets/comp/Account-Overview.png" alt="Account overview" style="width:100%;aspect-ratio:640/1136;object-fit:cover;display:block;box-shadow:0 0 0 1.5px #1b1d24;"></img><div style="aspect-ratio:88/19;display:flex;align-items:center;justify-content:center"><div style="width:15%;aspect-ratio:1;box-sizing:border-box;border-radius:50%;border:1.5px solid #c6c9d1;background:linear-gradient(180deg,#f4f5f7,#e4e6eb)"></div></div></div><figcaption style="font-size:14px;line-height:1.5;color:#5d5f66"><strong style="color:#16181f;font-weight:500">Account overview</strong> — six‑month balance chart above transactions.</figcaption></figure>
+      <figure style="margin:0;display:flex;flex-direction:column;gap:12px"><div style="position:relative;width:100%;box-sizing:border-box;padding:0 6%;background:linear-gradient(160deg,#ffffff 0%,#eef0f3 55%,#dde0e6 100%);border-radius:14%/6.6%;box-shadow:inset 0 0 0 1px #c6c9d1,inset 0 0 0 4px #f8f9fa,inset 0 0 0 5px #d6d9e0,0 44px 70px -36px rgba(16,22,60,.55),0 14px 26px -14px rgba(16,22,60,.28);"><div style="aspect-ratio:88/19;display:flex;align-items:center;justify-content:center;gap:5%"><div style="width:3.6%;aspect-ratio:1;border-radius:50%;background:#262932;box-shadow:inset 0 0 0 1px #4a4e5a"></div><div style="width:17%;height:8%;border-radius:99px;background:#c0c4cc;box-shadow:inset 0 1px 1px rgba(0,0,0,.18)"></div></div><img src="assets/comp/Global-overview.png" alt="Global overview" style="width:100%;aspect-ratio:640/1136;object-fit:cover;display:block;box-shadow:0 0 0 1.5px #1b1d24;"></img><div style="aspect-ratio:88/19;display:flex;align-items:center;justify-content:center"><div style="width:15%;aspect-ratio:1;box-sizing:border-box;border-radius:50%;border:1.5px solid #c6c9d1;background:linear-gradient(180deg,#f4f5f7,#e4e6eb)"></div></div></div><figcaption style="font-size:14px;line-height:1.5;color:#5d5f66"><strong style="color:#16181f;font-weight:500">Global overview</strong> — balances by region for multinational clients.</figcaption></figure>
+    </div>
+  </section>
+
+  <section data-screen-label="08 Approvals" style="padding:clamp(72px,10vw,140px) 0 0">
+    <div style="display:flex;flex-direction:column;gap:20px;max-width:760px">
+      <span style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#28377f">Flows · Approvals</span>
+      <h2 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(34px,4vw,52px);line-height:1.04;letter-spacing:-.01em;text-wrap:balance">Approving a batch, not an accordion</h2>
+      <p style="margin:0;font-size:17px;line-height:1.6;color:#3a3c44;text-wrap:pretty">Approvals get their own tab. A hub shows what’s waiting by type; each list leads with date, parties and amount, and a sticky bar applies Approve, Reject or Hold to everything selected. Hold is new — a way to defer without rejecting.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,170px),1fr));gap:28px;margin-top:48px">
+      <figure style="margin:0;display:flex;flex-direction:column;gap:12px"><span style="font-family:'Geist Mono',monospace;font-size:11px;color:#7a7c83">A · Hub</span><div style="perspective:1400px;padding:8px 0 16px"><div style="position:relative;width:100%;box-sizing:border-box;padding:0 6%;background:linear-gradient(160deg,#ffffff 0%,#eef0f3 55%,#dde0e6 100%);border-radius:14%/6.6%;box-shadow:inset 0 0 0 1px #c6c9d1,inset 0 0 0 4px #f8f9fa,inset 0 0 0 5px #d6d9e0,0 44px 70px -36px rgba(16,22,60,.55),0 14px 26px -14px rgba(16,22,60,.28);transform:rotateY(-22deg) rotateX(6deg);transform-origin:50% 50%;"><div style="aspect-ratio:88/19;display:flex;align-items:center;justify-content:center;gap:5%"><div style="width:3.6%;aspect-ratio:1;border-radius:50%;background:#262932;box-shadow:inset 0 0 0 1px #4a4e5a"></div><div style="width:17%;height:8%;border-radius:99px;background:#c0c4cc;box-shadow:inset 0 1px 1px rgba(0,0,0,.18)"></div></div><img src="assets/comp/Approval.png" alt="Approvals hub" style="width:100%;aspect-ratio:640/1136;object-fit:cover;display:block;box-shadow:0 0 0 1.5px #1b1d24;"></img><div style="aspect-ratio:88/19;display:flex;align-items:center;justify-content:center"><div style="width:15%;aspect-ratio:1;box-sizing:border-box;border-radius:50%;border:1.5px solid #c6c9d1;background:linear-gradient(180deg,#f4f5f7,#e4e6eb)"></div></div></div></div><figcaption style="font-size:14px;line-height:1.5;color:#5d5f66">Counts for transfers, wire and SWIFT.</figcaption></figure>
+      <figure style="margin:0;display:flex;flex-direction:column;gap:12px"><span style="font-family:'Geist Mono',monospace;font-size:11px;color:#7a7c83">B · Transfers</span><div style="perspective:1400px;padding:8px 0 16px"><div style="position:relative;width:100%;box-sizing:border-box;padding:0 6%;background:linear-gradient(160deg,#ffffff 0%,#eef0f3 55%,#dde0e6 100%);border-radius:14%/6.6%;box-shadow:inset 0 0 0 1px #c6c9d1,inset 0 0 0 4px #f8f9fa,inset 0 0 0 5px #d6d9e0,0 44px 70px -36px rgba(16,22,60,.55),0 14px 26px -14px rgba(16,22,60,.28);transform:rotateY(-22deg) rotateX(6deg);transform-origin:50% 50%;"><div style="aspect-ratio:88/19;display:flex;align-items:center;justify-content:center;gap:5%"><div style="width:3.6%;aspect-ratio:1;border-radius:50%;background:#262932;box-shadow:inset 0 0 0 1px #4a4e5a"></div><div style="width:17%;height:8%;border-radius:99px;background:#c0c4cc;box-shadow:inset 0 1px 1px rgba(0,0,0,.18)"></div></div><img src="assets/comp/Alert-Transfer-Approval.png" alt="Transfer approvals" style="width:100%;aspect-ratio:640/1136;object-fit:cover;display:block;box-shadow:0 0 0 1.5px #1b1d24;"></img><div style="aspect-ratio:88/19;display:flex;align-items:center;justify-content:center"><div style="width:15%;aspect-ratio:1;box-sizing:border-box;border-radius:50%;border:1.5px solid #c6c9d1;background:linear-gradient(180deg,#f4f5f7,#e4e6eb)"></div></div></div></div><figcaption style="font-size:14px;line-height:1.5;color:#5d5f66">Amount in bold; from/to on two lines.</figcaption></figure>
+      <figure style="margin:0;display:flex;flex-direction:column;gap:12px"><span style="font-family:'Geist Mono',monospace;font-size:11px;color:#7a7c83">C · Wire, multi‑select</span><div style="perspective:1400px;padding:8px 0 16px"><div style="position:relative;width:100%;box-sizing:border-box;padding:0 6%;background:linear-gradient(160deg,#ffffff 0%,#eef0f3 55%,#dde0e6 100%);border-radius:14%/6.6%;box-shadow:inset 0 0 0 1px #c6c9d1,inset 0 0 0 4px #f8f9fa,inset 0 0 0 5px #d6d9e0,0 44px 70px -36px rgba(16,22,60,.55),0 14px 26px -14px rgba(16,22,60,.28);transform:rotateY(-22deg) rotateX(6deg);transform-origin:50% 50%;"><div style="aspect-ratio:88/19;display:flex;align-items:center;justify-content:center;gap:5%"><div style="width:3.6%;aspect-ratio:1;border-radius:50%;background:#262932;box-shadow:inset 0 0 0 1px #4a4e5a"></div><div style="width:17%;height:8%;border-radius:99px;background:#c0c4cc;box-shadow:inset 0 1px 1px rgba(0,0,0,.18)"></div></div><img src="assets/comp/Alert-Wire-Payment-Approval.png" alt="Wire approvals" style="width:100%;aspect-ratio:640/1136;object-fit:cover;display:block;box-shadow:0 0 0 1.5px #1b1d24;"></img><div style="aspect-ratio:88/19;display:flex;align-items:center;justify-content:center"><div style="width:15%;aspect-ratio:1;box-sizing:border-box;border-radius:50%;border:1.5px solid #c6c9d1;background:linear-gradient(180deg,#f4f5f7,#e4e6eb)"></div></div></div></div><figcaption style="font-size:14px;line-height:1.5;color:#5d5f66">Select‑all plus per‑row checkboxes.</figcaption></figure>
+      <figure style="margin:0;display:flex;flex-direction:column;gap:12px"><span style="font-family:'Geist Mono',monospace;font-size:11px;color:#7a7c83">D · Single approval</span><div style="perspective:1400px;padding:8px 0 16px"><div style="position:relative;width:100%;box-sizing:border-box;padding:0 6%;background:linear-gradient(160deg,#ffffff 0%,#eef0f3 55%,#dde0e6 100%);border-radius:14%/6.6%;box-shadow:inset 0 0 0 1px #c6c9d1,inset 0 0 0 4px #f8f9fa,inset 0 0 0 5px #d6d9e0,0 44px 70px -36px rgba(16,22,60,.55),0 14px 26px -14px rgba(16,22,60,.28);transform:rotateY(-22deg) rotateX(6deg);transform-origin:50% 50%;"><div style="aspect-ratio:88/19;display:flex;align-items:center;justify-content:center;gap:5%"><div style="width:3.6%;aspect-ratio:1;border-radius:50%;background:#262932;box-shadow:inset 0 0 0 1px #4a4e5a"></div><div style="width:17%;height:8%;border-radius:99px;background:#c0c4cc;box-shadow:inset 0 1px 1px rgba(0,0,0,.18)"></div></div><img src="assets/comp/Approve-Payment.png" alt="Approve payment" style="width:100%;aspect-ratio:640/1136;object-fit:cover;display:block;box-shadow:0 0 0 1.5px #1b1d24;"></img><div style="aspect-ratio:88/19;display:flex;align-items:center;justify-content:center"><div style="width:15%;aspect-ratio:1;box-sizing:border-box;border-radius:50%;border:1.5px solid #c6c9d1;background:linear-gradient(180deg,#f4f5f7,#e4e6eb)"></div></div></div></div><figcaption style="font-size:14px;line-height:1.5;color:#5d5f66">Balance shown in context of the decision.</figcaption></figure>
+    </div>
+    <div style="margin-top:32px;border:1px solid #d9d7cf;border-radius:20px;padding:24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:24px;align-items:center">
+      <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px">
+        <img src="assets/before/image10.png" alt="" style="width:100%;aspect-ratio:750/1294;object-fit:cover;object-position:bottom;border-radius:8px;border:1px solid #d9d7cf"></img>
+        <img src="assets/before/image12.png" alt="" style="width:100%;aspect-ratio:750/1294;object-fit:cover;object-position:bottom;border-radius:8px;border:1px solid #d9d7cf"></img>
+        <img src="assets/before/image13.png" alt="" style="width:100%;aspect-ratio:750/1294;object-fit:cover;object-position:bottom;border-radius:8px;border:1px solid #d9d7cf"></img>
+        <img src="assets/before/image14.png" alt="" style="width:100%;aspect-ratio:750/1294;object-fit:cover;object-position:bottom;border-radius:8px;border:1px solid #d9d7cf"></img>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7c83">Before · wire approval</span>
+        <span style="font-size:15px;line-height:1.55;color:#3a3c44;text-wrap:pretty">Open menu → Approval Manager → expand Wire Payments → tick items → Approve → summary with token password and code → Confirm → confirmation.</span>
+      </div>
+    </div>
+  </section>
+
+  <section data-screen-label="09 Move money" style="padding:clamp(72px,10vw,140px) 0 0">
+    <div style="display:flex;flex-direction:column;gap:20px;max-width:760px">
+      <span style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#28377f">Flows · Move money</span>
+      <h2 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(34px,4vw,52px);line-height:1.04;letter-spacing:-.01em;text-wrap:balance">One form pattern for every kind of payment</h2>
+      <p style="margin:0;font-size:17px;line-height:1.6;color:#3a3c44;text-wrap:pretty">Transfers, payments and deposits share a single structure — from, available balance, to, date and amount, note, then Submit / Cancel. The legacy flow had a separate account‑details detour; here the available balance sits right under the source account.</p>
+    </div>
+    <div style="position:relative;margin-top:48px;height:clamp(340px,50vw,600px);border-radius:28px;overflow:hidden;background:radial-gradient(90% 90% at 30% 20%,#34449a 0%,#28377f 50%,#1f2b6c 100%)"><div style="position:absolute;left:50%;top:50%;width:170%;display:flex;align-items:flex-start;gap:2.6%;transform:translate(-46%,-48%) rotateX(54deg) rotateZ(-34deg)"><img src="assets/comp/New-Transfer.png" alt="New-Transfer" style="width:11%;flex:none;aspect-ratio:640/1136;object-fit:cover;border-radius:10px;margin-top:0;box-shadow:-22px 30px 36px rgba(6,10,40,.45),0 0 0 1px rgba(255,255,255,.08)"></img><img src="assets/comp/Confirm-Transfer.png" alt="Confirm-Transfer" style="width:11%;flex:none;aspect-ratio:640/1136;object-fit:cover;border-radius:10px;margin-top:9%;box-shadow:-22px 30px 36px rgba(6,10,40,.45),0 0 0 1px rgba(255,255,255,.08)"></img><img src="assets/comp/Transaction-Overview.png" alt="Transaction-Overview" style="width:11%;flex:none;aspect-ratio:640/1136;object-fit:cover;border-radius:10px;margin-top:0;box-shadow:-22px 30px 36px rgba(6,10,40,.45),0 0 0 1px rgba(255,255,255,.08)"></img><img src="assets/comp/Payments.png" alt="Payments" style="width:11%;flex:none;aspect-ratio:640/1136;object-fit:cover;border-radius:10px;margin-top:9%;box-shadow:-22px 30px 36px rgba(6,10,40,.45),0 0 0 1px rgba(255,255,255,.08)"></img><img src="assets/comp/New-Payment.png" alt="New-Payment" style="width:11%;flex:none;aspect-ratio:640/1136;object-fit:cover;border-radius:10px;margin-top:0;box-shadow:-22px 30px 36px rgba(6,10,40,.45),0 0 0 1px rgba(255,255,255,.08)"></img><img src="assets/comp/Payment-summary.png" alt="Payment-summary" style="width:11%;flex:none;aspect-ratio:640/1136;object-fit:cover;border-radius:10px;margin-top:9%;box-shadow:-22px 30px 36px rgba(6,10,40,.45),0 0 0 1px rgba(255,255,255,.08)"></img><img src="assets/comp/deposite.png" alt="deposite" style="width:11%;flex:none;aspect-ratio:640/1136;object-fit:cover;border-radius:10px;margin-top:0;box-shadow:-22px 30px 36px rgba(6,10,40,.45),0 0 0 1px rgba(255,255,255,.08)"></img></div></div><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,220px),1fr));gap:24px 28px;margin-top:40px">
+      <figure style="margin:0;display:flex;flex-direction:column;gap:12px;padding-top:14px;border-top:1px solid #d9d7cf"><figcaption style="font-size:14px;line-height:1.5;color:#5d5f66"><strong style="color:#16181f;font-weight:500">New transfer</strong> — add a beneficiary inline.</figcaption></figure>
+      <figure style="margin:0;display:flex;flex-direction:column;gap:12px;padding-top:14px;border-top:1px solid #d9d7cf"><figcaption style="font-size:14px;line-height:1.5;color:#5d5f66"><strong style="color:#16181f;font-weight:500">Confirmation</strong> — reference ID, new balance, charges.</figcaption></figure>
+      <figure style="margin:0;display:flex;flex-direction:column;gap:12px;padding-top:14px;border-top:1px solid #d9d7cf"><figcaption style="font-size:14px;line-height:1.5;color:#5d5f66"><strong style="color:#16181f;font-weight:500">Transfers</strong> — pending and successful, in/out arrows.</figcaption></figure>
+      <figure style="margin:0;display:flex;flex-direction:column;gap:12px;padding-top:14px;border-top:1px solid #d9d7cf"><figcaption style="font-size:14px;line-height:1.5;color:#5d5f66"><strong style="color:#16181f;font-weight:500">Payments</strong> — bill categories, plus voice entry.</figcaption></figure>
+      <figure style="margin:0;display:flex;flex-direction:column;gap:12px;padding-top:14px;border-top:1px solid #d9d7cf"><figcaption style="font-size:14px;line-height:1.5;color:#5d5f66"><strong style="color:#16181f;font-weight:500">New payment</strong> — bank and account number fields.</figcaption></figure>
+      <figure style="margin:0;display:flex;flex-direction:column;gap:12px;padding-top:14px;border-top:1px solid #d9d7cf"><figcaption style="font-size:14px;line-height:1.5;color:#5d5f66"><strong style="color:#16181f;font-weight:500">Payment summary</strong> — All, Pending, Completed.</figcaption></figure>
+      <figure style="margin:0;display:flex;flex-direction:column;gap:12px;padding-top:14px;border-top:1px solid #d9d7cf"><figcaption style="font-size:14px;line-height:1.5;color:#5d5f66"><strong style="color:#16181f;font-weight:500">Deposits</strong> — scan a cheque with the camera.</figcaption></figure>
+    </div>
+  </section>
+
+  <section data-screen-label="10 Beyond" style="padding:clamp(72px,10vw,140px) 0 0">
+    <div style="display:flex;flex-direction:column;gap:20px;max-width:760px">
+      <span style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#28377f">Flows · More</span>
+      <h2 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(34px,4vw,52px);line-height:1.04;letter-spacing:-.01em;text-wrap:balance">Context around the money</h2>
+      <p style="margin:0;font-size:17px;line-height:1.6;color:#3a3c44;text-wrap:pretty">The More tab gathers what a finance team checks alongside its accounts — markets, RBC news, business offers, contacts and the nearest branch — in the same card language as the core screens.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,180px),1fr));gap:32px 20px;margin-top:48px">
+      <figure style="margin:0;display:flex;flex-direction:column;gap:12px"><div style="position:relative;width:100%;box-sizing:border-box;padding:0 6%;background:linear-gradient(160deg,#ffffff 0%,#eef0f3 55%,#dde0e6 100%);border-radius:14%/6.6%;box-shadow:inset 0 0 0 1px #c6c9d1,inset 0 0 0 4px #f8f9fa,inset 0 0 0 5px #d6d9e0,0 44px 70px -36px rgba(16,22,60,.55),0 14px 26px -14px rgba(16,22,60,.28);"><div style="aspect-ratio:88/19;display:flex;align-items:center;justify-content:center;gap:5%"><div style="width:3.6%;aspect-ratio:1;border-radius:50%;background:#262932;box-shadow:inset 0 0 0 1px #4a4e5a"></div><div style="width:17%;height:8%;border-radius:99px;background:#c0c4cc;box-shadow:inset 0 1px 1px rgba(0,0,0,.18)"></div></div><img src="assets/after/more.png" alt="More" style="width:100%;aspect-ratio:640/1136;object-fit:cover;display:block;box-shadow:0 0 0 1.5px #1b1d24;object-position:top;background:#28377f;"></img><div style="aspect-ratio:88/19;display:flex;align-items:center;justify-content:center"><div style="width:15%;aspect-ratio:1;box-sizing:border-box;border-radius:50%;border:1.5px solid #c6c9d1;background:linear-gradient(180deg,#f4f5f7,#e4e6eb)"></div></div></div><figcaption style="font-size:14px;line-height:1.5;color:#5d5f66"><strong style="color:#16181f;font-weight:500">More</strong> — six destinations in a grid.</figcaption></figure>
+      <figure style="margin:0;display:flex;flex-direction:column;gap:12px"><div style="position:relative;width:100%;box-sizing:border-box;padding:0 6%;background:linear-gradient(160deg,#ffffff 0%,#eef0f3 55%,#dde0e6 100%);border-radius:14%/6.6%;box-shadow:inset 0 0 0 1px #c6c9d1,inset 0 0 0 4px #f8f9fa,inset 0 0 0 5px #d6d9e0,0 44px 70px -36px rgba(16,22,60,.55),0 14px 26px -14px rgba(16,22,60,.28);"><div style="aspect-ratio:88/19;display:flex;align-items:center;justify-content:center;gap:5%"><div style="width:3.6%;aspect-ratio:1;border-radius:50%;background:#262932;box-shadow:inset 0 0 0 1px #4a4e5a"></div><div style="width:17%;height:8%;border-radius:99px;background:#c0c4cc;box-shadow:inset 0 1px 1px rgba(0,0,0,.18)"></div></div><img src="assets/comp/Markets.png" alt="Markets" style="width:100%;aspect-ratio:640/1136;object-fit:cover;display:block;box-shadow:0 0 0 1.5px #1b1d24;object-position:top;"></img><div style="aspect-ratio:88/19;display:flex;align-items:center;justify-content:center"><div style="width:15%;aspect-ratio:1;box-sizing:border-box;border-radius:50%;border:1.5px solid #c6c9d1;background:linear-gradient(180deg,#f4f5f7,#e4e6eb)"></div></div></div><figcaption style="font-size:14px;line-height:1.5;color:#5d5f66"><strong style="color:#16181f;font-weight:500">Financial market</strong> — indices and currency strength.</figcaption></figure>
+      <figure style="margin:0;display:flex;flex-direction:column;gap:12px"><div style="position:relative;width:100%;box-sizing:border-box;padding:0 6%;background:linear-gradient(160deg,#ffffff 0%,#eef0f3 55%,#dde0e6 100%);border-radius:14%/6.6%;box-shadow:inset 0 0 0 1px #c6c9d1,inset 0 0 0 4px #f8f9fa,inset 0 0 0 5px #d6d9e0,0 44px 70px -36px rgba(16,22,60,.55),0 14px 26px -14px rgba(16,22,60,.28);"><div style="aspect-ratio:88/19;display:flex;align-items:center;justify-content:center;gap:5%"><div style="width:3.6%;aspect-ratio:1;border-radius:50%;background:#262932;box-shadow:inset 0 0 0 1px #4a4e5a"></div><div style="width:17%;height:8%;border-radius:99px;background:#c0c4cc;box-shadow:inset 0 1px 1px rgba(0,0,0,.18)"></div></div><img src="assets/comp/News.png" alt="News" style="width:100%;aspect-ratio:640/1136;object-fit:cover;display:block;box-shadow:0 0 0 1.5px #1b1d24;"></img><div style="aspect-ratio:88/19;display:flex;align-items:center;justify-content:center"><div style="width:15%;aspect-ratio:1;box-sizing:border-box;border-radius:50%;border:1.5px solid #c6c9d1;background:linear-gradient(180deg,#f4f5f7,#e4e6eb)"></div></div></div><figcaption style="font-size:14px;line-height:1.5;color:#5d5f66"><strong style="color:#16181f;font-weight:500">News</strong> — filtered by year and month.</figcaption></figure>
+      <figure style="margin:0;display:flex;flex-direction:column;gap:12px"><div style="position:relative;width:100%;box-sizing:border-box;padding:0 6%;background:linear-gradient(160deg,#ffffff 0%,#eef0f3 55%,#dde0e6 100%);border-radius:14%/6.6%;box-shadow:inset 0 0 0 1px #c6c9d1,inset 0 0 0 4px #f8f9fa,inset 0 0 0 5px #d6d9e0,0 44px 70px -36px rgba(16,22,60,.55),0 14px 26px -14px rgba(16,22,60,.28);"><div style="aspect-ratio:88/19;display:flex;align-items:center;justify-content:center;gap:5%"><div style="width:3.6%;aspect-ratio:1;border-radius:50%;background:#262932;box-shadow:inset 0 0 0 1px #4a4e5a"></div><div style="width:17%;height:8%;border-radius:99px;background:#c0c4cc;box-shadow:inset 0 1px 1px rgba(0,0,0,.18)"></div></div><img src="assets/comp/offers.png" alt="Offers" style="width:100%;aspect-ratio:640/1136;object-fit:cover;display:block;box-shadow:0 0 0 1.5px #1b1d24;"></img><div style="aspect-ratio:88/19;display:flex;align-items:center;justify-content:center"><div style="width:15%;aspect-ratio:1;box-sizing:border-box;border-radius:50%;border:1.5px solid #c6c9d1;background:linear-gradient(180deg,#f4f5f7,#e4e6eb)"></div></div></div><figcaption style="font-size:14px;line-height:1.5;color:#5d5f66"><strong style="color:#16181f;font-weight:500">Offers</strong> — featured cards above a list.</figcaption></figure>
+      <figure style="margin:0;display:flex;flex-direction:column;gap:12px"><div style="position:relative;width:100%;box-sizing:border-box;padding:0 6%;background:linear-gradient(160deg,#ffffff 0%,#eef0f3 55%,#dde0e6 100%);border-radius:14%/6.6%;box-shadow:inset 0 0 0 1px #c6c9d1,inset 0 0 0 4px #f8f9fa,inset 0 0 0 5px #d6d9e0,0 44px 70px -36px rgba(16,22,60,.55),0 14px 26px -14px rgba(16,22,60,.28);"><div style="aspect-ratio:88/19;display:flex;align-items:center;justify-content:center;gap:5%"><div style="width:3.6%;aspect-ratio:1;border-radius:50%;background:#262932;box-shadow:inset 0 0 0 1px #4a4e5a"></div><div style="width:17%;height:8%;border-radius:99px;background:#c0c4cc;box-shadow:inset 0 1px 1px rgba(0,0,0,.18)"></div></div><img src="assets/comp/Contact-Us.png" alt="Contact us" style="width:100%;aspect-ratio:640/1136;object-fit:cover;display:block;box-shadow:0 0 0 1.5px #1b1d24;"></img><div style="aspect-ratio:88/19;display:flex;align-items:center;justify-content:center"><div style="width:15%;aspect-ratio:1;box-sizing:border-box;border-radius:50%;border:1.5px solid #c6c9d1;background:linear-gradient(180deg,#f4f5f7,#e4e6eb)"></div></div></div><figcaption style="font-size:14px;line-height:1.5;color:#5d5f66"><strong style="color:#16181f;font-weight:500">Contact us</strong> — map, rating, call and web.</figcaption></figure>
+      <figure style="margin:0;display:flex;flex-direction:column;gap:12px"><div style="position:relative;width:100%;box-sizing:border-box;padding:0 6%;background:linear-gradient(160deg,#ffffff 0%,#eef0f3 55%,#dde0e6 100%);border-radius:14%/6.6%;box-shadow:inset 0 0 0 1px #c6c9d1,inset 0 0 0 4px #f8f9fa,inset 0 0 0 5px #d6d9e0,0 44px 70px -36px rgba(16,22,60,.55),0 14px 26px -14px rgba(16,22,60,.28);"><div style="aspect-ratio:88/19;display:flex;align-items:center;justify-content:center;gap:5%"><div style="width:3.6%;aspect-ratio:1;border-radius:50%;background:#262932;box-shadow:inset 0 0 0 1px #4a4e5a"></div><div style="width:17%;height:8%;border-radius:99px;background:#c0c4cc;box-shadow:inset 0 1px 1px rgba(0,0,0,.18)"></div></div><img src="assets/comp/Addressbook.png" alt="Address book" style="width:100%;aspect-ratio:640/1136;object-fit:cover;display:block;box-shadow:0 0 0 1.5px #1b1d24;"></img><div style="aspect-ratio:88/19;display:flex;align-items:center;justify-content:center"><div style="width:15%;aspect-ratio:1;box-sizing:border-box;border-radius:50%;border:1.5px solid #c6c9d1;background:linear-gradient(180deg,#f4f5f7,#e4e6eb)"></div></div></div><figcaption style="font-size:14px;line-height:1.5;color:#5d5f66"><strong style="color:#16181f;font-weight:500">Address book</strong> — payees with logos.</figcaption></figure>
+      <figure style="margin:0;display:flex;flex-direction:column;gap:12px"><div style="position:relative;width:100%;box-sizing:border-box;padding:0 6%;background:linear-gradient(160deg,#ffffff 0%,#eef0f3 55%,#dde0e6 100%);border-radius:14%/6.6%;box-shadow:inset 0 0 0 1px #c6c9d1,inset 0 0 0 4px #f8f9fa,inset 0 0 0 5px #d6d9e0,0 44px 70px -36px rgba(16,22,60,.55),0 14px 26px -14px rgba(16,22,60,.28);"><div style="aspect-ratio:88/19;display:flex;align-items:center;justify-content:center;gap:5%"><div style="width:3.6%;aspect-ratio:1;border-radius:50%;background:#262932;box-shadow:inset 0 0 0 1px #4a4e5a"></div><div style="width:17%;height:8%;border-radius:99px;background:#c0c4cc;box-shadow:inset 0 1px 1px rgba(0,0,0,.18)"></div></div><img src="assets/comp/Alerts.png" alt="Alerts" style="width:100%;aspect-ratio:640/1136;object-fit:cover;display:block;box-shadow:0 0 0 1.5px #1b1d24;"></img><div style="aspect-ratio:88/19;display:flex;align-items:center;justify-content:center"><div style="width:15%;aspect-ratio:1;box-sizing:border-box;border-radius:50%;border:1.5px solid #c6c9d1;background:linear-gradient(180deg,#f4f5f7,#e4e6eb)"></div></div></div><figcaption style="font-size:14px;line-height:1.5;color:#5d5f66"><strong style="color:#16181f;font-weight:500">Alerts</strong> — messages and pending approvals.</figcaption></figure>
+    </div>
+  </section>
+
+  <sc-if value="{{ showConcept }}" hint-placeholder-val="{{ true }}">
+  <section data-screen-label="11 Concept" style="padding:clamp(72px,10vw,140px) 0 0">
+    <div style="background:#16181f;color:#f5f4f0;border-radius:28px;padding:clamp(28px,5vw,64px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:48px;align-items:center">
+      <div style="display:flex;flex-direction:column;gap:20px">
+        <span style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#ffd51d">06 — Exploration</span>
+        <h2 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(34px,4vw,52px);line-height:1.04;letter-spacing:-.01em;text-wrap:balance">A digital‑currency wallet, on the same foundations</h2>
+        <p style="margin:0;font-size:17px;line-height:1.6;color:#c8c9cf;text-wrap:pretty">A side concept tested how far the system stretches: Touch ID to authorise, a single balance card, and a dated feed of sent, received and transferred amounts with Request, My Account and Send as primary actions.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;max-width:460px;justify-self:center;width:100%">
+        <img src="assets/comp/btc-touch-id.png" alt="Touch ID" style="width:100%;aspect-ratio:640/1136;object-fit:cover;border-radius:22px"></img>
+        <img src="assets/comp/btc-home.png" alt="Wallet home" style="width:100%;aspect-ratio:640/1136;object-fit:cover;border-radius:22px;margin-top:40px"></img>
+      </div>
+    </div>
+  </section>
+  </sc-if>
+
+  <section data-screen-label="12 System" style="padding:clamp(72px,10vw,140px) 0 0">
+    <div style="display:flex;flex-direction:column;gap:20px;max-width:760px">
+      <span style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#28377f">07 — Visual system</span>
+      <h2 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(34px,4vw,52px);line-height:1.04;letter-spacing:-.01em;text-wrap:balance">Navy field, white cards, gold for attention</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,120px),1fr));gap:16px;margin-top:48px">
+      <div style="display:flex;flex-direction:column;gap:10px"><div style="aspect-ratio:1;border-radius:16px;background:#28377f"></div><span style="font-size:14px;font-weight:500">Navy</span><span style="font-family:'Geist Mono',monospace;font-size:12px;color:#7a7c83">#28377F · field, text</span></div>
+      <div style="display:flex;flex-direction:column;gap:10px"><div style="aspect-ratio:1;border-radius:16px;background:#ffd51d"></div><span style="font-size:14px;font-weight:500">Gold</span><span style="font-family:'Geist Mono',monospace;font-size:12px;color:#7a7c83">#FFD51D · active, overdue</span></div>
+      <div style="display:flex;flex-direction:column;gap:10px"><div style="aspect-ratio:1;border-radius:16px;background:#ff2424"></div><span style="font-size:14px;font-weight:500">Alert red</span><span style="font-family:'Geist Mono',monospace;font-size:12px;color:#7a7c83">#FF2424 · badges, current</span></div>
+      <div style="display:flex;flex-direction:column;gap:10px"><div style="aspect-ratio:1;border-radius:16px;background:#f8f7f1;border:1px solid #d9d7cf"></div><span style="font-size:14px;font-weight:500">Debit</span><span style="font-family:'Geist Mono',monospace;font-size:12px;color:#7a7c83">#F8F7F1</span></div>
+      <div style="display:flex;flex-direction:column;gap:10px"><div style="aspect-ratio:1;border-radius:16px;background:#ebeef4;border:1px solid #d9d7cf"></div><span style="font-size:14px;font-weight:500">Credit</span><span style="font-family:'Geist Mono',monospace;font-size:12px;color:#7a7c83">#EBEEF4</span></div>
+      <div style="display:flex;flex-direction:column;gap:10px"><div style="aspect-ratio:1;border-radius:16px;background:#e9ebf2;border:1px solid #d9d7cf"></div><span style="font-size:14px;font-weight:500">List</span><span style="font-family:'Geist Mono',monospace;font-size:12px;color:#7a7c83">#E9EBF2 · section rows</span></div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:24px;margin-top:24px">
+      <div style="border:1px solid #d9d7cf;border-radius:20px;padding:32px;display:flex;flex-direction:column;gap:16px">
+        <span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7c83">Type · Helvetica Neue</span>
+        <span style="font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:44px;line-height:1;color:#28377f">$4,267.00</span>
+        <span style="font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:700;font-size:20px;color:#28377f">Financial Health</span>
+        <span style="font-size:14px;line-height:1.5;color:#5d5f66">Light for figures, bold only for labels that anchor a card. Numbers carry the weight of the screen.</span>
+      </div>
+      <div style="border:1px solid #d9d7cf;border-radius:20px;padding:32px;display:flex;flex-direction:column;gap:16px">
+        <span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7c83">Tab bar</span>
+        <img src="assets/comp/Dashboard.png" alt="Tab bar" style="width:100%;aspect-ratio:640/100;object-fit:cover;object-position:bottom;border-radius:10px;border:1px solid #d9d7cf"></img>
+        <span style="font-size:14px;line-height:1.5;color:#5d5f66">Gold top rule marks the active tab; line icons with labels throughout.</span>
+      </div>
+    </div>
+  </section>
+
+  <section data-screen-label="13 Reflection" style="padding:clamp(72px,10vw,140px) 0 clamp(72px,10vw,120px)">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:48px">
+      <div style="display:flex;flex-direction:column;gap:20px">
+        <span style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#28377f">08 — Reflection</span>
+        <h2 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(34px,4vw,52px);line-height:1.04;letter-spacing:-.01em;text-wrap:balance">What I’d take into the next round</h2>
+      </div>
+      <div style="display:flex;flex-direction:column;border-top:1px solid #d9d7cf">
+        <div style="display:flex;flex-direction:column;gap:6px;padding:20px 0;border-bottom:1px solid #d9d7cf"><span style="font-size:17px;font-weight:500">Settle the fourth tab</span><span style="font-size:15px;line-height:1.55;color:#5d5f66;text-wrap:pretty">Comps alternate between Approvals and Deposits in slot four. Approvals should win; Deposits belongs in More.</span></div>
+        <div style="display:flex;flex-direction:column;gap:6px;padding:20px 0;border-bottom:1px solid #d9d7cf"><span style="font-size:17px;font-weight:500">Test bulk approval with approvers</span><span style="font-size:15px;line-height:1.55;color:#5d5f66;text-wrap:pretty">Batch actions save taps but raise the cost of a mistake; the confirmation and token step needs validating.</span></div>
+        <div style="display:flex;flex-direction:column;gap:6px;padding:20px 0;border-bottom:1px solid #d9d7cf"><span style="font-size:17px;font-weight:500">Design for French and for Android</span><span style="font-size:15px;line-height:1.55;color:#5d5f66;text-wrap:pretty">The app is bilingual and certified on three platforms; labels and the tab bar need longer‑string and Android passes.</span></div>
+        <div style="display:flex;flex-direction:column;gap:6px;padding:20px 0;border-bottom:1px solid #d9d7cf"><span style="font-size:17px;font-weight:500">Bring releases into the story</span><span style="font-size:15px;line-height:1.55;color:#5d5f66;text-wrap:pretty">Release Manager (post‑approval) is folded into Approvals conceptually but not yet drawn.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <footer style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;padding:28px 0 40px;border-top:1px solid #d9d7cf;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#7a7c83">
+    <span>RBC Express Mobile — redesign</span>
+    <span>Legacy screens from the production app, 2016</span>
+  </footer>
+</div>
+</x-dc>
+<script src="/casestudy/portfolio-bar.js" data-cs="rbc" data-home="/index.html" data-resume="/uploads/Niyati-Trivedi-Resume.pdf"></script>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showAudit&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Sections&quot;},&quot;showConcept&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Sections&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    return { showAudit: this.props.showAudit ?? true, showConcept: this.props.showConcept ?? true };
+  }
+}
+</script>
+</body>
+</html>
