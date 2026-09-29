@@ -1,0 +1,82 @@
+:root{
+/* Brand */
+--eri-purple-900:#260977;
+--eri-purple-800:#211376;
+--eri-indigo-700:#1c2c8a;
+--eri-blue-700:#11519d;
+--eri-plum:#5f1f70;
+--eri-lavender:#54468d;
+--eri-gradient:linear-gradient(90deg,#260977 0%,#260977 18%,#1c2c8a 50%,#11519d 100%); /* @kind color */
+--eri-gradient-diagonal:linear-gradient(120deg,#260977 0%,#1c2c8a 50%,#11519d 100%); /* @kind color */
+/* Accents */
+--eri-teal:#009688;
+--eri-green:#9bc031;
+--eri-green-select:#88b916;
+--eri-yellow:#ffcc00;
+--eri-red:#d50000;
+--eri-red-text:#db4040;
+--eri-progress-track:#b7cade;
+/* Annotation palette (hotspots / markup) */
+--eri-mark-red:#cc1918;
+--eri-mark-orange:#ff8c05;
+--eri-mark-yellow:#efe22b;
+--eri-mark-lime:#bbd752;
+--eri-mark-cyan:#00c0ff;
+--eri-mark-purple:#260977;
+/* Neutrals */
+--eri-white:#ffffff;
+--eri-gray-50:#f7f7f7;
+--eri-gray-100:#eeeeee;
+--eri-gray-150:#e8e8e8;
+--eri-gray-200:#e0e0e0;
+--eri-gray-250:#dedede;
+--eri-gray-300:#c5c5c7;
+--eri-gray-350:#bbbbbb;
+--eri-gray-400:#b2b2b2;
+--eri-gray-500:#9e9e9e;
+--eri-gray-600:#7f7f7f;
+--eri-gray-650:#7b7b7b;
+--eri-gray-800:#404040;
+--eri-gray-850:#3c3c3c;
+--eri-gray-900:#212121;
+--eri-black:#000000;
+--eri-dark-surface:#303030;
+--eri-dark-card:#424242;
+
+/* Semantic */
+--color-primary:var(--eri-purple-900);
+--color-primary-strong:var(--eri-purple-800);
+--color-on-primary:var(--eri-white);
+--color-accent:var(--eri-teal);
+--color-success:var(--eri-green);
+--color-selected:var(--eri-green-select);
+--color-highlight:var(--eri-yellow);
+--color-error:var(--eri-red);
+--color-error-text:var(--eri-red-text);
+--color-link:var(--eri-purple-800);
+
+--surface-page:var(--eri-gray-100);
+--surface-card:var(--eri-white);
+--surface-muted:var(--eri-gray-50);
+--surface-canvas:var(--eri-gray-150);
+--surface-media:var(--eri-gray-400);
+--surface-tooltip:var(--eri-gray-850);
+--surface-scrim:rgba(0,0,0,.54);
+--surface-header:var(--eri-gradient);
+
+--text-primary:var(--eri-gray-900);
+--text-strong:var(--eri-black);
+--text-body:var(--eri-gray-800);
+--text-secondary:var(--eri-gray-600);
+--text-muted:#9a9a9a;
+--text-placeholder:var(--eri-gray-350);
+--text-on-dark:var(--eri-white);
+--text-on-dark-secondary:rgba(255,255,255,.7);
+--text-heading-brand:var(--eri-purple-800);
+--text-dialog-title:var(--eri-lavender);
+
+--border-divider:var(--eri-gray-200);
+--border-input:var(--eri-gray-200);
+--border-button:var(--eri-gray-200);
+--border-dashed:#bdbdbd;
+}

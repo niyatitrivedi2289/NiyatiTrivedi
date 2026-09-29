@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>AR Field Service Assistant — Niyati Trivedi</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="/casestudy/ar/support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="/casestudy/ar/ds/tokens/fonts.css">
+<link rel="stylesheet" href="/casestudy/ar/ds/tokens/colors.css">
+<link rel="stylesheet" href="/casestudy/ar/ds/tokens/typography.css">
+<link rel="stylesheet" href="/casestudy/ar/ds/tokens/spacing.css">
+<link rel="stylesheet" href="/casestudy/ar/ds/tokens/effects.css">
+<link rel="stylesheet" href="/casestudy/ar/ds/tokens/base.css">
+<link rel="stylesheet" href="/casestudy/ar/ds/styles.css">
+<script src="/casestudy/ar/ds/_ds_bundle.js"></script>
+<style>
+html{scroll-behavior:smooth}
+body{margin:0;background:#ffffff;font-family:'Roboto','Helvetica Neue',Arial,sans-serif;color:#212121;-webkit-font-smoothing:antialiased}
+a{color:#211376;text-decoration:none}
+a:hover{color:#11519d;text-decoration:underline}
+</style>
+</helmet>
+
+<section data-screen-label="01 Hero" style="background:linear-gradient(120deg,#260977 0%,#1c2c8a 50%,#11519d 100%);color:#ffffff">
+  <div style="max-width:1120px;margin:0 auto;padding:96px 32px 80px;display:flex;flex-direction:column;gap:48px">
+    <div style="display:flex;flex-direction:column;gap:20px;max-width:760px">
+      <div style="display:flex;align-items:center;gap:14px"><img src="/casestudy/ar/img/app-icon.png" alt="App icon" style="width:44px;height:44px;display:block;box-shadow:0 4px 12px rgba(0,0,0,.3)"><span style="font-size:13px;font-weight:500;letter-spacing:.16em;color:rgba(255,255,255,.85)">VISUAL DESIGN CASE STUDY · ERICSSON</span></div>
+      <h1 style="margin:0;font-size:clamp(42px,6.5vw,76px);font-weight:300;line-height:1.04">AR Field Service Assistant</h1>
+      <p style="margin:0;font-size:clamp(19px,2.2vw,24px);font-weight:300;line-height:1.45;text-wrap:pretty">A web CMS and an Android AR app that show telecom technicians exactly which port to connect, right on the equipment in front of them.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:24px;font-size:14px;line-height:1.5">
+      <div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:11px;letter-spacing:.14em;color:rgba(255,255,255,.7)">MY ROLE</span><span>Visual Designer — CMS and Android app</span></div>
+      <div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:11px;letter-spacing:.14em;color:rgba(255,255,255,.7)">TEAM</span><span>Design Head (discovery, workshops), UX Designer (wireframes), Animator (3D and animation), me (visual design)</span></div>
+      <div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:11px;letter-spacing:.14em;color:rgba(255,255,255,.7)">PLATFORM</span><span>Web CMS · Android, landscape</span></div>
+      <div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:11px;letter-spacing:.14em;color:rgba(255,255,255,.7)">DOMAIN</span><span>Telecom migration, installation, cabling</span></div>
+    </div>
+    <img src="/casestudy/ar/img/hero.png" alt="Technician using the AR app on a telecom cabinet" style="width:100%;display:block;box-shadow:0 24px 60px rgba(8,0,40,.45)">
+  </div>
+</section>
+
+<section data-screen-label="02 Problem" style="background:#ffffff">
+  <div style="max-width:1120px;margin:0 auto;padding:104px 32px;display:flex;flex-wrap:wrap;gap:40px 64px;align-items:center">
+    <div style="flex:1 1 400px;display:flex;flex-direction:column;gap:20px">
+      <span style="font-size:13px;font-weight:500;letter-spacing:.14em;color:#260977">THE PROBLEM</span>
+      <h2 style="margin:0;font-size:clamp(28px,3.4vw,38px);font-weight:300;line-height:1.18;text-wrap:balance">Knowing <i>what</i> to do wasn't the hard part. Finding <i>where</i> was.</h2>
+      <p style="margin:0;font-size:17px;line-height:1.65;color:#404040;text-wrap:pretty">Field engineers upgrade radio base stations alone, often at sites with no signal. Their instructions come as long procedure documents (MOPs). The riskiest moment is cabling: finding one port in a row of near-identical ports, then finding where the cable goes on another unit.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;font-size:13px">
+        <span style="padding:8px 12px;background:#eeeeee">Wrong port terminations</span>
+        <span style="padding:8px 12px;background:#eeeeee">Look-alike cables</span>
+        <span style="padding:8px 12px;background:#eeeeee">Colour codes vary per customer</span>
+        <span style="padding:8px 12px;background:#eeeeee">No connectivity on site</span>
+      </div>
+    </div>
+    <div style="flex:1 1 420px;display:flex;flex-direction:column;gap:10px">
+      <img src="/casestudy/ar/img/dconf-s2-1.png" alt="Dense row of ports on an R503" style="width:100%;display:block">
+      <sc-if value="{{ showCaptions }}" hint-placeholder-val="{{ true }}"><span style="font-size:13px;color:#7f7f7f">One unit, dozens of similar ports. The guidance has to point at one.</span></sc-if>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="02b Field context" style="background:#f7f7f7">
+  <div style="max-width:1120px;margin:0 auto;padding:104px 32px;display:flex;flex-direction:column;gap:36px">
+    <div style="display:flex;flex-wrap:wrap;gap:24px 64px;align-items:flex-end">
+      <div style="flex:1 1 420px;display:flex;flex-direction:column;gap:16px"><span style="font-size:13px;font-weight:500;letter-spacing:.14em;color:#260977">WHERE THE WORK HAPPENS</span><h2 style="margin:0;font-size:clamp(28px,3.4vw,38px);font-weight:300;line-height:1.18;text-wrap:balance">Rooftops, masts and roadside cabinets.</h2></div>
+      <p style="flex:1 1 380px;margin:0;font-size:16px;line-height:1.65;color:#404040;text-wrap:pretty">Every site is set up differently: city rooftops, suburban masts, rural towers shared by several operators. Technicians work outdoors, often alone and without signal, in whatever light and weather they get. The UI had to stay readable over all of it.</p>
+    </div>
+    <figure style="margin:0;display:flex;flex-direction:column;gap:10px"><img src="/casestudy/ar/img/site-urban.png" alt="Dense urban rooftop site with cabinet and antennas" style="width:100%;display:block"><sc-if value="{{ showCaptions }}" hint-placeholder-val="{{ true }}"><figcaption style="font-size:13px;color:#7f7f7f">Dense urban rooftop: open cabinet with baseband and batteries, radios and antennas on the wall mount.</figcaption></sc-if></figure>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px">
+      <figure style="margin:0;display:flex;flex-direction:column;gap:10px"><img src="/casestudy/ar/img/site-rural.png" alt="Rural tower and enclosure" style="width:100%;display:block"><sc-if value="{{ showCaptions }}" hint-placeholder-val="{{ true }}"><figcaption style="font-size:13px;color:#7f7f7f">Rural: shared tower for several operators, with a fenced enclosure.</figcaption></sc-if></figure>
+      <figure style="margin:0;display:flex;flex-direction:column;gap:10px"><img src="/casestudy/ar/img/site-suburban.png" alt="Suburban cabinet and mast" style="width:100%;display:block"><sc-if value="{{ showCaptions }}" hint-placeholder-val="{{ true }}"><figcaption style="font-size:13px;color:#7f7f7f">Suburban: full cabinet at the base, radios up the mast.</figcaption></sc-if></figure>
+      <figure style="margin:0;display:flex;flex-direction:column;gap:10px"><img src="/casestudy/ar/img/site-suburban-5g.png" alt="Suburban 5G compact enclosure and mast" style="width:100%;display:block"><sc-if value="{{ showCaptions }}" hint-placeholder-val="{{ true }}"><figcaption style="font-size:13px;color:#7f7f7f">Suburban 5G: a compact pole-mounted enclosure holding dense port rows.</figcaption></sc-if></figure>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="03 Process" style="background:#ffffff">
+  <div style="max-width:1120px;margin:0 auto;padding:104px 32px;display:flex;flex-direction:column;gap:40px">
+    <div style="display:flex;flex-direction:column;gap:16px;max-width:720px">
+      <span style="font-size:13px;font-weight:500;letter-spacing:.14em;color:#260977">HOW WE GOT TO THE SOLUTION</span>
+      <h2 style="margin:0;font-size:clamp(28px,3.4vw,38px);font-weight:300;line-height:1.18;text-wrap:balance">From workshop notes to a visual system.</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1px;background:#e0e0e0;border:1px solid #e0e0e0">
+      <div style="background:#ffffff;padding:28px;display:flex;flex-direction:column;gap:10px"><span style="font-size:13px;color:#7f7f7f">01 · Design Head</span><span style="font-size:20px;font-weight:400">Discovery workshops</span><span style="font-size:14px;line-height:1.6;color:#404040">Six days with Ericsson stakeholders and field reps. Mapped the migration and installation process and where technicians get stuck.</span></div>
+      <div style="background:#ffffff;padding:28px;display:flex;flex-direction:column;gap:10px"><span style="font-size:13px;color:#7f7f7f">02 · UX Designer</span><span style="font-size:20px;font-weight:400">Wireframes and flows</span><span style="font-size:14px;line-height:1.6;color:#404040">CMS authoring flow and the app's step-by-step structure, built from the workshop findings.</span></div>
+      <div style="background:#ffffff;padding:28px;display:flex;flex-direction:column;gap:10px"><span style="font-size:13px;color:#7f7f7f">03 · Animator</span><span style="font-size:20px;font-weight:400">3D and animation</span><span style="font-size:14px;line-height:1.6;color:#404040">3D equipment renders, 2D infographic animations and the design-configuration connection sequences.</span></div>
+      <div style="background:#260977;color:#ffffff;padding:28px;display:flex;flex-direction:column;gap:10px"><span style="font-size:13px;color:#bbd752">04 · Me</span><span style="font-size:20px;font-weight:400">Visual design</span><span style="font-size:14px;line-height:1.6;color:rgba(255,255,255,.88)">Turned the wireframes into the final CMS and Android UI, the AR overlay language and the app icon, within Ericsson's Material-based guidelines.</span></div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px">
+      <div style="display:flex;flex-direction:column;gap:8px;padding-top:16px;border-top:2px solid #260977"><span style="font-size:17px;font-weight:500">Put guidance on the hardware</span><span style="font-size:14px;line-height:1.6;color:#404040">Recognise the device, then highlight the exact port on the camera image.</span></div>
+      <div style="display:flex;flex-direction:column;gap:8px;padding-top:16px;border-top:2px solid #260977"><span style="font-size:17px;font-weight:500">Treat a cable as two ends</span><span style="font-size:14px;line-height:1.6;color:#404040">FROM port → TO device → TO port, with a scan at each end.</span></div>
+      <div style="display:flex;flex-direction:column;gap:8px;padding-top:16px;border-top:2px solid #260977"><span style="font-size:17px;font-weight:500">Author once, use everywhere</span><span style="font-size:14px;line-height:1.6;color:#404040">Experts set this up in a CMS; technicians download it and use it offline.</span></div>
+    </div>
+    <figure style="margin:0;display:flex;flex-direction:column;gap:10px">
+      <img src="/casestudy/ar/img/sketch-brainstorm.png" alt="Wireframe flows" style="width:100%;display:block;background:#ffffff;border:1px solid #e0e0e0">
+      <sc-if value="{{ showCaptions }}" hint-placeholder-val="{{ true }}"><figcaption style="font-size:13px;color:#7f7f7f">Starting point: wireframe flows by the UX Designer. The visual design below was built from these.</figcaption></sc-if>
+    </figure>
+  </div>
+</section>
+
+<section data-screen-label="04 Visual language" style="background:#f7f7f7">
+  <div style="max-width:1120px;margin:0 auto;padding:104px 32px;display:flex;flex-direction:column;gap:40px">
+    <div style="display:flex;flex-direction:column;gap:16px;max-width:720px">
+      <span style="font-size:13px;font-weight:500;letter-spacing:.14em;color:#260977">VISUAL LANGUAGE</span>
+      <h2 style="margin:0;font-size:clamp(28px,3.4vw,38px);font-weight:300;line-height:1.18;text-wrap:balance">Quiet interface, loud where it counts.</h2>
+      <p style="margin:0;font-size:17px;line-height:1.65;color:#404040;text-wrap:pretty">The UI stays neutral and brand-consistent so the camera image and the AR highlights do the talking. Colour is kept for meaning: purple for brand and actions, lime for "this one", yellow for what to target.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px">
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div style="height:120px;background:linear-gradient(90deg,#260977 0%,#260977 18%,#1c2c8a 50%,#11519d 100%)"></div>
+        <span style="font-size:15px;font-weight:500">Signature gradient</span><span style="font-size:13px;line-height:1.55;color:#7f7f7f">Every app bar, the web header, splash and onboarding. #260977 → #1c2c8a → #11519d</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div style="height:120px;display:grid;grid-template-columns:repeat(5,1fr)"><span style="background:#260977"></span><span style="background:#9bc031"></span><span style="background:#ffcc00"></span><span style="background:#009688"></span><span style="background:#eeeeee"></span></div>
+        <span style="font-size:15px;font-weight:500">Functional accents</span><span style="font-size:13px;line-height:1.55;color:#7f7f7f">Purple action · lime selected / done · yellow target and MASTER · teal dialog actions · grey surfaces</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div style="height:120px;background:#f7f7f7;display:flex;flex-direction:column;justify-content:center;padding:0 20px;gap:4px"><span style="font-size:40px;font-weight:300;line-height:1">Aa</span><span style="font-size:13px;color:#7f7f7f">Roboto Light / Regular / Medium</span></div>
+        <span style="font-size:15px;font-weight:500">Roboto, light hierarchy</span><span style="font-size:13px;line-height:1.55;color:#7f7f7f">Following the Ericsson Material-based UI language. Square corners, 1px dividers.</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div style="height:120px;background:#303030;display:flex;align-items:center;justify-content:center;gap:18px">
+          <img src="/casestudy/ar/img/hs-circle.png" alt="" style="width:22px;height:22px;filter:brightness(0) invert(1)"><img src="/casestudy/ar/img/hs-square.png" alt="" style="width:22px;height:22px;filter:brightness(0) invert(1)"><img src="/casestudy/ar/img/hs-triangle.png" alt="" style="width:22px;height:22px;filter:brightness(0) invert(1)"><img src="/casestudy/ar/img/hs-star.png" alt="" style="width:22px;height:22px;filter:brightness(0) invert(1)">
+          <span style="padding:4px 8px;background:#260977;color:#ffffff;font-size:13px;font-weight:500">16/27</span>
+        </div>
+        <span style="font-size:15px;font-weight:500">AR overlay kit</span><span style="font-size:13px;line-height:1.55;color:#7f7f7f">Hotspot shapes for SMEs, step counter badge, yellow corner brackets for scan targets.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="05 Journey technician onboarding" style="background:#ffffff">
+  <div style="max-width:1120px;margin:0 auto;padding:104px 32px;display:flex;flex-direction:column;gap:36px">
+    <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px">
+      <div style="display:flex;flex-direction:column;gap:12px;max-width:640px"><span style="font-size:13px;font-weight:500;letter-spacing:.14em;color:#260977">JOURNEY 1 · TECHNICIAN</span><h2 style="margin:0;font-size:clamp(26px,3vw,34px);font-weight:300;line-height:1.2">Get in, get today's work, go offline.</h2></div>
+      <span style="font-size:13px;color:#7f7f7f">Android · 640×360 landscape</span>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:28px 20px">
+      <figure style="margin:0;display:flex;flex-direction:column;gap:10px"><img src="/casestudy/ar/img/app-splash.png" alt="Splash" style="width:100%;display:block"><sc-if value="{{ showCaptions }}" hint-placeholder-val="{{ true }}"><figcaption style="font-size:13px;line-height:1.5;color:#404040"><b style="font-weight:500">Splash</b> — the gradient and mark, nothing else.</figcaption></sc-if></figure>
+      <figure style="margin:0;display:flex;flex-direction:column;gap:10px"><img src="/casestudy/ar/img/app-onb2.png" alt="Onboarding" style="width:100%;display:block"><sc-if value="{{ showCaptions }}" hint-placeholder-val="{{ true }}"><figcaption style="font-size:13px;line-height:1.5;color:#404040"><b style="font-weight:500">Onboarding</b> — four cards with line illustrations explain AR in one sentence each.</figcaption></sc-if></figure>
+      <figure style="margin:0;display:flex;flex-direction:column;gap:10px"><img src="/casestudy/ar/img/app-login.png" alt="Login" style="width:100%;display:block"><sc-if value="{{ showCaptions }}" hint-placeholder-val="{{ true }}"><figcaption style="font-size:13px;line-height:1.5;color:#404040"><b style="font-weight:500">Login</b> — short, plain error states.</figcaption></sc-if></figure>
+      <figure style="margin:0;display:flex;flex-direction:column;gap:10px"><img src="/casestudy/ar/img/app-projects.png" alt="My Projects" style="width:100%;display:block"><sc-if value="{{ showCaptions }}" hint-placeholder-val="{{ true }}"><figcaption style="font-size:13px;line-height:1.5;color:#404040"><b style="font-weight:500">My Projects</b> — only assigned work, with type and expiry.</figcaption></sc-if></figure>
+      <figure style="margin:0;display:flex;flex-direction:column;gap:10px"><img src="/casestudy/ar/img/app-confirm.png" alt="Download confirm" style="width:100%;display:block"><sc-if value="{{ showCaptions }}" hint-placeholder-val="{{ true }}"><figcaption style="font-size:13px;line-height:1.5;color:#404040"><b style="font-weight:500">Confirm</b> — size and download time stated before leaving coverage.</figcaption></sc-if></figure>
+      <figure style="margin:0;display:flex;flex-direction:column;gap:10px"><img src="/casestudy/ar/img/app-downloading.png" alt="Downloading" style="width:100%;display:block"><sc-if value="{{ showCaptions }}" hint-placeholder-val="{{ true }}"><figcaption style="font-size:13px;line-height:1.5;color:#404040"><b style="font-weight:500">Download</b> — progress in MB; can stop or pause.</figcaption></sc-if></figure>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="06 Journey AR cabling" style="background:#303030;color:#ffffff">
+  <div style="max-width:1120px;margin:0 auto;padding:104px 32px;display:flex;flex-direction:column;gap:36px">
+    <div style="display:flex;flex-direction:column;gap:12px;max-width:720px"><span style="font-size:13px;font-weight:500;letter-spacing:.14em;color:#bbd752">JOURNEY 2 · AR CABLING</span><h2 style="margin:0;font-size:clamp(28px,3.6vw,44px);font-weight:300;line-height:1.12">FROM port → TO device → TO port</h2><p style="margin:0;font-size:16px;line-height:1.65;color:#e0e0e0;text-wrap:pretty">The core interaction. Camera fills the screen; the instruction sits in the top bar; everything else is overlay.</p></div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:32px 24px">
+      <figure style="margin:0;display:flex;flex-direction:column;gap:10px"><img src="/casestudy/ar/img/dconf-s1-0.png" alt="Scan" style="width:100%;display:block"><sc-if value="{{ showCaptions }}" hint-placeholder-val="{{ true }}"><figcaption style="font-size:14px;line-height:1.5;color:#e0e0e0"><b style="font-weight:500;color:#bbd752">1 Scan</b> — a centred pill names the device to point at; yellow brackets frame the target.</figcaption></sc-if></figure>
+      <figure style="margin:0;display:flex;flex-direction:column;gap:10px"><img src="/casestudy/ar/img/dconf-s2-1.png" alt="Ports" style="width:100%;display:block"><sc-if value="{{ showCaptions }}" hint-placeholder-val="{{ true }}"><figcaption style="font-size:14px;line-height:1.5;color:#e0e0e0"><b style="font-weight:500;color:#bbd752">2 FROM port</b> — lime dots mark the ports for this step.</figcaption></sc-if></figure>
+      <figure style="margin:0;display:flex;flex-direction:column;gap:10px"><img src="/casestudy/ar/img/dconf-1.5.png" alt="To device" style="width:100%;display:block"><sc-if value="{{ showCaptions }}" hint-placeholder-val="{{ true }}"><figcaption style="font-size:14px;line-height:1.5;color:#e0e0e0"><b style="font-weight:500;color:#bbd752">3 TO device</b> — a dark panel gives the destination in yellow: device, port, cell details.</figcaption></sc-if></figure>
+      <figure style="margin:0;display:flex;flex-direction:column;gap:10px"><img src="/casestudy/ar/img/dconf-1.1.png" alt="Connection" style="width:100%;display:block"><sc-if value="{{ showCaptions }}" hint-placeholder-val="{{ true }}"><figcaption style="font-size:14px;line-height:1.5;color:#e0e0e0"><b style="font-weight:500;color:#bbd752">4 TO port</b> — the cable run drawn from port to radio unit.</figcaption></sc-if></figure>
+      <figure style="margin:0;display:flex;flex-direction:column;gap:10px"><img src="/casestudy/ar/img/inst-16-1.png" alt="Selected port" style="width:100%;display:block"><sc-if value="{{ showCaptions }}" hint-placeholder-val="{{ true }}"><figcaption style="font-size:14px;line-height:1.5;color:#e0e0e0"><b style="font-weight:500;color:#bbd752">5 Connect</b> — one highlighted port, step counter always in view.</figcaption></sc-if></figure>
+      <figure style="margin:0;display:flex;flex-direction:column;gap:10px"><img src="/casestudy/ar/img/inst-27-1.png" alt="Complete" style="width:100%;display:block"><sc-if value="{{ showCaptions }}" hint-placeholder-val="{{ true }}"><figcaption style="font-size:14px;line-height:1.5;color:#e0e0e0"><b style="font-weight:500;color:#bbd752">6 Finish</b> — complete the project, or pause and resume later.</figcaption></sc-if></figure>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="07 Journey 2D and 3D" style="background:#ffffff">
+  <div style="max-width:1120px;margin:0 auto;padding:104px 32px;display:flex;flex-direction:column;gap:36px">
+    <div style="display:flex;flex-direction:column;gap:12px;max-width:720px"><span style="font-size:13px;font-weight:500;letter-spacing:.14em;color:#260977">JOURNEY 3 · WHEN AR ISN'T THE ANSWER</span><h2 style="margin:0;font-size:clamp(26px,3vw,34px);font-weight:300;line-height:1.2">2D infographics and 3D for the whole picture.</h2><p style="margin:0;font-size:16px;line-height:1.65;color:#404040;text-wrap:pretty">Not every step needs the camera. Safety, mounting and full cable runs read better as flat illustrations on the same step layout. 3D renders and animations were created by the team's Animator; I set the screen layouts and overlay styling they sit in.</p></div>
+    <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px">
+      <figure style="margin:0;display:flex;flex-direction:column;gap:10px"><img src="/casestudy/ar/img/mig-1.png" alt="Wrist strap" style="width:100%;display:block;border:1px solid #e0e0e0"><sc-if value="{{ showCaptions }}" hint-placeholder-val="{{ true }}"><figcaption style="font-size:13px;line-height:1.5;color:#404040"><b style="font-weight:500">Migration 1/20</b> — connect the grounding wrist strap.</figcaption></sc-if></figure>
+      <figure style="margin:0;display:flex;flex-direction:column;gap:10px"><img src="/casestudy/ar/img/inst-5.png" alt="EC Bus diagram" style="width:100%;display:block;border:1px solid #e0e0e0"><sc-if value="{{ showCaptions }}" hint-placeholder-val="{{ true }}"><figcaption style="font-size:13px;line-height:1.5;color:#404040"><b style="font-weight:500">Installation 5/27</b> — EC Bus run across three units.</figcaption></sc-if></figure>
+      <figure style="margin:0;display:flex;flex-direction:column;gap:10px"><img src="/casestudy/ar/img/dc-001.png" alt="3D render" style="width:100%;display:block;border:1px solid #e0e0e0"><sc-if value="{{ showCaptions }}" hint-placeholder-val="{{ true }}"><figcaption style="font-size:13px;line-height:1.5;color:#404040"><b style="font-weight:500">Design configuration</b> — 3D render, R503 to RRUS11.</figcaption></sc-if></figure>
+      <figure style="margin:0;display:flex;flex-direction:column;gap:10px"><img src="/casestudy/ar/img/dc-019.png" alt="3D render baseband" style="width:100%;display:block;border:1px solid #e0e0e0"><sc-if value="{{ showCaptions }}" hint-placeholder-val="{{ true }}"><figcaption style="font-size:13px;line-height:1.5;color:#404040"><b style="font-weight:500">Design configuration</b> — R503 port 1 to BB5216 port A.</figcaption></sc-if></figure>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="08 Journey SME CMS" style="background:#f7f7f7">
+  <div style="max-width:1120px;margin:0 auto;padding:104px 32px;display:flex;flex-direction:column;gap:36px">
+    <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px">
+      <div style="display:flex;flex-direction:column;gap:12px;max-width:640px"><span style="font-size:13px;font-weight:500;letter-spacing:.14em;color:#260977">JOURNEY 4 · SME IN THE CMS</span><h2 style="margin:0;font-size:clamp(26px,3vw,34px);font-weight:300;line-height:1.2">Where the AR content is made.</h2><p style="margin:0;font-size:16px;line-height:1.65;color:#404040;text-wrap:pretty">Experts mark ports on a photo of the real device, build steps and publish to technicians — in a six-step wizard under the same gradient header.</p></div>
+      <span style="font-size:13px;color:#7f7f7f">Web · 1500px</span>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:28px 24px">
+      <figure style="margin:0;display:flex;flex-direction:column;gap:10px"><img src="/casestudy/ar/img/cms-login.jpg" alt="CMS login" style="width:100%;display:block;box-shadow:0 1px 3px rgba(0,0,0,.12)"><sc-if value="{{ showCaptions }}" hint-placeholder-val="{{ true }}"><figcaption style="font-size:13px;line-height:1.5;color:#404040"><b style="font-weight:500">Login</b></figcaption></sc-if></figure>
+      <figure style="margin:0;display:flex;flex-direction:column;gap:10px"><img src="/casestudy/ar/img/pj-4.png" alt="Projects hint" style="width:100%;display:block;box-shadow:0 1px 3px rgba(0,0,0,.12)"><sc-if value="{{ showCaptions }}" hint-placeholder-val="{{ true }}"><figcaption style="font-size:13px;line-height:1.5;color:#404040"><b style="font-weight:500">Projects</b> — first-run hint points to create.</figcaption></sc-if></figure>
+      <figure style="margin:0;display:flex;flex-direction:column;gap:10px"><img src="/casestudy/ar/img/cp-1.png" alt="Create project" style="width:100%;display:block;box-shadow:0 1px 3px rgba(0,0,0,.12)"><sc-if value="{{ showCaptions }}" hint-placeholder-val="{{ true }}"><figcaption style="font-size:13px;line-height:1.5;color:#404040"><b style="font-weight:500">1 Create Project</b> — pick type: Step by Step AR, Simple AR, Design Configuration.</figcaption></sc-if></figure>
+      <figure style="margin:0;display:flex;flex-direction:column;gap:10px"><img src="/casestudy/ar/img/mk-5.png" alt="Markers" style="width:100%;display:block;box-shadow:0 1px 3px rgba(0,0,0,.12)"><sc-if value="{{ showCaptions }}" hint-placeholder-val="{{ true }}"><figcaption style="font-size:13px;line-height:1.5;color:#404040"><b style="font-weight:500">Markers</b> — device photos; the yellow MASTER tag marks the one to recognise.</figcaption></sc-if></figure>
+      <figure style="margin:0;display:flex;flex-direction:column;gap:10px"><img src="/casestudy/ar/img/mk-8.png" alt="Port attributes" style="width:100%;display:block;box-shadow:0 1px 3px rgba(0,0,0,.12)"><sc-if value="{{ showCaptions }}" hint-placeholder-val="{{ true }}"><figcaption style="font-size:13px;line-height:1.5;color:#404040"><b style="font-weight:500">Port Attributes</b> — mark a port, name it, say what it connects to.</figcaption></sc-if></figure>
+      <figure style="margin:0;display:flex;flex-direction:column;gap:10px"><img src="/casestudy/ar/img/md-2.png" alt="Media" style="width:100%;display:block;box-shadow:0 1px 3px rgba(0,0,0,.12)"><sc-if value="{{ showCaptions }}" hint-placeholder-val="{{ true }}"><figcaption style="font-size:13px;line-height:1.5;color:#404040"><b style="font-weight:500">2 Add Media</b> — video, 3D, PDF and images as square tiles.</figcaption></sc-if></figure>
+      <figure style="margin:0;display:flex;flex-direction:column;gap:10px"><img src="/casestudy/ar/img/cp-11.png" alt="Create steps" style="width:100%;display:block;box-shadow:0 1px 3px rgba(0,0,0,.12)"><sc-if value="{{ showCaptions }}" hint-placeholder-val="{{ true }}"><figcaption style="font-size:13px;line-height:1.5;color:#404040"><b style="font-weight:500">3 Create Steps</b> — annotate the photo with the Ericsson icon library.</figcaption></sc-if></figure>
+      <figure style="margin:0;display:flex;flex-direction:column;gap:10px"><img src="/casestudy/ar/img/cp-17.png" alt="Preview" style="width:100%;display:block;box-shadow:0 1px 3px rgba(0,0,0,.12)"><sc-if value="{{ showCaptions }}" hint-placeholder-val="{{ true }}"><figcaption style="font-size:13px;line-height:1.5;color:#404040"><b style="font-weight:500">4 Preview</b> — see the step as the technician will.</figcaption></sc-if></figure>
+      <figure style="margin:0;display:flex;flex-direction:column;gap:10px"><img src="/casestudy/ar/img/cp-19.png" alt="Publish" style="width:100%;display:block;box-shadow:0 1px 3px rgba(0,0,0,.12)"><sc-if value="{{ showCaptions }}" hint-placeholder-val="{{ true }}"><figcaption style="font-size:13px;line-height:1.5;color:#404040"><b style="font-weight:500">6 Publish</b> — set expiry, then release to assigned users.</figcaption></sc-if></figure>
+    </div>
+  </div>
+</section>
+
+<section id="prototype" data-screen-label="08b Full journeys" style="background:#212121;color:#ffffff">
+  <div style="max-width:1120px;margin:0 auto;padding:104px 32px;display:flex;flex-direction:column;gap:28px">
+    <div style="display:flex;flex-wrap:wrap;gap:16px 48px;align-items:flex-end">
+      <div style="flex:1 1 420px;display:flex;flex-direction:column;gap:12px"><span style="font-size:13px;font-weight:500;letter-spacing:.14em;color:#bbd752">FULL JOURNEYS · CLICK THROUGH</span><h2 style="margin:0;font-size:clamp(28px,3.4vw,40px);font-weight:300;line-height:1.15">Every screen, in order.</h2></div>
+      <p style="flex:1 1 360px;margin:0;font-size:15px;line-height:1.6;color:#b2b2b2">Pick a journey and step through it, or press play. Around 220 screens across the app, the CMS and the 3D sequences.</p>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:6px">
+      <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="7">
+        <button onClick="{{ t.pick }}" style="border:0;cursor:pointer;padding:10px 14px;font:500 13px/1 Roboto,sans-serif;letter-spacing:.02em;background:{{ t.bg }};color:{{ t.fg }};border-radius:2px">{{ t.label }}</button>
+      </sc-for>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:8px 24px;padding-top:8px;border-top:1px solid #424242">
+      <span style="font-size:20px;font-weight:300">{{ jTitle }}</span>
+      <span style="font-size:13px;color:#b2b2b2">{{ jMeta }} · {{ jBy }}</span>
+    </div>
+    <div style="position:relative;aspect-ratio:16/9;background:#000000;display:flex;align-items:center;justify-content:center;overflow:hidden">
+      <sc-if value="{{ cur }}" hint-placeholder-val="{{ false }}"><img src="{{ cur }}" alt="{{ curLabel }}" style="max-width:100%;max-height:100%;object-fit:contain;display:block"></sc-if>
+      <button onClick="{{ prev }}" aria-label="Previous" style="position:absolute;left:0;top:0;bottom:0;width:18%;border:0;background:transparent;cursor:w-resize"></button>
+      <button onClick="{{ next }}" aria-label="Next" style="position:absolute;right:0;top:0;bottom:0;width:18%;border:0;background:transparent;cursor:e-resize"></button>
+    </div>
+    <div style="height:3px;background:#424242;margin-top:-28px"><div style="height:3px;background:#9bc031;width:{{ progress }};transition:width .3s cubic-bezier(.4,0,.2,1)"></div></div>
+    <div style="display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px">
+      <div style="display:flex;gap:6px">
+        <button onClick="{{ prev }}" style="border:1px solid #616161;background:transparent;color:#ffffff;width:40px;height:40px;cursor:pointer;display:flex;align-items:center;justify-content:center;border-radius:2px"><span style="font-family:'Material Icons';font-size:22px">chevron_left</span></button>
+        <button onClick="{{ togglePlay }}" style="border:0;background:#260977;color:#ffffff;height:40px;padding:0 16px;cursor:pointer;display:flex;align-items:center;gap:6px;font:500 13px/1 Roboto,sans-serif;letter-spacing:.04em;border-radius:2px"><span style="font-family:'Material Icons';font-size:20px">{{ playIcon }}</span>{{ playLabel }}</button>
+        <button onClick="{{ next }}" style="border:1px solid #616161;background:transparent;color:#ffffff;width:40px;height:40px;cursor:pointer;display:flex;align-items:center;justify-content:center;border-radius:2px"><span style="font-family:'Material Icons';font-size:22px">chevron_right</span></button>
+      </div>
+      <span style="font-size:14px;font-weight:500;color:#bbd752;min-width:64px">{{ counter }}</span>
+      <span style="flex:1 1 280px;font-size:15px;color:#e0e0e0">{{ curLabel }}</span>
+    </div>
+    <div ref="{{ stripRef }}" style="display:flex;gap:8px;overflow-x:auto;padding-bottom:8px">
+      <sc-for list="{{ thumbs }}" as="th" hint-placeholder-count="10">
+        <button onClick="{{ th.go }}" style="flex:0 0 116px;height:66px;padding:0;background:#000000;border:2px solid {{ th.border }};opacity:{{ th.op }};cursor:pointer;display:flex;align-items:center;justify-content:center;overflow:hidden"><img src="{{ th.src }}" alt="" loading="lazy" style="max-width:100%;max-height:100%;object-fit:contain;display:block"></button>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="09 Support" style="background:#ffffff">
+  <div style="max-width:1120px;margin:0 auto;padding:104px 32px;display:flex;flex-direction:column;gap:36px">
+    <div style="display:flex;flex-direction:column;gap:12px;max-width:720px"><span style="font-size:13px;font-weight:500;letter-spacing:.14em;color:#260977">AROUND THE TASK</span><h2 style="margin:0;font-size:clamp(26px,3vw,34px);font-weight:300;line-height:1.2">Help and feedback, one tap away.</h2></div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:28px 20px">
+      <figure style="margin:0;display:flex;flex-direction:column;gap:10px"><img src="/casestudy/ar/img/app-menu.png" alt="Menu" style="width:100%;display:block;border:1px solid #e0e0e0"><sc-if value="{{ showCaptions }}" hint-placeholder-val="{{ true }}"><figcaption style="font-size:13px;line-height:1.5;color:#404040"><b style="font-weight:500">Menu</b> — installation, feedback, contact.</figcaption></sc-if></figure>
+      <figure style="margin:0;display:flex;flex-direction:column;gap:10px"><img src="/casestudy/ar/img/app-selfhelp.png" alt="Self help" style="width:100%;display:block;border:1px solid #e0e0e0"><sc-if value="{{ showCaptions }}" hint-placeholder-val="{{ true }}"><figcaption style="font-size:13px;line-height:1.5;color:#404040"><b style="font-weight:500">Self Help</b> — troubleshooting flyout over the current step.</figcaption></sc-if></figure>
+      <figure style="margin:0;display:flex;flex-direction:column;gap:10px"><img src="/casestudy/ar/img/app-feedback.png" alt="Feedback" style="width:100%;display:block;border:1px solid #e0e0e0"><sc-if value="{{ showCaptions }}" hint-placeholder-val="{{ true }}"><figcaption style="font-size:13px;line-height:1.5;color:#404040"><b style="font-weight:500">Feedback</b> — short survey after the job.</figcaption></sc-if></figure>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="10 Reflection" style="background:linear-gradient(120deg,#260977 0%,#1c2c8a 50%,#11519d 100%);color:#ffffff">
+  <div style="max-width:1120px;margin:0 auto;padding:104px 32px;display:flex;flex-wrap:wrap;gap:40px 64px">
+    <div style="flex:1 1 380px;display:flex;flex-direction:column;gap:16px">
+      <span style="font-size:13px;font-weight:500;letter-spacing:.14em;color:rgba(255,255,255,.8)">WHAT I LEARNED</span>
+      <p style="margin:0;font-size:clamp(22px,2.6vw,30px);font-weight:300;line-height:1.35;text-wrap:pretty">In AR, the interface gives way to the real world. My job was to make every highlight obvious and everything else calm.</p>
+    </div>
+    <div style="flex:1 1 380px;display:flex;flex-direction:column;gap:14px;font-size:15px;line-height:1.65;color:rgba(255,255,255,.88)">
+      <span>Designing over a live camera image meant testing colour and contrast against real rack photos, not white artboards.</span>
+      <span>Keeping one visual language across the CMS and the app made it clear what the SME creates is what the technician sees.</span>
+      <span style="color:rgba(255,255,255,.7);font-size:13px">The project was a proof of concept. The material doesn't include measured results, so none are claimed here.</span>
+    </div>
+  </div>
+</section>
+</x-dc>
+<script src="/casestudy/portfolio-bar.js" data-cs="ar" data-home="/index.html" data-resume="/uploads/Niyati-Trivedi-Resume.pdf"></script>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showCaptions&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
+const MIG_NAMES = {1:'Connect grounding wrist strap',2:'Turn off circuit breakers powering the DUS',3:'Remove all cables from primary and secondary DU',4:'Loosen the DU screws (T20 Torx)',5:'Pull the DUs out of the cabinet',6:'Unpack the new BB5216',7:'Slide the BB5216 into the cabinet',8:'Tighten the BB5216 screws',9:'Data cable BB5216 Port A → R503 Port 1',10:'Data cable BB5216 Port B → R503 Port 2',11:'Data cable BB5216 Port C → R503 Port 3',12:'CPRI from radios → R503 Port 5',13:'CPRI from radios → R503 Port 6',14:'CPRI from radios → R503 Port 7',15:'GPS cable → BB5216 sync port',16:'Backhaul → BB5216 Port TN A',17:'EC-BUS → BB5216',18:'Reconnect DC power to BB5216',19:'Ethernet cable → BB5216 LMT',20:'Power up BB5216, check green lights'};
+const ANIM = ['R503 P13 → RRUS11','R503 P14 → RRUS11','R503 P15 → RRUS11','R503 P05 → RRUS12+A2','R503 P06 → RRUS12+A2','R503 P09 → RRUS12+A2','R503 P10 → RRUS12+A2','R503 P11 → RRUS12+A2','R503 P12 → RRUS12+A2','R503 P13 → RRUS11','R503 P14 → RRUS11','R503 P15 → RRUS11','R503 P05 → RRUS12+A2','R503 P06 → RRUS12+A2','R503 P09 → RRUS12+A2','R503 P10 → RRUS12+A2','R503 P11 → RRUS12+A2','R503 P12 → RRUS12+A2','R503 P01 → BB5216 A','R503 P02 → BB5216 B','R503 P03 → BB5216 C','R503 P01 → BB5216 D','R503 P02 → BB5216 E','R503 P03 → BB5216 F','R503 power cable','R503 USB → ECX','R503 power cable','BB5216 EC Bus','BB5216 power cable'];
+const pad = n => String(n).padStart(2, '0');
+function buildJourneys() {
+  const onbL = ['Splash','Onboarding 1 · Download the content','Onboarding 2 · Augment device','Onboarding 3 · View information','Onboarding 4','Login','Login · error state','Change password','Password requirements','My Projects','Start download · confirm','Download in progress','My Projects · variant','Contact Us'];
+  const onb = onbL.map((l, k) => ({ src: `/casestudy/ar/img/j/onb/${pad(k + 1)}.png`, label: l }));
+  const migKeys = ['overview','1','2A','2C','2D','3','4','5','6','7','8','9','9A','9B'];
+  for (let s = 10; s <= 19; s++) migKeys.push(s + 'A', s + 'B');
+  migKeys.push('20B');
+  const mig = migKeys.map(k => {
+    if (k === 'overview') return { src: '/casestudy/ar/img/j/mig/overview.png', label: 'Migration steps · overview' };
+    const n = parseInt(k, 10), v = k.replace(/\d+/, '');
+    return { src: `/casestudy/ar/img/j/mig/${k}.png`, label: `Step ${n}/20 · ${MIG_NAMES[n]}${v ? ' · state ' + v : ''}` };
+  });
+  const instKeys = ['1','2','3','4','5','6_0','6_1','6_2','7_0','7_1','7_2','8_1','8_2','8_3','9_1','9_2','9_3','10_1','10_2','10_3','11_1','11_2','11_3','12_1','12_2','12_3','13_1','13_2','13_3','14_1','15_1','15_2','15_3','16_1','16_2','17_1','17_2','17_3','18_1','18_2','18_3','19_1','19_2','20_1','20_2','21_1','21_2','22_1','22_2','23_1','23_2','24_1','24_2','24_3','25_1','25_2','26_1','26_2','27_0','27_1'];
+  const inst = instKeys.map(k => { const [n, v] = k.split('_'); return { src: `/casestudy/ar/img/j/inst/${k}.png`, label: `Step ${n}/27${v !== undefined ? ' · screen ' + 'abcd'[+v] : ''}` }; });
+  const dconf = [];
+  [1, 2].forEach(s => {
+    const unit = s === 1 ? 'R503 Primary' : 'R503 Secondary';
+    dconf.push({ src: `/casestudy/ar/img/j/dconf/s${s}_0.png`, label: `${unit} · scan to view this step` });
+    dconf.push({ src: `/casestudy/ar/img/j/dconf/s${s}_1.png`, label: `${unit} · device recognised, ports highlighted` });
+    for (let k = 1; k <= 14; k++) dconf.push({ src: `/casestudy/ar/img/j/dconf/${s}.${k}.png`, label: `${unit} · connection ${k}/14` });
+  });
+  const anim = ANIM.map((l, k) => ({ src: `/casestudy/ar/img/j/anim/${pad(k + 1)}.png`, label: `Frame ${k + 1}/29 · ${l}` }));
+  const cpStage = n => n === 1 ? 'Create Project' : n <= 3 ? 'Add Media' : n <= 16 ? 'Create Steps' : n === 17 ? 'Preview' : n === 18 ? 'Test' : 'Publish';
+  const cp = Array.from({ length: 19 }, (_, k) => ({ src: `/casestudy/ar/img/j/cp/${k + 1}.png`, label: `${k + 1}/19 · ${cpStage(k + 1)}` }));
+  const cms = [
+    ['l2.png','Login'],['l3.png','Login · error'],['l4.png','Forgot password'],['l5.png','Reset password'],['l6.png','Change password'],['l7.jpg','Confirmation'],
+    ['p5.png','Projects · empty state'],['p4.png','Projects · hint'],['p4B.png','Projects · hint 2'],['p4C.png','Projects · hint 3'],['p3.png','Projects · list'],['p6.png','Projects · actions'],['p7.png','Projects · clone'],['p8.png','Clone Project'],['p9.png','Projects · archive'],['p1.png','Archived projects'],['p2.png','Restore project'],
+    ['m1.png','Markers · empty state'],['m2.png','Markers · uploading'],['m3.png','Markers · enter name'],['m4.png','Markers · make master'],['m5.png','Markers · MASTER set'],['m6.png','Marker image'],['m6_1.png','Marker · delete confirmation'],['m7A.png','Port attributes · hint 1'],['m7C.png','Port attributes · hint 2'],['m7D.png','Port attributes · hint 3'],['m8.png','Port attributes'],['m8_1.png','Port attributes · multiple'],
+    ['md1.png','Media · projects'],['md2.png','Media · shared content'],['md2_1.png','Media · filter'],['md3.png','Media · brand icons']
+  ].map(([f, l]) => ({ src: `/casestudy/ar/img/j/cms/${f}`, label: l }));
+  return [
+    { key: 'onb', tab: 'Onboarding', title: 'Technician onboarding and download', meta: 'Android · 14 screens', by: 'Visual design: me', frames: onb },
+    { key: 'mig', tab: 'Migration', title: 'Migration: DUS to BB5216', meta: 'Android · 20 steps · 35 screens', by: 'Visual design: me · 2D and 3D animation: Animator', frames: mig },
+    { key: 'inst', tab: 'Installation', title: 'Installation: RBS 6601 / BB5216', meta: 'Android · 27 steps · 60 screens', by: 'Visual design: me · animation: Animator', frames: inst },
+    { key: 'dconf', tab: 'Design Config · AR', title: 'Design configuration: FROM → TO in AR', meta: 'Android · 32 screens', by: 'Visual design: me', frames: dconf },
+    { key: 'anim', tab: '3D animation', title: 'Design configuration: 3D connection sequence', meta: '29 frames', by: '3D and animation: Animator', frames: anim },
+    { key: 'cp', tab: 'CMS · Create Project', title: 'CMS: six-step project wizard', meta: 'Web · 19 screens', by: 'Visual design: me', frames: cp },
+    { key: 'cms', tab: 'CMS · Projects, Markers, Media', title: 'CMS: login, projects, markers, media', meta: 'Web · 33 screens', by: 'Visual design: me', frames: cms }
+  ];
+}
+class Component extends DCLogic {
+  state = { j: 0, i: 0, playing: false };
+  journeys = buildJourneys();
+  stripRef = React.createRef();
+  componentDidMount() {
+    this.timer = setInterval(() => { if (this.state.playing) this.step(1, true); }, 1800);
+  }
+  componentWillUnmount() { clearInterval(this.timer); }
+  componentDidUpdate(_, prev) {
+    const el = this.stripRef.current;
+    if (el && (prev.i !== this.state.i || prev.j !== this.state.j)) {
+      el.scrollTo({ left: Math.max(0, this.state.i * 124 - el.clientWidth / 2 + 58), behavior: 'smooth' });
+    }
+  }
+  step(d, loop) {
+    const n = this.journeys[this.state.j].frames.length;
+    this.setState(s => {
+      let i = s.i + d;
+      if (i >= n) return loop ? { i: 0 } : { i: n - 1 };
+      if (i < 0) return { i: 0 };
+      return { i };
+    });
+  }
+  renderVals() {
+    const { j, i, playing } = this.state;
+    const J = this.journeys[j];
+    const f = J.frames[i];
+    return {
+      showCaptions: this.props.showCaptions ?? true,
+      stripRef: this.stripRef,
+      tabs: this.journeys.map((x, k) => ({
+        label: x.tab,
+        bg: k === j ? '#260977' : '#ffffff',
+        fg: k === j ? '#ffffff' : '#404040',
+        pick: () => this.setState({ j: k, i: 0, playing: false })
+      })),
+      jTitle: J.title, jMeta: J.meta, jBy: J.by,
+      cur: f.src, curLabel: f.label, counter: `${i + 1} / ${J.frames.length}`,
+      progress: `${((i + 1) / J.frames.length) * 100}%`,
+      thumbs: J.frames.map((x, k) => ({ src: x.src, n: k + 1, border: k === i ? '#9bc031' : 'transparent', op: k === i ? 1 : 0.55, go: () => this.setState({ i: k }) })),
+      prev: () => this.step(-1), next: () => this.step(1),
+      playLabel: playing ? 'PAUSE' : 'PLAY',
+      playIcon: playing ? 'pause' : 'play_arrow',
+      togglePlay: () => this.setState(s => ({ playing: !s.playing }))
+    };
+  }
+}
+</script>
+</body>
+</html>
