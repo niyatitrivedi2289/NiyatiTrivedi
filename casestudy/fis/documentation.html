@@ -1,0 +1,695 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Documentation — Access Worldpay</title>
+<script>
+  // Early theme init — must run before paint to prevent flash.
+  (function () {
+    try {
+      var t = localStorage.getItem('fisDevTheme') || 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+<link rel="stylesheet" href="styles.css" />
+<style>
+  .doc-head {
+    padding: 36px 0 24px;
+    border-bottom: 1px solid var(--line);
+  }
+  .doc-head .row {
+    display: flex; align-items: flex-end; justify-content: space-between; gap: 24px;
+  }
+  .doc-head h1 { font-size: 30px; line-height: 1.15; letter-spacing: -0.02em; margin-top: 10px; }
+  .doc-tabs {
+    display: flex; gap: 4px;
+  }
+  .doc-tabs a {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 16px;
+    color: var(--fg-3);
+    font-size: 13.5px;
+    font-weight: 600;
+    border-radius: var(--r-sm);
+  }
+  .doc-tabs a:hover { color: var(--fg-2); }
+  .doc-tabs a.active { color: var(--fg); background: var(--bg-elev2); border: 1px solid var(--line); }
+  .doc-tabs a .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); }
+
+  .doc-layout {
+    display: grid;
+    grid-template-columns: 260px 1fr 230px;
+    gap: 0;
+    min-height: calc(100vh - 250px);
+  }
+  .doc-nav {
+    padding: 32px 24px 60px 0;
+    border-right: 1px solid var(--line);
+    position: sticky;
+    top: var(--nav-h);
+    align-self: start;
+    max-height: calc(100vh - var(--nav-h));
+    overflow-y: auto;
+  }
+  .doc-nav .section-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--fg-4);
+    font-weight: 700;
+    margin: 18px 0 10px;
+    padding-left: 12px;
+  }
+  .doc-nav .section-label:first-child { margin-top: 0; }
+  .doc-nav a {
+    display: flex; align-items: center; gap: 10px;
+    padding: 7px 12px;
+    color: var(--fg-2);
+    font-size: 13.5px;
+    font-weight: 500;
+    border-radius: var(--r-sm);
+    border-left: 2px solid transparent;
+    margin-left: -2px;
+  }
+  .doc-nav a:hover { color: var(--fg); background: var(--bg-elev2); }
+  .doc-nav a.parent { font-weight: 700; color: var(--fg); }
+  .doc-nav a.parent.active {
+    color: var(--green);
+    background: rgba(75,205,62,0.06);
+    border-left-color: var(--green);
+    border-radius: 0 var(--r-sm) var(--r-sm) 0;
+  }
+  .doc-nav .sub {
+    margin-left: 14px;
+    border-left: 1px solid var(--line);
+    padding-left: 8px;
+    display: flex; flex-direction: column;
+    margin-top: 4px;
+  }
+  .doc-nav .sub a {
+    padding: 5px 10px;
+    font-size: 13px;
+    color: var(--fg-3);
+    font-weight: 500;
+  }
+  .doc-nav .sub a:hover { color: var(--fg-2); background: transparent; }
+  .doc-nav .sub a.active { color: var(--cyan); font-weight: 700; }
+
+  .doc-content {
+    padding: 40px 56px 80px 40px;
+    max-width: 880px;
+  }
+  .doc-content > * + * { margin-top: 20px; }
+  .doc-content h2 {
+    font-size: 28px; letter-spacing: -0.02em; line-height: 1.2;
+    padding-top: 12px;
+    scroll-margin-top: 80px;
+  }
+  .doc-content h3 {
+    font-size: 18px; letter-spacing: -0.005em; color: var(--cyan); font-weight: 700;
+    margin-top: 36px;
+    scroll-margin-top: 80px;
+  }
+  .doc-content h4 {
+    font-size: 16px; color: var(--fg); font-weight: 700; margin-top: 28px;
+  }
+  .doc-content p { color: var(--fg-2); font-size: 15px; line-height: 1.65; }
+  .doc-content p code,
+  .doc-content li code,
+  .doc-content td code {
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    background: var(--bg-elev2);
+    border: 1px solid var(--line);
+    padding: 1px 6px;
+    border-radius: 4px;
+    color: var(--green-soft);
+  }
+
+  /* Callouts */
+  .callout {
+    display: flex; gap: 14px;
+    padding: 14px 16px;
+    border-radius: var(--r-md);
+    border: 1px solid var(--line);
+    background: var(--bg-elev2);
+    font-size: 14px;
+    color: var(--fg-2);
+    line-height: 1.6;
+  }
+  .callout .ico {
+    width: 18px; height: 18px;
+    flex: 0 0 auto;
+    margin-top: 2px;
+  }
+  .callout .lbl {
+    font-weight: 700;
+    color: var(--fg);
+    margin-right: 6px;
+  }
+  .callout.info     { border-color: rgba(59,207,240,0.30); background: rgba(59,207,240,0.04); }
+  .callout.info .ico, .callout.info .lbl  { color: var(--cyan); }
+  .callout.warning  { border-color: rgba(255,205,0,0.30); background: rgba(255,205,0,0.04); }
+  .callout.warning .ico, .callout.warning .lbl { color: var(--yellow); }
+  .callout.note     { border-color: rgba(75,205,62,0.30); background: rgba(75,205,62,0.04); }
+  .callout.note .ico, .callout.note .lbl { color: var(--green); }
+
+  /* Tables */
+  .doc-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid var(--line);
+    border-radius: var(--r-md);
+    overflow: hidden;
+    font-size: 13.5px;
+  }
+  .doc-table thead th {
+    text-align: left;
+    background: var(--bg-elev2);
+    border-bottom: 1px solid var(--line);
+    padding: 10px 16px;
+    font-weight: 700;
+    color: var(--fg);
+    font-size: 12.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .doc-table tbody td {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--line);
+    color: var(--fg-2);
+    vertical-align: top;
+  }
+  .doc-table tbody tr:last-child td { border-bottom: none; }
+  .doc-table .col-key {
+    width: 200px;
+    font-family: var(--font-mono);
+    color: var(--green-soft);
+    font-size: 13px;
+  }
+  .doc-table .col-key .req {
+    display: inline-block;
+    font-family: var(--font);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--red);
+    margin-left: 6px;
+  }
+  .doc-table tbody tr:hover td { background: rgba(255,255,255,0.015); }
+
+  /* Right TOC */
+  .doc-toc {
+    padding: 40px 0 60px 32px;
+    position: sticky;
+    top: var(--nav-h);
+    align-self: start;
+    max-height: calc(100vh - var(--nav-h));
+    overflow-y: auto;
+  }
+  .doc-toc h4 {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--fg-3);
+    font-weight: 700;
+    margin-bottom: 14px;
+  }
+  .doc-toc a {
+    display: block;
+    padding: 5px 12px;
+    color: var(--fg-3);
+    font-size: 13px;
+    border-left: 2px solid var(--line);
+    margin-bottom: 2px;
+    font-weight: 500;
+  }
+  .doc-toc a:hover { color: var(--fg); }
+  .doc-toc a.active {
+    color: var(--green);
+    border-left-color: var(--green);
+    font-weight: 600;
+  }
+  .doc-toc a.sub { padding-left: 22px; font-size: 12.5px; }
+
+  /* Code block with header */
+  .codeblock {
+    margin-top: 8px;
+    border-radius: var(--r-md);
+    overflow: hidden;
+    border: 1px solid var(--line);
+  }
+  .codeblock .head {
+    background: var(--bg-elev2);
+    padding: 9px 14px;
+    display: flex; align-items: center; justify-content: space-between;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--fg-3);
+    border-bottom: 1px solid var(--line);
+  }
+  .codeblock .body {
+    background: var(--bg-code);
+    padding: 14px 16px;
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    line-height: 1.7;
+    color: var(--fg-2);
+    overflow: auto;
+  }
+  .codeblock .body pre { margin: 0; }
+  .codeblock .body .k { color: var(--cyan); }
+  .codeblock .body .s { color: var(--green-soft); }
+  .codeblock .body .n { color: var(--yellow); }
+  .codeblock .body .c { color: var(--fg-4); }
+  .codeblock .lang {
+    display: inline-flex; gap: 6px; align-items: center;
+  }
+  .codeblock .lang .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); }
+
+  .pagination {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+  }
+  .pagination a {
+    display: block;
+    padding: 16px 20px;
+    background: var(--bg-elev2);
+    border: 1px solid var(--line);
+    border-radius: var(--r-md);
+    color: var(--fg);
+    transition: border-color 200ms var(--ease), background 200ms var(--ease);
+  }
+  .pagination a:hover { border-color: var(--line-strong); background: var(--bg-elev3); }
+  .pagination a .label {
+    display: block;
+    font-size: 11px;
+    color: var(--fg-3);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .pagination a.next { text-align: right; }
+  .pagination a .ttl {
+    font-size: 15px; font-weight: 700; color: var(--fg);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .pagination a.next .ttl { justify-content: flex-end; }
+</style>
+</head>
+<body data-screen-label="04 Docs">
+
+<!-- ============ NAV ============ -->
+<header class="nav">
+  <div class="shell nav-inner">
+    <a href="landing.html" class="brand" aria-label="Worldpay from FIS — Developer">
+      <span class="brand-worldpay">Worldpay</span>
+      <span class="brand-from">
+        <span class="brand-from-label">from</span>
+<span class="brand-fis-text">FIS</span>
+      </span>
+      <span class="brand-product">Developer</span>
+    </a>
+    <nav class="nav-tabs">
+      <a href="apis.html">Merchant APIs</a>
+      <a href="#">Partner APIs</a>
+      <a href="landing.html#api-finder">API Finder</a>
+      <a href="documentation.html" class="active">Docs</a>
+    </nav>
+    <div class="nav-right">
+      <button class="icon-btn" aria-label="Search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </button>
+      <button class="icon-btn theme-toggle" aria-label="Toggle theme" aria-pressed="false">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="icon-btn" aria-label="Region">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
+      </button>
+      <a href="#" class="nav-login">Sign in</a>
+    </div>
+  </div>
+</header>
+
+<!-- ============ DOC HEAD ============ -->
+<section class="doc-head">
+  <div class="shell">
+    <div class="crumb">
+      <a href="landing.html">Home</a>
+      <span class="sep">/</span>
+      <a href="apis.html">Access Worldpay</a>
+      <span class="sep">/</span>
+      <span class="current">Documentation</span>
+    </div>
+    <div class="row">
+      <div>
+        <h1>Access Worldpay</h1>
+      </div>
+      <div class="doc-tabs">
+        <a href="reference.html">API reference</a>
+        <a href="documentation.html" class="active"><span class="dot"></span> Documentation</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DOC LAYOUT ============ -->
+<div class="shell doc-layout">
+
+  <!-- Left nav -->
+  <aside class="doc-nav">
+    <div class="section-label">Get started</div>
+    <a href="#">Overview</a>
+    <a href="#">Get started</a>
+
+    <div class="section-label">Services</div>
+    <a href="#" class="parent active">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      Payments
+    </a>
+    <div class="sub">
+      <a href="#">Get started</a>
+      <a href="#" class="active">Set your headers</a>
+      <a href="#">Query the payments root</a>
+      <a href="#">Take a payment</a>
+      <a href="#">Take a sale</a>
+      <a href="#">Take repeat payments</a>
+      <a href="#">Refund a payment</a>
+      <a href="#">Query a payment</a>
+      <a href="#">Receive payment events</a>
+      <a href="#">Testing</a>
+      <a href="#">3-D Secure</a>
+      <a href="#">Checkout</a>
+    </div>
+    <a href="#" class="parent">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      Mobile Wallets
+    </a>
+    <a href="#" class="parent">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      Verified Tokens
+    </a>
+    <a href="#" class="parent">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      Verifications
+    </a>
+    <a href="#" class="parent">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      Tokens
+    </a>
+    <a href="#" class="parent">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      Payouts
+    </a>
+    <a href="#" class="parent">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      FraudSight
+    </a>
+
+    <div class="section-label">Reference</div>
+    <a href="#">OpenEvents</a>
+    <a href="#">Account updater</a>
+    <a href="#">OpenTesting</a>
+    <a href="#">Go live</a>
+    <a href="reference.html">API reference</a>
+    <a href="#">OpenReference</a>
+  </aside>
+
+  <!-- Main -->
+  <main class="doc-content">
+
+    <div class="callout warning">
+      <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      <div>
+        <span class="lbl">Heads up</span>
+        This is documentation for version 6 of the Payments API — the latest. Documentation for previous versions is available in the <a href="#">version archive</a>.
+      </div>
+    </div>
+
+    <h2 id="get-started">Get started with the Payments API</h2>
+    <p>The Payments API is the heart of Access Worldpay. It takes you from authorization through settlement, supports recurring agreements, and exposes everything you need to refund or query a transaction. The walkthrough below sets up your client and runs through the canonical first request.</p>
+
+    <h3 id="set-headers">Set your headers</h3>
+    <p>Every request to the Payments API carries two headers: <code>Authorization</code> identifies your merchant account, and <code>Content-Type</code> tells us which API version you are speaking.</p>
+
+    <div class="codeblock">
+      <div class="head">
+        <span class="lang"><span class="dot"></span> http</span>
+        <button class="copy-btn">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          Copy
+        </button>
+      </div>
+      <div class="body">
+<pre><span class="k">Authorization</span>: Basic {your_credentials}
+<span class="k">Content-Type</span>: application/vnd.worldpay.payments-v6+json</pre>
+      </div>
+    </div>
+
+    <table class="doc-table">
+      <thead>
+        <tr>
+          <th style="width: 220px;">Header</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="col-key">Authorization <span class="req">required</span></td>
+          <td>Identifies the merchant within Access Worldpay. Send the base64-encoded form of your <code>username:password</code> pair on every request, prefixed with <code>Basic&nbsp;</code>.</td>
+        </tr>
+        <tr>
+          <td class="col-key">Content-Type <span class="req">required</span></td>
+          <td>Selects the API version and resource shape. Required whenever the request includes a body — that is, <code>POST</code> and <code>PUT</code> calls.</td>
+        </tr>
+        <tr>
+          <td class="col-key">Idempotency-Key</td>
+          <td>Recommended for state-changing requests. Replays with the same key return the original response.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout note">
+      <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+      <div>
+        <span class="lbl">Note</span>
+        Replace <code>{your_credentials}</code> with your base64-encoded Basic Auth username and password. To get your Access Worldpay credentials, contact your Implementation Manager.
+      </div>
+    </div>
+
+    <h3 id="versioning">Versioning</h3>
+    <p>This walkthrough covers requests and responses for <strong>version 6</strong> of the Payments API. Check the <a href="reference.html">API reference</a> for the full surface across all versions we currently support.</p>
+
+    <h3 id="query-root">Query the Payments root resource</h3>
+    <p>Querying the <code>service:payments</code> root returns the action links and resources that are available to your account. Don't hard-code child paths — always navigate from links returned in the root.</p>
+
+    <h4>Request</h4>
+    <div class="codeblock">
+      <div class="head">
+        <span class="lang"><span class="method get" style="height: 18px; padding: 0 6px; font-size: 9.5px;">GET</span> https://try.access.worldpay.com/payments</span>
+        <button class="copy-btn">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          Copy
+        </button>
+      </div>
+      <div class="body">
+<pre><span class="c">// curl example</span>
+curl -X GET <span class="s">"https://try.access.worldpay.com/payments"</span> \
+  -H <span class="s">"Authorization: Basic {your_credentials}"</span></pre>
+      </div>
+    </div>
+
+    <h4>Response</h4>
+    <div class="codeblock">
+      <div class="head">
+        <span class="lang"><span class="dot"></span> json</span>
+        <button class="copy-btn">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          Copy
+        </button>
+      </div>
+      <div class="body">
+<pre>{
+  <span class="k">"_links"</span>: {
+    <span class="k">"payments:authorize"</span>:           { <span class="k">"href"</span>: <span class="s">"/payments/authorizations"</span> },
+    <span class="k">"payments:migrateRecurring"</span>:    { <span class="k">"href"</span>: <span class="s">"/payments/recurring/migrations"</span> },
+    <span class="k">"payments:migrateCardOnFile"</span>:   { <span class="k">"href"</span>: <span class="s">"/payments/cardOnFile/migrations"</span> },
+    <span class="k">"payments:recurringMandate"</span>:    { <span class="k">"href"</span>: <span class="s">"/payments/recurring/mandates"</span> },
+    <span class="k">"curies"</span>: [{ <span class="k">"name"</span>: <span class="s">"payments"</span>, <span class="k">"href"</span>: <span class="s">"/rels/payments/{rel}"</span>, <span class="k">"templated"</span>: <span class="n">true</span> }]
+  }
+}</pre>
+      </div>
+    </div>
+
+    <div class="callout info">
+      <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+      <div>
+        <span class="lbl">Tip</span>
+        Use the action links returned to send your next request. Do not hardcode URIs — they may change between versions.
+      </div>
+    </div>
+
+    <h3 id="resources">Resources</h3>
+    <p>The root response surfaces every action your account can take. Pick the one you need and follow its <code>href</code>.</p>
+
+    <table class="doc-table">
+      <thead>
+        <tr>
+          <th style="width: 280px;">Action link</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="col-key">payments:authorize</td>
+          <td>Authorize a payment once.</td>
+        </tr>
+        <tr>
+          <td class="col-key">payments:migrateRecurringAuthorize</td>
+          <td>Authorize and make an existing recurring payment agreement compliant with the stored credential mandate.</td>
+        </tr>
+        <tr>
+          <td class="col-key">payments:migrateCardOnFileAuthorize</td>
+          <td>Authorize and bring a new or existing card-on-file agreement to Access Worldpay.</td>
+        </tr>
+        <tr>
+          <td class="col-key">payments:migrateCardOnFileSale</td>
+          <td>Authorize and settle customer-initiated card-on-file payments.</td>
+        </tr>
+        <tr>
+          <td class="col-key">payments:recurringMandate</td>
+          <td>You can't send requests to this resource directly. It is used by our Verifications API to make recurring/CardOnFile authorizations MIT/CIT compliant.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 id="link-caching">Link caching</h3>
+    <div class="callout note">
+      <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+      <div>
+        <span class="lbl">Tip</span>
+        When you make a request within Access Worldpay, cache the response you receive. Re-fetching links on every call is wasteful and adds latency.
+      </div>
+    </div>
+
+    <div class="pagination">
+      <a href="#" class="prev">
+        <span class="label">Previous</span>
+        <span class="ttl"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Get started</span>
+      </a>
+      <a href="#" class="next">
+        <span class="label">Next · Take a payment</span>
+        <span class="ttl">Send your first authorization <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+      </a>
+    </div>
+  </main>
+
+  <!-- Right TOC -->
+  <aside class="doc-toc">
+    <h4>On this page</h4>
+    <a href="#get-started">Get started</a>
+    <a href="#set-headers" class="sub active">Set your headers</a>
+    <a href="#versioning" class="sub">Versioning</a>
+    <a href="#query-root" class="sub">Query the root</a>
+    <a href="#resources" class="sub">Resources</a>
+    <a href="#link-caching" class="sub">Link caching</a>
+
+    <h4 style="margin-top: 28px;">Helpful links</h4>
+    <a href="reference.html">API reference</a>
+    <a href="#">Postman collection</a>
+    <a href="#">Sample app on GitHub</a>
+    <a href="#">Status page</a>
+  </aside>
+
+</div>
+
+<!-- ============ FEEDBACK ============ -->
+<div class="shell">
+  <div class="feedback">
+    <span class="lbl" style="font-size: 13px; text-transform: none; letter-spacing: 0; color: var(--fg-2);">Was this article helpful?</span>
+    <div class="btns">
+      <button>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10v12"/><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H7a2 2 0 0 1-2-2V10a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11l3.43-6.78A1.5 1.5 0 0 1 16.6.85a2.62 2.62 0 0 1 1.4 2.3z"/></svg>
+        Yes
+      </button>
+      <button>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 14V2"/><path d="M9 18.12 10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H17a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-2.76a2 2 0 0 0-1.79 1.11l-3.43 6.78A1.5 1.5 0 0 1 7.4 23.15a2.62 2.62 0 0 1-1.4-2.3z"/></svg>
+        No
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="shell">
+    <div class="footer-grid">
+      <div>
+        <div class="tagline">Still can't find <span class="accent">what you're<br/>looking for?</span></div>
+        <p>We're around — try one of the channels below.</p>
+      </div>
+      <div>
+        <h4>Conversation</h4>
+        <p style="margin-bottom: 10px;">Talk to our sales team about choosing the right API solution for your business.</p>
+        <div class="contact-row">
+          <div>
+            <span class="label">Call us</span>
+            <a href="tel:+18777763706">+1 877.776.3706</a>
+          </div>
+          <div>
+            <span class="label">Email us</span>
+            <a href="mailto:fis@fisglobal.com">fis@fisglobal.com</a>
+          </div>
+        </div>
+        <div class="social-row">
+          <a href="#" aria-label="Email"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a>
+          <a href="#" aria-label="Facebook"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M9 8H6v4h3v12h5V12h3.6l.4-4h-4V6.3c0-1 .2-1.3 1.2-1.3H18V0h-3.8C10.6 0 9 1.6 9 4.7V8z"/></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14C2.2 0 0 2.2 0 5v14c0 2.8 2.2 5 5 5h14c2.8 0 5-2.2 5-5V5c0-2.8-2.2-5-5-5zM8 19H5V8h3v11zM6.5 6.7c-1 0-1.7-.8-1.7-1.7s.7-1.7 1.7-1.7 1.7.8 1.7 1.7c0 1-.7 1.7-1.7 1.7zM20 19h-3v-5.6c0-1.5-.6-2-1.5-2-.9 0-1.5.6-1.5 2V19h-3V8h3v1.4c.5-.7 1.4-1.4 2.5-1.4 2 0 3.5 1.2 3.5 4V19z"/></svg></a>
+          <a href="#" aria-label="Twitter"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M24 4.6c-.9.4-1.8.7-2.8.8 1-.6 1.8-1.6 2.2-2.7-1 .6-2 1-3.1 1.2-.9-1-2.2-1.6-3.6-1.6-2.7 0-4.9 2.2-4.9 4.9 0 .4 0 .8.1 1.1C7.7 8.1 4.1 6.1 1.7 3.1c-.4.7-.7 1.6-.7 2.5 0 1.7.9 3.2 2.2 4.1-.8 0-1.6-.3-2.3-.6 0 2.4 1.7 4.4 4 4.9-.4.1-.8.2-1.3.2-.3 0-.6 0-.9-.1.6 2 2.4 3.4 4.6 3.4C5.6 18.9 3.4 19.7 1 19.7c-.4 0-.8 0-1.2-.1 2.2 1.4 4.8 2.2 7.6 2.2 9.1 0 14-7.5 14-14v-.6c1-.7 1.8-1.6 2.6-2.6z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4>Support</h4>
+        <p style="margin-bottom: 14px;">Stuck on an integration? Our developer success team is here to help unblock you.</p>
+        <a href="#" class="btn btn-ghost btn-sm">Open a support case</a>
+
+        <h4 style="margin-top: 28px;">Stay connected</h4>
+        <ul>
+          <li><a href="#">Release notes</a></li>
+          <li><a href="#">Status page</a></li>
+          <li><a href="#">Developer blog</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 FIS. All rights reserved.</div>
+      <div class="links">
+        <a href="#">Terms</a>
+        <a href="#">Privacy</a>
+        <a href="#">Cookies</a>
+        <a href="#">Modern Slavery</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ SCREEN PAGER ============ -->
+<nav class="pager" aria-label="Case study screens">
+  <a href="landing.html"><span class="num">01</span> Landing</a>
+  <a href="apis.html"><span class="num">02</span> APIs</a>
+  <a href="reference.html"><span class="num">03</span> Reference</a>
+  <a href="documentation.html" class="active"><span class="num">04</span> Docs</a>
+</nav>
+
+<script src="search.js"></script>
+<script src="theme.js"></script>
+</body>
+</html>

@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="en" data-search-pinned>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Search results — Worldpay from FIS Developer</title>
+<script>
+  // Early theme init — must run before paint to prevent flash.
+  (function () {
+    try {
+      var t = localStorage.getItem('fisDevTheme') || 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+<link rel="stylesheet" href="styles.css" />
+<style>
+  /* Push the pinned search overlay to the top of the doc and give it
+     its own background instead of stacking with the nav. */
+  .nav { z-index: 80; }
+  .search-overlay[data-pinned="true"] { top: var(--nav-h); z-index: 50; }
+
+  .results-shell {
+    min-height: calc(100vh - var(--nav-h) - var(--nav-h));
+    padding-bottom: 24px;
+  }
+  .crumb-row { padding: 18px 0 4px; }
+</style>
+</head>
+<body data-screen-label="05 Search results">
+
+<!-- ============ NAV ============ -->
+<header class="nav">
+  <div class="shell nav-inner">
+    <a href="landing.html" class="brand" aria-label="Worldpay from FIS — Developer">
+      <span class="brand-worldpay">Worldpay</span>
+      <span class="brand-from">
+        <span class="brand-from-label">from</span>
+        <span class="brand-fis-text">FIS</span>
+      </span>
+      <span class="brand-product">Developer</span>
+    </a>
+    <nav class="nav-tabs">
+      <a href="apis.html">Merchant APIs</a>
+      <a href="#">Partner APIs</a>
+      <a href="landing.html#api-finder">API Finder</a>
+      <a href="documentation.html">Docs</a>
+    </nav>
+    <div class="nav-right">
+      <button class="icon-btn" aria-label="Search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </button>
+      <button class="icon-btn theme-toggle" aria-label="Toggle theme" aria-pressed="false">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="icon-btn" aria-label="Region">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
+      </button>
+      <a href="#" class="nav-login">Sign in</a>
+    </div>
+  </div>
+</header>
+
+<!-- search overlay is injected and pinned by search.js -->
+
+<!-- ============ RESULTS ============ -->
+<section class="results-shell">
+  <div class="shell">
+
+    <div class="crumb-row">
+      <div class="crumb">
+        <a href="landing.html">Home</a>
+        <span class="sep">/</span>
+        <span class="current">Search results</span>
+      </div>
+    </div>
+
+    <header class="search-results-head">
+      <div class="meta-row">
+        <div class="count" id="resultsCount">
+          Showing <em id="resultsShown">0</em> of <em id="resultsTotal">0</em>
+          <span class="query" id="resultsQuery"></span>
+        </div>
+        <div class="results-tabs" role="tablist">
+          <button type="button" data-tab="all"  class="active">All <span class="num" id="cAll">0</span></button>
+          <button type="button" data-tab="docs">Documents <span class="num" id="cDocs">0</span></button>
+          <button type="button" data-tab="api">API Ref <span class="num" id="cApi">0</span></button>
+        </div>
+      </div>
+    </header>
+
+    <div class="results-list" id="resultsList"></div>
+
+    <nav class="pagination" id="pagination" aria-label="Result pages"></nav>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="shell">
+    <div class="footer-grid">
+      <div>
+        <div class="tagline">Still can't find <span class="accent">what you're<br/>looking for?</span></div>
+        <p>We're around — try one of the channels below.</p>
+      </div>
+      <div>
+        <h4>Conversation</h4>
+        <p style="margin-bottom: 10px;">Talk to our sales team about choosing the right API solution for your business.</p>
+        <div class="contact-row">
+          <div>
+            <span class="label">Call us</span>
+            <a href="tel:+18777763706">+1 877.776.3706</a>
+          </div>
+          <div>
+            <span class="label">Email us</span>
+            <a href="mailto:fis@fisglobal.com">fis@fisglobal.com</a>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h4>Support</h4>
+        <p style="margin-bottom: 14px;">Stuck on an integration? Our developer success team is here to help unblock you.</p>
+        <a href="#" class="btn btn-ghost btn-sm">Open a support case</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 FIS. All rights reserved.</div>
+      <div class="links">
+        <a href="#">Terms</a>
+        <a href="#">Privacy</a>
+        <a href="#">Cookies</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ DATA + RENDER ============ -->
+<script>
+// Fake content corpus — represents what a search index would return.
+const CORPUS = [
+  { cat: 'docs', title: 'Take a payment with Access Worldpay',
+    path: '/docs/access-worldpay/payments/take-a-payment',
+    snippet: 'Use the Payments API to authorize, settle and refund card payments. Send a single JSON body with the merchant, instruction and payment instrument fields.',
+    tags: { region: ['uk','us','global'], payment: ['mc','visa','amex','apay','gpay'], features: ['tok','3ds'] }
+  },
+  { cat: 'api', title: 'POST /payments/authorizations',
+    path: '/reference/payments-authorizations',
+    snippet: 'Authorize a card payment. Returns hyper-media action links for cancel, settle and refund. Supports network tokens and stored credentials.',
+    tags: { region: ['uk','us','global'], payment: ['mc','visa','amex'], features: ['tok','rec'] }
+  },
+  { cat: 'docs', title: 'Set your headers — Payments v6',
+    path: '/docs/access-worldpay/payments/headers',
+    snippet: 'Every request to the Payments API carries Authorization (Basic auth, base64-encoded) and Content-Type (selecting the API version: vnd.worldpay.payments-v6+json).',
+    tags: { region: ['global'], features: [] }
+  },
+  { cat: 'misc', title: 'Mastercard and Maestro authorisations',
+    path: '/docs/wpg/industryschemeextras/mastercardandmaestroauthorisation',
+    snippet: 'You can flag Mastercard and Maestro non-zero value authorisations as either a final authorisation or a pre-authorisation.',
+    tags: { region: ['uk','global'], payment: ['mc'], features: [] }
+  },
+  { cat: 'api', title: 'POST /payments/authorizations/{id}/cancellations',
+    path: '/reference/payments-authorizations-cancel',
+    snippet: 'Cancel a previously authorized payment before it has been captured for settlement. Returns 202 Accepted on success.',
+    tags: { region: ['uk','us','global'], payment: ['mc','visa','amex'], features: [] }
+  },
+  { cat: 'api', title: 'POST /payments/authorizations/{id}/settlements',
+    path: '/reference/payments-authorizations-settle',
+    snippet: 'Settle a previously authorized payment. Partial settlement is supported via the settlements/partial relationship.',
+    tags: { region: ['uk','us','global'], payment: ['mc','visa','amex','diners'], features: [] }
+  },
+  { cat: 'api', title: 'POST /payments/authorizations/{id}/refunds',
+    path: '/reference/payments-authorizations-refund',
+    snippet: 'Refund a settled authorization. Supports partial refunds and async event notifications.',
+    tags: { region: ['uk','us','global'], features: [] }
+  },
+  { cat: 'docs', title: 'Take repeat payments with stored credentials',
+    path: '/docs/access-worldpay/payments/recurring',
+    snippet: 'Migrate existing recurring agreements to Access Worldpay and authorize merchant-initiated transactions with stored card-on-file credentials.',
+    tags: { region: ['uk','us','global'], payment: ['mc','visa','amex'], features: ['rec','tok'] }
+  },
+  { cat: 'docs', title: 'Pay by email — setup guide',
+    path: '/docs/access-worldpay/payments/pay-by-email',
+    snippet: 'Configure pay-by-email links that send a hosted checkout URL to your customer over email. Works with all major card schemes.',
+    tags: { region: ['uk','us'], payment: ['mc','visa','amex','apay','gpay','pp'], features: ['pbe','notif'] }
+  },
+  { cat: 'docs', title: 'Pay by phone — IVR integration',
+    path: '/docs/access-worldpay/payments/pay-by-phone',
+    snippet: 'Accept card-not-present payments over the phone using our IVR endpoints. Includes DTMF capture and PCI scope guidance.',
+    tags: { region: ['uk','us'], payment: ['mc','visa','amex'], features: ['pbp'] }
+  },
+  { cat: 'docs', title: '3-D Secure 2.2 challenge flow',
+    path: '/docs/access-worldpay/3ds/challenge',
+    snippet: 'Implement the 3-D Secure 2.2 challenge flow including device data collection, frictionless authentication and step-up handling.',
+    tags: { region: ['uk','us','global'], payment: ['mc','visa','amex'], features: ['3ds','risk'] }
+  },
+  { cat: 'api', title: 'POST /verifications/accounts',
+    path: '/reference/verifications-accounts',
+    snippet: 'Run a zero-value verification against an issuing bank. Useful for card-on-file setup and account-updater workflows.',
+    tags: { region: ['uk','us','global'], payment: ['mc','visa','amex'], features: ['tok','risk'] }
+  },
+  { cat: 'api', title: 'POST /tokens',
+    path: '/reference/tokens',
+    snippet: 'Tokenise a card or wallet instrument. Returns an opaque, reusable token reference that can be used in subsequent authorizations.',
+    tags: { region: ['uk','us','global'], payment: ['mc','visa','amex','apay','gpay'], features: ['tok','rec'] }
+  },
+  { cat: 'api', title: 'POST /payouts',
+    path: '/reference/payouts',
+    snippet: 'Send funds to a card or bank account. Supports same-day and scheduled payouts in multiple currencies.',
+    tags: { region: ['us','global'], payment: ['mc','visa'], features: [] }
+  },
+  { cat: 'docs', title: 'Risk and fraud — getting started',
+    path: '/docs/access-worldpay/risk/getting-started',
+    snippet: 'Configure rules-based fraud screening with FraudSight. Includes velocity checks, device fingerprint and 3DS routing.',
+    tags: { region: ['uk','us','global'], features: ['risk','3ds','notif'] }
+  },
+  { cat: 'docs', title: 'Webhook notifications and signatures',
+    path: '/docs/access-worldpay/notifications/webhooks',
+    snippet: 'Subscribe to payment events. Notifications include HMAC-SHA256 signatures so you can verify origin and integrity.',
+    tags: { region: ['global'], features: ['notif'] }
+  },
+  { cat: 'api', title: 'GET /payments/events/{id}',
+    path: '/reference/payments-events',
+    snippet: 'Retrieve the event stream for a payment — useful for reconciliation and auditing across long-lived authorizations.',
+    tags: { region: ['global'], features: ['notif'] }
+  },
+  { cat: 'misc', title: 'Apple Pay merchant onboarding checklist',
+    path: '/docs/access-worldpay/wallets/apple-pay/onboarding',
+    snippet: 'Register your merchant ID, generate a payment-processing certificate and validate the Apple Pay session before going live.',
+    tags: { region: ['uk','us','global'], payment: ['apay'], features: ['tok'] }
+  },
+  { cat: 'misc', title: 'Google Pay session decryption',
+    path: '/docs/access-worldpay/wallets/google-pay/decrypt',
+    snippet: 'Submit a Google Pay PaymentData token directly to /payments/authorizations — Access Worldpay decrypts the payload on your behalf.',
+    tags: { region: ['uk','us','global'], payment: ['gpay'], features: ['tok'] }
+  },
+  { cat: 'docs', title: 'Plan your go-live',
+    path: '/docs/access-worldpay/go-live',
+    snippet: 'Switch the base URL from try.access to access — same payloads, same headers, real money. Production checklist included.',
+    tags: { region: ['global'], features: [] }
+  },
+  { cat: 'docs', title: 'Samsung Pay tokenisation',
+    path: '/docs/access-worldpay/wallets/samsung-pay',
+    snippet: 'Integrate Samsung Pay via network tokens or merchant tokens. Supports recurring agreements and credential-on-file.',
+    tags: { region: ['us','global'], payment: ['spay'], features: ['tok','rec'] }
+  },
+  { cat: 'docs', title: 'Diners Club and Discover routing',
+    path: '/docs/access-worldpay/routing/diners',
+    snippet: 'Diners Club and Discover transactions route through the Discover Global Network. Currency support, BIN ranges and settlement timing.',
+    tags: { region: ['us','global'], payment: ['diners'], features: [] }
+  },
+  { cat: 'api', title: 'POST /verifications/customers',
+    path: '/reference/verifications-customers',
+    snippet: 'Run a customer-level verification — covering AVS, CVV, and 3DS step-up — before tokenising or charging.',
+    tags: { region: ['uk','us'], payment: ['mc','visa'], features: ['3ds','risk','tok'] }
+  },
+  { cat: 'api', title: 'GET /payments/{id}',
+    path: '/reference/payments-get',
+    snippet: 'Retrieve the current state of a payment, including most recent event, settled amount and refund history.',
+    tags: { region: ['global'], features: [] }
+  },
+];
+
+// ---------------------------------------------------------------
+// State + filtering
+// ---------------------------------------------------------------
+const params = new URLSearchParams(window.location.search);
+const initialQuery = params.get('q') || '';
+let activeTab = 'all';
+let currentPage = 1;
+const PAGE_SIZE = 6;
+
+function getState() {
+  try { return JSON.parse(sessionStorage.getItem('fisDevSearch') || '{}'); }
+  catch (_) { return {}; }
+}
+function setState(s) { try { sessionStorage.setItem('fisDevSearch', JSON.stringify(s)); } catch (_) {} }
+
+// Seed q from URL if present
+const ss = getState();
+if (initialQuery) ss.q = initialQuery;
+setState(ss);
+
+function tokenize(s) { return (s || '').toLowerCase().split(/\s+/).filter(Boolean); }
+
+function matchesQuery(item, q) {
+  if (!q) return true;
+  const toks = tokenize(q);
+  const hay = (item.title + ' ' + item.snippet + ' ' + item.path).toLowerCase();
+  return toks.every(t => hay.includes(t));
+}
+function matchesFilters(item, filters) {
+  filters = filters || {};
+  const t = item.tags || {};
+  // Region: radio (single)
+  if (filters.region && (!t.region || !t.region.includes(filters.region))) return false;
+  // Payment: checkbox (any-of)
+  if (filters.payment && filters.payment.length) {
+    if (!t.payment || !filters.payment.some(p => t.payment.includes(p))) return false;
+  }
+  // Features: checkbox (any-of)
+  if (filters.features && filters.features.length) {
+    if (!t.features || !filters.features.some(f => t.features.includes(f))) return false;
+  }
+  // Size: radio — currently informational only (no item tagging), so non-blocking
+  return true;
+}
+
+function filterCorpus() {
+  const s = getState();
+  return CORPUS.filter(item => matchesQuery(item, s.q) && matchesFilters(item, s.filters));
+}
+
+function highlight(text, q) {
+  if (!q) return text;
+  const tokens = tokenize(q);
+  if (!tokens.length) return text;
+  // escape regex special chars per token
+  const safe = tokens.map(t => t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+  const re = new RegExp('(' + safe.join('|') + ')', 'gi');
+  return text.replace(re, '<mark>$1</mark>');
+}
+
+function render() {
+  const s = getState();
+  const matched = filterCorpus();
+  const byCat = {
+    all:  matched,
+    docs: matched.filter(r => r.cat === 'docs' || r.cat === 'misc'),
+    api:  matched.filter(r => r.cat === 'api'),
+  };
+
+  // Counts
+  document.getElementById('cAll').textContent  = byCat.all.length;
+  document.getElementById('cDocs').textContent = byCat.docs.length;
+  document.getElementById('cApi').textContent  = byCat.api.length;
+
+  const tabResults = byCat[activeTab];
+  const total = tabResults.length;
+  const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE));
+  if (currentPage > totalPages) currentPage = 1;
+  const start = (currentPage - 1) * PAGE_SIZE;
+  const slice = tabResults.slice(start, start + PAGE_SIZE);
+
+  document.getElementById('resultsShown').textContent = slice.length;
+  document.getElementById('resultsTotal').textContent = total;
+
+  const queryEl = document.getElementById('resultsQuery');
+  if (s.q) queryEl.innerHTML = ' for <strong>"' + s.q.replace(/[<>&]/g, '') + '"</strong>';
+  else queryEl.textContent = '';
+
+  const list = document.getElementById('resultsList');
+  if (slice.length === 0) {
+    list.innerHTML = `
+      <div class="results-empty">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <h3>No results found</h3>
+        <p>Try removing a filter or broadening your keywords. Or browse the <a href="apis.html">Merchant APIs</a> or <a href="documentation.html">Documentation</a> index.</p>
+      </div>`;
+  } else {
+    const catLabels = { docs: 'Documentation', api: 'API Reference', misc: 'Reference' };
+    list.innerHTML = slice.map(item => `
+      <article class="result-item">
+        <span class="cat ${item.cat === 'api' ? 'api-ref' : (item.cat === 'docs' ? 'docs' : 'misc')}">${catLabels[item.cat]}</span>
+        <h3><a href="${item.cat === 'api' ? 'reference.html' : 'documentation.html'}">${highlight(item.title, s.q)}</a></h3>
+        <span class="path">${item.path}</span>
+        <p class="snippet">${highlight(item.snippet, s.q)}</p>
+      </article>
+    `).join('');
+  }
+
+  // Pagination
+  const pag = document.getElementById('pagination');
+  if (total <= PAGE_SIZE) {
+    pag.innerHTML = '';
+  } else {
+    let html = '';
+    html += `<button type="button" class="prev ${currentPage === 1 ? 'disabled' : ''}" data-page="${currentPage - 1}">‹ Prev</button>`;
+    for (let p = 1; p <= totalPages; p++) {
+      html += `<button type="button" class="${p === currentPage ? 'current' : ''}" data-page="${p}">${p}</button>`;
+    }
+    html += `<button type="button" class="next ${currentPage === totalPages ? 'disabled' : ''}" data-page="${currentPage + 1}">Next ›</button>`;
+    pag.innerHTML = html;
+  }
+}
+
+// Tab clicks
+document.querySelectorAll('.results-tabs button').forEach(b => {
+  b.addEventListener('click', () => {
+    document.querySelectorAll('.results-tabs button').forEach(x => x.classList.remove('active'));
+    b.classList.add('active');
+    activeTab = b.dataset.tab;
+    currentPage = 1;
+    render();
+  });
+});
+
+// Pagination clicks (delegated)
+document.getElementById('pagination').addEventListener('click', e => {
+  const b = e.target.closest('button[data-page]');
+  if (!b || b.classList.contains('disabled')) return;
+  currentPage = parseInt(b.dataset.page, 10);
+  render();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+// Expose so search.js can re-render after filter/chip changes
+window.fisSearchRender = function () {
+  currentPage = 1;
+  render();
+};
+
+document.addEventListener('DOMContentLoaded', render);
+</script>
+<script src="search.js"></script>
+<script src="theme.js"></script>
+</body>
+</html>

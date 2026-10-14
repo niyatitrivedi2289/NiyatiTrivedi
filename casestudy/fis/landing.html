@@ -1,0 +1,825 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Access Worldpay — Worldpay from FIS</title>
+<script>
+  // Early theme init — must run before paint to prevent flash.
+  (function () {
+    try {
+      var t = localStorage.getItem('fisDevTheme') || 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+<link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet" href="finder.css" />
+<style>
+  /* (Light theme & dark-island styles now live in styles.css — shared.) */
+
+  /* ===== TWEAKS PANEL ===== */
+  .tweaks-panel {
+    position: fixed;
+    right: 18px;
+    bottom: 78px;
+    z-index: 70;
+    width: 252px;
+    background: rgba(10,31,39,0.92);
+    border: 1px solid var(--line-mid);
+    border-radius: 14px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.45);
+    color: var(--fg);
+    font-family: var(--font);
+    overflow: hidden;
+  }
+  .tweaks-panel[hidden] { display: none; }
+  [data-theme="light"] .tweaks-panel {
+    background: rgba(255,255,255,0.94);
+    border-color: rgba(10,27,34,0.10);
+    box-shadow: 0 20px 60px rgba(10,27,34,0.14);
+  }
+  .tweaks-head {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 11px 14px;
+    border-bottom: 1px solid var(--line);
+  }
+  .tweaks-head .t {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--fg-3);
+  }
+  .tweaks-close {
+    background: transparent; border: 0;
+    color: var(--fg-3); cursor: pointer;
+    padding: 4px; line-height: 0;
+    display: inline-flex; align-items: center; justify-content: center;
+    border-radius: 4px;
+  }
+  .tweaks-close:hover { color: var(--fg); background: var(--line); }
+  .tweaks-section { padding: 14px; }
+  .tweaks-section + .tweaks-section { border-top: 1px solid var(--line); }
+  .tweaks-lbl {
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--fg-3);
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .tweaks-seg {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4px;
+    background: rgba(0,0,0,0.22);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 3px;
+  }
+  [data-theme="light"] .tweaks-seg {
+    background: rgba(10,27,34,0.05);
+    border-color: rgba(10,27,34,0.08);
+  }
+  .tweaks-seg button {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    background: transparent; color: var(--fg-3);
+    border: 0;
+    padding: 7px 8px;
+    border-radius: 6px;
+    font-size: 13px; font-weight: 600;
+    cursor: pointer;
+    transition: background 150ms ease, color 150ms ease;
+  }
+  .tweaks-seg button:hover { color: var(--fg-2); }
+  .tweaks-seg button.active {
+    background: var(--bg-elev3);
+    color: var(--fg);
+  }
+  [data-theme="light"] .tweaks-seg button.active {
+    background: #FFFFFF;
+    box-shadow: 0 1px 3px rgba(10,27,34,0.10);
+  }
+  .tweaks-seg button svg { opacity: 0.9; flex: 0 0 auto; }
+
+  .tweaks-fab {
+    position: fixed;
+    right: 18px; bottom: 22px;
+    z-index: 70;
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: var(--bg-elev2);
+    border: 1px solid var(--line-mid);
+    color: var(--fg-2);
+    display: inline-flex; align-items: center; justify-content: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+    cursor: pointer;
+    transition: transform 150ms ease, color 150ms ease;
+  }
+  .tweaks-fab:hover { color: var(--fg); transform: translateY(-1px); }
+  [data-theme="light"] .tweaks-fab {
+    background: #FFFFFF;
+    box-shadow: 0 10px 30px rgba(10,27,34,0.14);
+  }
+
+  /* ---- Landing-only styles ---- */
+  .hero {
+    padding: 56px 0 88px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: -100px -200px auto auto;
+    width: 720px; height: 720px;
+    background: radial-gradient(closest-side, rgba(75,205,62,0.18), rgba(75,205,62,0) 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .hero::after {
+    content: "";
+    position: absolute;
+    left: -200px; bottom: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(closest-side, rgba(59,207,240,0.10), rgba(59,207,240,0) 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .hero-inner {
+    position: relative; z-index: 1;
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+  .hero h1 { font-family: var(--font-display); font-weight: 700; font-size: 64px; line-height: 1.04; letter-spacing: -0.03em; }
+  .hero h1 .accent { color: var(--green); }
+  .hero .lead { margin-top: 22px; max-width: 520px; }
+  .hero .ctas { margin-top: 32px; display: flex; gap: 12px; }
+
+  .feature-list {
+    margin-top: 36px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 28px;
+  }
+  .feature-list li {
+    display: flex; gap: 10px; align-items: center;
+    color: var(--fg-2);
+    font-size: 14px;
+  }
+  .feature-list li .dot {
+    width: 5px; height: 5px; border-radius: 50%;
+    background: var(--green);
+    flex: 0 0 auto;
+  }
+
+  /* hero mockup — browser-window'd request/response */
+  .hero-mock {
+    position: relative;
+    border-radius: var(--r-lg);
+    background: linear-gradient(180deg, #0E2832 0%, #081821 100%);
+    border: 1px solid var(--line-mid);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.45);
+    overflow: hidden;
+  }
+  .mock-bar {
+    height: 38px;
+    display: flex; align-items: center; gap: 8px;
+    padding: 0 14px;
+    border-bottom: 1px solid var(--line);
+    background: rgba(255,255,255,0.02);
+  }
+  .mock-bar .dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.10); }
+  .mock-bar .url {
+    margin-left: 14px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 4px 10px;
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    color: var(--fg-3);
+    flex: 1;
+  }
+  .mock-bar .url .scheme { color: var(--green); }
+  .mock-bar .url .host { color: var(--fg-2); }
+  .mock-body { padding: 20px; display: grid; gap: 14px; }
+  .mock-row {
+    display: flex; align-items: center; gap: 10px;
+    font-family: var(--font-mono); font-size: 12px;
+    color: var(--fg-2);
+  }
+  .mock-card {
+    background: var(--bg-code);
+    border: 1px solid var(--line);
+    border-radius: var(--r-md);
+    padding: 14px 16px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    line-height: 1.7;
+  }
+  .mock-card .head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+  .mock-card .head .l { display: flex; align-items: center; gap: 8px; color: var(--fg-3); font-family: var(--font); font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+
+  .mock-status { display: flex; align-items: center; gap: 6px; font-family: var(--font); font-size: 11.5px; color: var(--fg-3); font-weight: 600; }
+  .mock-status .pill {
+    background: rgba(75,205,62,0.12); color: var(--green);
+    padding: 2px 8px; border-radius: 4px; font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.05em;
+  }
+
+  /* APIs section */
+  .api-section {
+    background: var(--bg-elev1);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .section-head {
+    display: flex; align-items: end; justify-content: space-between;
+    margin-bottom: 36px;
+    gap: 32px;
+  }
+  .section-head .h-1 { max-width: 640px; }
+  .section-head p { color: var(--fg-3); max-width: 520px; font-size: 15px; }
+
+  /* Steps */
+  .steps-wrap {
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    gap: 32px;
+  }
+  .steps-list { display: flex; flex-direction: column; gap: 6px; }
+  .step {
+    display: flex; align-items: flex-start; gap: 14px;
+    padding: 14px 16px;
+    border-radius: var(--r-md);
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: border-color 200ms var(--ease), background 200ms var(--ease);
+  }
+  .step:hover { background: var(--bg-elev2); }
+  .step.active { background: var(--bg-elev2); border-color: var(--line-mid); }
+  .step .num {
+    width: 26px; height: 26px; flex: 0 0 auto;
+    border-radius: 50%;
+    background: var(--bg-elev3);
+    color: var(--fg-3);
+    font-family: var(--font-mono);
+    font-size: 12px; font-weight: 700;
+    display: inline-flex; align-items: center; justify-content: center;
+    border: 1px solid var(--line-mid);
+  }
+  .step.active .num {
+    background: var(--green); color: #001C25; border-color: var(--green);
+  }
+  .step .title { font-weight: 600; color: var(--fg-2); font-size: 14.5px; line-height: 1.4; }
+  .step.active .title { color: var(--fg); }
+  .step .desc { font-size: 13px; color: var(--fg-4); margin-top: 2px; }
+
+  .step-panel {
+    background: var(--bg-elev2);
+    border: 1px solid var(--line);
+    border-radius: var(--r-lg);
+    padding: 32px;
+    position: relative;
+    overflow: hidden;
+    min-height: 360px;
+  }
+  .step-panel::before {
+    content: "";
+    position: absolute; top: -60px; right: -60px;
+    width: 220px; height: 220px;
+    background: radial-gradient(closest-side, rgba(75,205,62,0.12), transparent 70%);
+    pointer-events: none;
+  }
+  .step-panel .step-meta {
+    display: flex; align-items: center; gap: 10px; margin-bottom: 12px;
+  }
+  .step-panel .step-meta .n {
+    font-family: var(--font-mono); font-size: 12px; color: var(--green);
+    letter-spacing: 0.06em;
+  }
+  .step-panel h3 {
+    font-family: var(--font-display); font-size: 30px; line-height: 1.15;
+    letter-spacing: -0.02em; margin-bottom: 12px;
+  }
+  .step-panel p.lead { color: var(--fg-2); max-width: 480px; font-size: 15px; }
+  .step-panel .panel-cta { margin-top: 22px; }
+  .step-panel .panel-illu {
+    margin-top: 28px;
+    background: var(--bg-code);
+    border: 1px solid var(--line);
+    border-radius: var(--r-md);
+    padding: 16px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--fg-2);
+    line-height: 1.7;
+  }
+
+  /* Do more */
+  .do-more-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+  }
+  .feature-card {
+    background: var(--bg-elev2);
+    border: 1px solid var(--line);
+    border-radius: var(--r-lg);
+    padding: 32px;
+    display: grid; grid-template-columns: 1fr 92px; gap: 24px; align-items: center;
+    transition: border-color 200ms var(--ease), background 200ms var(--ease);
+  }
+  .feature-card:hover { border-color: var(--line-strong); background: var(--bg-elev3); }
+  .feature-card h3 { font-size: 20px; margin-bottom: 6px; letter-spacing: -0.01em; }
+  .feature-card p { font-size: 14px; color: var(--fg-3); max-width: 360px; }
+  .feature-card .icon-square {
+    width: 80px; height: 80px;
+    border-radius: var(--r-md);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--green);
+  }
+  .feature-card.cyan .icon-square { background: rgba(59,207,240,0.10); color: var(--cyan); }
+  .feature-card.alt .icon-square { background: rgba(255,205,0,0.08); color: var(--yellow); }
+  .feature-card.green .icon-square { background: rgba(75,205,62,0.10); color: var(--green); }
+  .feature-card .arrow { margin-top: 18px; display: inline-flex; align-items: center; gap: 6px; color: var(--cyan); font-size: 14px; font-weight: 600; }
+</style>
+</head>
+<body data-screen-label="01 Landing">
+
+<!-- ============ NAV ============ -->
+<header class="nav">
+  <div class="shell nav-inner">
+    <a href="landing.html" class="brand" aria-label="Worldpay from FIS — Developer">
+      <span class="brand-worldpay">Worldpay</span>
+      <span class="brand-from">
+        <span class="brand-from-label">from</span>
+<span class="brand-fis-text">FIS</span>
+      </span>
+      <span class="brand-product">Developer</span>
+    </a>
+    <nav class="nav-tabs">
+      <a href="apis.html">Merchant APIs</a>
+      <a href="#">Partner APIs</a>
+      <a href="#api-finder">API Finder</a>
+      <a href="documentation.html">Docs</a>
+    </nav>
+    <div class="nav-right">
+      <button class="icon-btn" aria-label="Search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </button>
+      <button class="icon-btn theme-toggle" aria-label="Toggle theme" aria-pressed="false">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="icon-btn" aria-label="Region">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
+      </button>
+      <a href="#" class="nav-login">Sign in</a>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="shell hero-inner">
+    <div>
+      <div class="crumb" style="margin-bottom: 24px;">
+        <a href="#">Home</a>
+        <span class="sep">/</span>
+        <span class="current">Access Worldpay</span>
+      </div>
+      <span class="eyebrow">Access Worldpay</span>
+      <h1 style="margin-top: 14px;">Ship payments in <span class="accent">days,</span><br/>not quarters.</h1>
+      <p class="lead">A modern, RESTful payments toolkit built for engineers. Spin up sandbox credentials in minutes and integrate using the languages you already know.</p>
+
+      <div class="ctas">
+        <a class="btn btn-primary" href="reference.html">
+          API reference
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <a class="btn btn-ghost" href="documentation.html">Read the docs</a>
+      </div>
+
+      <ul class="feature-list">
+        <li><span class="dot"></span> Fast, simple integration</li>
+        <li><span class="dot"></span> Discoverable hyper-media journey</li>
+        <li><span class="dot"></span> Enterprise-grade reliability</li>
+        <li><span class="dot"></span> Intuitive API error validation</li>
+        <li><span class="dot"></span> The latest payment products</li>
+        <li><span class="dot"></span> Plain JSON schema</li>
+      </ul>
+    </div>
+
+    <!-- Mockup -->
+    <div class="hero-mock dark-island">
+      <div class="mock-bar">
+        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        <span class="url">
+          <span class="scheme">POST</span>&nbsp;&nbsp;<span class="host">try.access.worldpay.com</span>/payments/authorizations
+        </span>
+      </div>
+      <div class="mock-body">
+        <div class="mock-card">
+          <div class="head">
+            <span class="l">Request</span>
+            <span class="mock-status"><span class="pill">200 OK</span>&nbsp;&nbsp;142&nbsp;ms</span>
+          </div>
+<pre style="margin:0; white-space: pre-wrap; color: var(--fg-2);"><span style="color: var(--fg-4)">// Authorize a card payment</span>
+{
+  <span style="color: var(--cyan)">"transactionReference"</span>: <span style="color: var(--green-soft)">"order-ref-1024"</span>,
+  <span style="color: var(--cyan)">"merchant"</span>: { <span style="color: var(--cyan)">"entity"</span>: <span style="color: var(--green-soft)">"default"</span> },
+  <span style="color: var(--cyan)">"instruction"</span>: {
+    <span style="color: var(--cyan)">"value"</span>: { <span style="color: var(--cyan)">"currency"</span>: <span style="color: var(--green-soft)">"GBP"</span>, <span style="color: var(--cyan)">"amount"</span>: <span style="color: var(--yellow)">2499</span> },
+    <span style="color: var(--cyan)">"paymentInstrument"</span>: {
+      <span style="color: var(--cyan)">"type"</span>: <span style="color: var(--green-soft)">"card/plain"</span>,
+      <span style="color: var(--cyan)">"cardNumber"</span>: <span style="color: var(--green-soft)">"4444333322221111"</span>
+    }
+  }
+}</pre>
+        </div>
+        <div class="mock-card">
+          <div class="head">
+            <span class="l">Response</span>
+            <span class="mock-status" style="color: var(--green);">authorized</span>
+          </div>
+<pre style="margin:0; white-space: pre-wrap; color: var(--fg-2);">{
+  <span style="color: var(--cyan)">"outcome"</span>: <span style="color: var(--green-soft)">"authorized"</span>,
+  <span style="color: var(--cyan)">"_links"</span>: {
+    <span style="color: var(--cyan)">"payments:cancel"</span>: { <span style="color: var(--cyan)">"href"</span>: <span style="color: var(--green-soft)">"/payments/…/cancel"</span> },
+    <span style="color: var(--cyan)">"payments:settle"</span>: { <span style="color: var(--cyan)">"href"</span>: <span style="color: var(--green-soft)">"/payments/…/settle"</span> }
+  }
+}</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ API FINDER ============ -->
+<section class="af-section" id="api-finder" data-screen-label="01 Landing · API Finder">
+<div class="shell section">
+<div class="section-head"><div><span class="eyebrow">API Finder</span><h2 class="h-1" style="margin-top:14px;">Not sure where to start? Answer five questions.</h2></div><p>Tell us about your business and we'll match you to the APIs, SDKs and guides that fit — no need to know the product names.</p></div>
+<div class="af-intro" id="af-intro">
+<div class="af-intro-copy"><span class="af-intro-badge">5 questions · about 1 minute</span><h3>Find the right APIs for your business.</h3><p>Share your business size, where you trade and what you need to build. We'll recommend the APIs, SDKs and guides that fit — ranked by match.</p><ul><li>No sign-in required</li><li>Skip anything you're unsure of</li><li>Refine answers any time</li></ul><button class="btn btn-primary af-start" type="button">Find your solution <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></button></div>
+<div class="af-laptop" aria-hidden="true"><div class="af-lid"><div class="af-cam"></div><div class="af-screen"><div class="af-mini-nav"><b>Worldpay</b><span></span><span></span><span class="on"></span></div><div class="af-mini"><div class="af-mini-rail"><i>API Finder</i><em class="d"></em><em class="c"></em><em></em><em></em><em></em></div><div class="af-mini-card"><span class="ic"></span><strong>Where are you doing business?</strong><span class="ln"></span><div class="regs"><span class="on">US</span><span class="on">GB</span><span>EU</span><span>CN</span><span>CA</span></div><div class="ft"><span class="skip"></span><span class="nx">Next step</span></div></div></div></div></div><div class="af-base"><span></span></div></div>
+</div>
+<div class="af" id="af" hidden>
+<aside class="af-rail"><div><h3>API Finder</h3><p>Answer a few questions about your business. Skip anything you're unsure of.</p></div><ol class="af-steps"></ol><div class="af-count"></div></aside>
+<div class="af-main"></div>
+</div>
+</div>
+</section>
+
+<!-- ============ API CATEGORIES ============ -->
+<section class="api-section">
+  <div class="shell section">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Categories</span>
+        <h2 class="h-1" style="margin-top: 14px;">Everything you need to accept money online.</h2>
+      </div>
+      <p>Compose the right stack from focused, well-documented APIs. Each ships with a sandbox, code samples, and a clear upgrade path to production.</p>
+    </div>
+
+    <div class="grid-4">
+      <a href="apis.html" class="card hover" style="text-decoration:none; color:inherit; display:block;">
+        <span class="card-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+        </span>
+        <div class="card-title">Payment APIs</div>
+        <div class="card-body">Authorize, capture, refund. The payments root resource with returns to all available actions.</div>
+        <div class="btn-link" style="margin-top: 18px;">Explore <span class="arr">→</span></div>
+      </a>
+      <a href="apis.html" class="card hover" style="text-decoration:none; color:inherit; display:block;">
+        <span class="card-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2"/><circle cx="12" cy="18" r="1"/></svg>
+        </span>
+        <div class="card-title">Mobile Wallet</div>
+        <div class="card-body">Accept Apple Pay, Google Pay and tokenised wallet payments through a single integration.</div>
+        <div class="btn-link" style="margin-top: 18px;">Explore <span class="arr">→</span></div>
+      </a>
+      <a href="apis.html" class="card hover" style="text-decoration:none; color:inherit; display:block;">
+        <span class="card-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+        </span>
+        <div class="card-title">Authentication</div>
+        <div class="card-body">3-D Secure, risk and verification flows that protect your business without breaking checkout.</div>
+        <div class="btn-link" style="margin-top: 18px;">Explore <span class="arr">→</span></div>
+      </a>
+      <a href="apis.html" class="card hover" style="text-decoration:none; color:inherit; display:block;">
+        <span class="card-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>
+        </span>
+        <div class="card-title">Other Services</div>
+        <div class="card-body">Open Verifications, Open Payouts, Open3DS, account updater and a growing surface of utilities.</div>
+        <div class="btn-link" style="margin-top: 18px;">Explore <span class="arr">→</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STEPS ============ -->
+<section class="shell section">
+  <div class="section-head">
+    <div>
+      <span class="eyebrow">Get started</span>
+      <h2 class="h-1" style="margin-top: 14px;">Five steps from sandbox to live.</h2>
+    </div>
+    <p>A predictable path with clear ownership at each stage. Most teams reach a test transaction inside an afternoon.</p>
+  </div>
+
+  <div class="steps-wrap">
+    <ol class="steps-list">
+      <li class="step active">
+        <span class="num">1</span>
+        <div>
+          <div class="title">Obtain Worldpay credentials</div>
+          <div class="desc">Talk to your Implementation Manager to issue sandbox keys.</div>
+        </div>
+      </li>
+      <li class="step">
+        <span class="num">2</span>
+        <div>
+          <div class="title">Query root resources</div>
+          <div class="desc">Discover available actions via hyper-media links.</div>
+        </div>
+      </li>
+      <li class="step">
+        <span class="num">3</span>
+        <div>
+          <div class="title">Choose your API</div>
+          <div class="desc">Authorize, verify, tokenise or settle.</div>
+        </div>
+      </li>
+      <li class="step">
+        <span class="num">4</span>
+        <div>
+          <div class="title">Submit your request</div>
+          <div class="desc">Use any HTTPS-capable client. JSON in, JSON out.</div>
+        </div>
+      </li>
+      <li class="step">
+        <span class="num">5</span>
+        <div>
+          <div class="title">Plan your go-live</div>
+          <div class="desc">Move from sandbox to production with a single header change.</div>
+        </div>
+      </li>
+    </ol>
+
+    <div class="step-panel">
+      <div class="step-meta">
+        <span class="n">Step 01</span>
+        <span class="method-ghost get">credentials</span>
+      </div>
+      <h3>Obtain your Worldpay credentials.</h3>
+      <p class="lead">Reach out to your Implementation Manager to discuss Access Worldpay as a service and receive the credentials you need to begin testing in the sandbox.</p>
+      <div class="panel-cta">
+        <a href="#" class="btn btn-primary btn-sm">Request credentials</a>
+        <a href="#" class="btn-link" style="margin-left: 12px;">Talk to sales <span class="arr">→</span></a>
+      </div>
+      <div class="panel-illu dark-island">
+<pre style="margin:0;"><span style="color: var(--fg-4)">// Sandbox · base URL</span>
+<span style="color: var(--cyan)">https</span>://try.access.worldpay.com
+
+<span style="color: var(--fg-4)">// Header — basic auth</span>
+<span style="color: var(--yellow)">Authorization</span>: Basic {base64(username:password)}
+<span style="color: var(--yellow)">Content-Type</span>: application/vnd.worldpay.payments-v6+json</pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DISCOVER WHAT'S NEW ============ -->
+<section class="api-section" data-screen-label="01 Landing · Discover what's new">
+<div class="shell section">
+<div class="section-head"><div><span class="eyebrow">Discover what's new</span><h2 class="h-1" style="margin-top: 14px;">Stay close to Worldpay.</h2></div><p>Company news and product announcements, plus a community of developers and partners building on Worldpay.</p></div>
+<div class="do-more-grid">
+<a href="https://www.fisglobal.com/about-us/media-room" class="feature-card cyan" style="text-decoration: none; color: inherit;" target="_blank" rel="noopener">
+<div><div class="eyebrow" style="color: var(--cyan); margin-bottom: 10px;">Newsroom</div><h3>Worldpay Newsroom</h3><p>Press releases, product launches and insights on the future of payments and commerce.</p><div class="arrow">Read the latest news <span>→</span></div></div>
+<div class="icon-square"><svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"></path><path d="M18 14h-8"></path><path d="M15 18h-5"></path><path d="M10 6h8v4h-8V6Z"></path></svg></div>
+</a>
+<a href="#" class="feature-card alt" style="text-decoration: none; color: inherit;">
+<div><div class="eyebrow" style="color: var(--yellow); margin-bottom: 10px;">Community</div><h3>Worldpay One Community</h3><p>Ask questions, share integration patterns and connect with Worldpay engineers and fellow developers.</p><div class="arrow" style="color: var(--yellow);">Join the community <span>→</span></div></div>
+<div class="icon-square"><svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></div>
+</a>
+</div>
+</div>
+</section>
+
+<!-- ============ FEEDBACK ============ -->
+<div class="shell">
+  <div class="feedback">
+    <span class="lbl">Was this page helpful?</span>
+    <div class="btns">
+      <button>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10v12"/><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H7a2 2 0 0 1-2-2V10a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11l3.43-6.78A1.5 1.5 0 0 1 16.6.85a2.62 2.62 0 0 1 1.4 2.3z"/></svg>
+        Yes
+      </button>
+      <button>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 14V2"/><path d="M9 18.12 10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H17a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-2.76a2 2 0 0 0-1.79 1.11l-3.43 6.78A1.5 1.5 0 0 1 7.4 23.15a2.62 2.62 0 0 1-1.4-2.3z"/></svg>
+        No
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="shell">
+    <div class="footer-grid">
+      <div>
+        <div class="tagline">Still can't find <span class="accent">what you're<br/>looking for?</span></div>
+        <p>We're around — try one of the channels below.</p>
+      </div>
+      <div>
+        <h4>Conversation</h4>
+        <p style="margin-bottom: 10px;">Talk to our sales team about choosing the right API solution for your business.</p>
+        <div class="contact-row">
+          <div>
+            <span class="label">Call us</span>
+            <a href="tel:+18777763706">+1 877.776.3706</a>
+          </div>
+          <div>
+            <span class="label">Email us</span>
+            <a href="mailto:fis@fisglobal.com">fis@fisglobal.com</a>
+          </div>
+        </div>
+        <div class="social-row">
+          <a href="#" aria-label="Email"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a>
+          <a href="#" aria-label="Facebook"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M9 8H6v4h3v12h5V12h3.6l.4-4h-4V6.3c0-1 .2-1.3 1.2-1.3H18V0h-3.8C10.6 0 9 1.6 9 4.7V8z"/></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14C2.2 0 0 2.2 0 5v14c0 2.8 2.2 5 5 5h14c2.8 0 5-2.2 5-5V5c0-2.8-2.2-5-5-5zM8 19H5V8h3v11zM6.5 6.7c-1 0-1.7-.8-1.7-1.7s.7-1.7 1.7-1.7 1.7.8 1.7 1.7c0 1-.7 1.7-1.7 1.7zM20 19h-3v-5.6c0-1.5-.6-2-1.5-2-.9 0-1.5.6-1.5 2V19h-3V8h3v1.4c.5-.7 1.4-1.4 2.5-1.4 2 0 3.5 1.2 3.5 4V19z"/></svg></a>
+          <a href="#" aria-label="Twitter"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M24 4.6c-.9.4-1.8.7-2.8.8 1-.6 1.8-1.6 2.2-2.7-1 .6-2 1-3.1 1.2-.9-1-2.2-1.6-3.6-1.6-2.7 0-4.9 2.2-4.9 4.9 0 .4 0 .8.1 1.1C7.7 8.1 4.1 6.1 1.7 3.1c-.4.7-.7 1.6-.7 2.5 0 1.7.9 3.2 2.2 4.1-.8 0-1.6-.3-2.3-.6 0 2.4 1.7 4.4 4 4.9-.4.1-.8.2-1.3.2-.3 0-.6 0-.9-.1.6 2 2.4 3.4 4.6 3.4C5.6 18.9 3.4 19.7 1 19.7c-.4 0-.8 0-1.2-.1 2.2 1.4 4.8 2.2 7.6 2.2 9.1 0 14-7.5 14-14v-.6c1-.7 1.8-1.6 2.6-2.6z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4>Support</h4>
+        <p style="margin-bottom: 14px;">Stuck on an integration? Our developer success team is here to help unblock you.</p>
+        <a href="#" class="btn btn-ghost btn-sm">Open a support case</a>
+
+        <h4 style="margin-top: 28px;">Stay connected</h4>
+        <ul>
+          <li><a href="#">Release notes</a></li>
+          <li><a href="#">Status page</a></li>
+          <li><a href="#">Developer blog</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 FIS. All rights reserved.</div>
+      <div class="links">
+        <a href="#">Terms</a>
+        <a href="#">Privacy</a>
+        <a href="#">Cookies</a>
+        <a href="#">Modern Slavery</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ SCREEN PAGER ============ -->
+<nav class="pager" aria-label="Case study screens">
+  <a href="landing.html" class="active"><span class="num">01</span> Landing</a>
+  <a href="apis.html"><span class="num">02</span> APIs</a>
+  <a href="reference.html"><span class="num">03</span> Reference</a>
+  <a href="documentation.html"><span class="num">04</span> Docs</a>
+</nav>
+
+<script>
+  // Make step list interactive (simple)
+  const steps = document.querySelectorAll('.step');
+  const panel = document.querySelector('.step-panel');
+  const stepData = [
+    {n:'Step 01', tag:{cls:'method-ghost get', t:'credentials'}, title:'Obtain your Worldpay credentials.', body:'Reach out to your Implementation Manager to discuss Access Worldpay as a service and receive the credentials you need to begin testing in the sandbox.', cta:'Request credentials', code:'<span style="color: var(--fg-4)">// Sandbox · base URL</span>\nhttps://try.access.worldpay.com\n\n<span style="color: var(--fg-4)">// Header — basic auth</span>\n<span style="color: var(--yellow)">Authorization</span>: Basic {base64(username:password)}\n<span style="color: var(--yellow)">Content-Type</span>: application/vnd.worldpay.payments-v6+json'},
+    {n:'Step 02', tag:{cls:'method get', t:'GET'}, title:'Query the root resource.', body:'Discover available actions by fetching the payments service root. Every action you can take is returned as a hyper-media link — no hardcoded URIs.', cta:'See the reference', code:'<span style="color: var(--green-soft)">GET</span> /payments\n\n<span style="color: var(--fg-4)">// Response</span>\n{ "_links": { "payments:authorize": { "href": "/payments/authorizations" } } }'},
+    {n:'Step 03', tag:{cls:'method-ghost post', t:'POST'}, title:'Choose your action.', body:'Pick the right action link for what you need to do — authorize, verify, tokenise, settle, refund. Follow the link returned in the root response.', cta:'Browse actions', code:'payments:authorize        →  Authorize a payment\npayments:verify           →  Card verification\npayments:tokens           →  Tokenise an instrument\npayments:settlements      →  Settle an authorization'},
+    {n:'Step 04', tag:{cls:'method post', t:'POST'}, title:'Submit your request.', body:'Send a single, well-shaped JSON body. Validation errors come back with a clear message and a JSON pointer to the offending field.', cta:'View payload schema', code:'<span style="color: var(--green-soft)">POST</span> /payments/authorizations\n\n{\n  "transactionReference": "order-1024",\n  "merchant": { "entity": "default" },\n  "instruction": { … }\n}'},
+    {n:'Step 05', tag:{cls:'method-ghost get', t:'go live'}, title:'Plan your go-live.', body:"When you're ready, switch the base URL from try.access to access — same payloads, same headers, real money.", cta:'Go-live checklist', code:'<span style="color: var(--fg-4)">// Sandbox</span>\nhttps://try.access.worldpay.com\n\n<span style="color: var(--fg-4)">// Production</span>\nhttps://access.worldpay.com'}
+  ];
+  steps.forEach((s, i) => s.addEventListener('click', () => {
+    steps.forEach(x => x.classList.remove('active'));
+    s.classList.add('active');
+    const d = stepData[i];
+    panel.innerHTML = `
+      <div class="step-meta">
+        <span class="n">${d.n}</span>
+        <span class="${d.tag.cls}">${d.tag.t}</span>
+      </div>
+      <h3>${d.title}</h3>
+      <p class="lead">${d.body}</p>
+      <div class="panel-cta">
+        <a href="#" class="btn btn-primary btn-sm">${d.cta}</a>
+        <a href="#" class="btn-link" style="margin-left: 12px;">Talk to sales <span class="arr">→</span></a>
+      </div>
+      <div class="panel-illu dark-island"><pre style="margin:0; white-space: pre-wrap;">${d.code}</pre></div>
+    `;
+  }));
+</script>
+
+<!-- ============ TWEAKS PANEL ============ -->
+<button id="tweaks-fab" class="tweaks-fab" aria-label="Open tweaks" hidden>
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="3"/>
+    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33h0a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82v0a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+  </svg>
+</button>
+
+<aside id="tweaks-panel" class="tweaks-panel" hidden>
+  <header class="tweaks-head">
+    <span class="t">Tweaks</span>
+    <button class="tweaks-close" aria-label="Close tweaks">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </header>
+  <div class="tweaks-section">
+    <div class="tweaks-lbl">Appearance</div>
+    <div class="tweaks-seg" role="radiogroup" aria-label="Theme">
+      <button data-tweak-key="theme" data-tweak-val="dark" aria-label="Dark theme">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        Dark
+      </button>
+      <button data-tweak-key="theme" data-tweak-val="light" aria-label="Light theme">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        Light
+      </button>
+    </div>
+  </div>
+</aside>
+
+<script src="finder.js"></script>
+<script src="search.js"></script>
+<script src="theme.js"></script>
+<script>
+(function(){
+  // Default tweak values — editable on disk via __edit_mode_set_keys
+  const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+    "theme": "dark"
+  }/*EDITMODE-END*/;
+
+  const state = Object.assign({}, TWEAK_DEFAULTS);
+  // Honor any persisted theme (from a previous page / session)
+  try { state.theme = localStorage.getItem('fisDevTheme') || state.theme; } catch(_) {}
+  const panel = document.getElementById('tweaks-panel');
+  const fab   = document.getElementById('tweaks-fab');
+
+  function applyTheme(theme) {
+    if (window.fisTheme) window.fisTheme.set(theme);
+    else document.documentElement.setAttribute('data-theme', theme);
+    document.querySelectorAll('[data-tweak-key="theme"]').forEach(b => {
+      b.classList.toggle('active', b.dataset.tweakVal === theme);
+    });
+  }
+
+  function setTweak(key, val) {
+    state[key] = val;
+    if (key === 'theme') applyTheme(val);
+    try {
+      window.parent.postMessage({ type: '__edit_mode_set_keys', edits: { [key]: val } }, '*');
+    } catch(e) {}
+  }
+
+  // Keep Tweaks-panel buttons in sync if user toggles via nav
+  window.addEventListener('fis-theme-change', function (e) {
+    state.theme = e.detail.theme;
+    document.querySelectorAll('[data-tweak-key="theme"]').forEach(b => {
+      b.classList.toggle('active', b.dataset.tweakVal === state.theme);
+    });
+  });
+
+  // Initial apply
+  applyTheme(state.theme);
+
+  function show() { panel.hidden = false; fab.hidden = true; }
+  function hide() {
+    panel.hidden = true;
+    fab.hidden = false;
+    try { window.parent.postMessage({ type: '__edit_mode_dismissed' }, '*'); } catch(e) {}
+  }
+
+  panel.querySelector('.tweaks-close').addEventListener('click', hide);
+  panel.querySelectorAll('[data-tweak-key]').forEach(btn => {
+    btn.addEventListener('click', () => setTweak(btn.dataset.tweakKey, btn.dataset.tweakVal));
+  });
+  fab.addEventListener('click', show);
+
+  // Host integration: register listener BEFORE announcing availability
+  window.addEventListener('message', (e) => {
+    const msg = e.data || {};
+    if (msg.type === '__activate_edit_mode')   show();
+    else if (msg.type === '__deactivate_edit_mode') {
+      panel.hidden = true;
+      fab.hidden = true;
+    }
+  });
+  try {
+    window.parent.postMessage({ type: '__edit_mode_available' }, '*');
+  } catch(e) {}
+})();
+</script>
+
+</body>
+</html>

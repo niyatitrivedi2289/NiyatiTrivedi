@@ -1,0 +1,36 @@
+:root{
+--font-sans:'Roboto','Helvetica Neue',Arial,sans-serif;
+--font-display:'Ericsson Capital','Roboto','Helvetica Neue',Arial,sans-serif;
+--font-icons:'Material Icons';
+
+--fw-light:300; /* @kind font */
+--fw-regular:400; /* @kind font */
+--fw-medium:500; /* @kind font */
+--fw-bold:700; /* @kind font */
+
+/* Style guide scale (Material-derived) */
+--fs-display:34px;
+--fs-headline:24px;
+--fs-title:20px;
+--fs-subheader:16px;
+--fs-body:14px;
+--fs-caption:12px;
+--fs-button:14px;
+
+/* Product usage */
+--fs-page-title:24px;   /* web header "PROJECTS" */
+--fs-appbar-title:20px; /* tablet app bar */
+--fs-section:18px;      /* "Select from uploaded files", form section heads */
+--fs-tab:16px;
+--fs-list-title:16px;
+--fs-list-sub:14px;
+--fs-dialog-title:20px;
+--fs-dialog-body:16px;
+--fs-hint:13px;
+
+--lh-tight:1.2; /* @kind font */
+--lh-body:1.5; /* @kind font */
+--lh-dialog:1.55; /* @kind font */
+--ls-button:.04em; /* @kind font */
+--ls-caps:.02em; /* @kind font */
+}

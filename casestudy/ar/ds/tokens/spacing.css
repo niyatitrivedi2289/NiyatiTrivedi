@@ -1,0 +1,15 @@
+:root{
+--space-1:4px;--space-2:8px;--space-3:12px;--space-4:16px;--space-5:20px;--space-6:24px;--space-8:32px;--space-10:40px;--space-12:48px;
+--keyline-mobile:16px;
+--keyline-content:72px;
+--appbar-height:56px;
+--appbar-height-tablet:64px;
+--web-header-height:215px;
+--web-shell-inset:108px;
+--wizard-tab-height:71px;
+--list-row-height:95px;
+--button-height:36px;
+--field-height:48px;
+--side-panel-width:230px;
+--media-tile:186px;
+}
