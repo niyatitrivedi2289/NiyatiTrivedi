@@ -1,0 +1,105 @@
+/* Portfolio frame — shared chrome for case-study pages so they read as part of the portfolio.
+   Project artefacts (prototypes, phone screens, consoles) keep their own brand. */
+@import url('https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600&f[]=switzer@400,500,600&display=swap');
+:root{--pf-ink:#111111;--pf-ink-soft:#3A3A38;--pf-muted:#5F5F5C;--pf-line:#EAEAEA;--pf-line-strong:#DADAD6;--pf-sunken:#F2F2EF;--pf-bg:#FFFFFF;--pf-dark:#0A0A0A;--pf-dark-fg:#F5F5F5;--pf-dark-muted:#A3A3A0;--pf-accent:#7CFF3A;--pf-display:'General Sans','Inter Tight',system-ui,sans-serif;--pf-body:'Switzer','General Sans',system-ui,sans-serif}
+a{color:inherit}a:hover{color:var(--pf-ink)}
+
+/* ---------- Shared eyebrow ---------- */
+.pf-eyebrow,body[data-cs="fis"] .eyebrow,.cs-eyebrow{font-family:var(--pf-body)!important;font-size:.76rem!important;font-weight:500!important;letter-spacing:.16em!important;text-transform:uppercase;color:var(--pf-muted)!important;display:inline-flex;align-items:center;gap:10px}
+body[data-cs="fis"] .eyebrow::before{content:""!important;width:7px!important;height:7px!important;border-radius:50%;background:var(--pf-accent)!important;box-shadow:0 0 0 4px rgba(124,255,58,.18)}
+
+/* ---------- FIS: map page tokens onto portfolio ---------- */
+body[data-cs="fis"]{--ink:var(--pf-ink);--ink-muted:#4A4A47;--ink-faint:#8A8A87;--surface:var(--pf-bg);--border:var(--pf-line);--rule:var(--pf-line);--accent:var(--pf-ink);--accent-bg:var(--pf-sunken);--serif:var(--pf-display);--sans:var(--pf-body);--max:880px;--wide:1240px;font-family:var(--pf-body)}
+body[data-cs="fis"] h1,body[data-cs="fis"] h2{font-family:var(--pf-display);font-weight:500!important;letter-spacing:-.025em}
+body[data-cs="fis"] h3{font-family:var(--pf-display);font-weight:600}
+body[data-cs="fis"] .hero h1{max-width:18ch}
+body[data-cs="fis"] .hero h1 em{color:var(--pf-ink)}
+body[data-cs="fis"] .tag{border-radius:999px;background:var(--pf-sunken);color:var(--pf-ink)}
+body[data-cs="fis"] .reflection-card.improve{border-color:var(--pf-line-strong)}
+body[data-cs="fis"] .challenge-card,body[data-cs="fis"] .reflection-card,body[data-cs="fis"] .snap{border-radius:14px}
+/* FIS secondary strip under portfolio bar */
+body[data-cs="fis"]>nav{height:48px;padding:0 clamp(20px,4vw,48px)!important;background:rgba(255,255,255,.92)!important;border-bottom:1px solid var(--pf-line)!important}
+body[data-cs="fis"]>nav .nav-logo{font-family:var(--pf-body);font-size:13px;font-weight:500;color:var(--pf-muted)}
+body[data-cs="fis"]>nav{gap:24px}
+body[data-cs="fis"]>nav .nav-links{align-items:center}
+body[data-cs="fis"]>nav .nav-links a{font-family:var(--pf-body);font-size:13px}
+body[data-cs="fis"]>nav .nav-logo{white-space:nowrap}
+@media(max-width:1024px){body[data-cs="fis"]>nav .nav-logo .nl-full{display:none}}
+/* FIS closing */
+body[data-cs="fis"] .closing{background:var(--pf-dark)!important}
+body[data-cs="fis"] .closing p{color:rgba(255,255,255,.72)!important}
+body[data-cs="fis"] .closing .eyebrow{color:var(--pf-dark-muted)!important}
+body[data-cs="fis"] .closing a{border-radius:999px!important}
+body[data-cs="fis"]>footer{display:none}
+
+/* ---------- Health: case-study text only (product screens keep DM Sans) ---------- */
+body[data-cs="health"] .cs-h1,body[data-cs="health"] .cs-h2,body[data-cs="health"] .cs-h3{font-family:var(--pf-display);font-weight:500!important;letter-spacing:-.025em}
+body[data-cs="health"] .cs-lede,body[data-cs="health"] .cs-body,body[data-cs="health"] .cs-cap{font-family:var(--pf-body)}
+body[data-cs="health"] #content>nav a,body[data-cs="health"] #content>nav span{font-family:var(--pf-body)!important}
+body[data-cs="health"] #content>nav{top:var(--pfbar-h)!important}
+body[data-cs="health"] #content>nav>div{height:48px!important}
+
+/* ---------- Next case study (both pages) ---------- */
+.nextcase,.hx-next{background:var(--pf-bg)!important;border-top:1px solid var(--pf-line)!important;padding:clamp(48px,6vw,80px) 0!important}
+.nextcase a,.hx-next a{max-width:1240px!important;padding:0 clamp(20px,5vw,80px)!important}
+.nextcase .nk,.hx-k{font-family:var(--pf-body)!important;font-size:.76rem!important;font-weight:500!important;letter-spacing:.16em!important;color:var(--pf-muted)!important}
+.nextcase .nt,.hx-t{font-family:var(--pf-display)!important;font-weight:500!important;font-size:clamp(1.6rem,3vw,2.4rem)!important;letter-spacing:-.025em!important;color:var(--pf-ink)!important}
+.nextcase .nd,.hx-d{font-family:var(--pf-body)!important;color:var(--pf-muted)!important}
+.nextcase .narr,.hx-a{border:1.5px solid var(--pf-line-strong)!important}
+.nextcase a:hover .narr,.hx-next a:hover .hx-a{background:var(--pf-accent)!important;border-color:var(--pf-accent)!important;color:#0A0A0A!important}
+
+/* ---------- Shared footer ---------- */
+.pffoot{background:var(--pf-dark);color:var(--pf-dark-fg);padding:56px clamp(20px,5vw,80px);font-family:var(--pf-body)}
+.pffoot-in{max-width:1240px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+.pffoot-brand{display:inline-flex;align-items:center;gap:12px;text-decoration:none;color:var(--pf-dark-fg);font-family:var(--pf-display);font-weight:500}
+.pffoot-brand svg{height:30px;width:auto;color:#57d400}
+.pffoot p{color:var(--pf-dark-muted);font-size:.85rem;margin:0;max-width:none}
+.pffoot-up{display:inline-flex;align-items:center;gap:10px;color:var(--pf-dark-muted);font-size:.85rem;text-decoration:none}
+.pffoot-up:hover{color:var(--pf-accent)}
+.pffoot-up span{width:42px;height:42px;border-radius:50%;border:1px solid rgba(255,255,255,.12);display:grid;place-items:center}
+.pffoot-up:hover span{background:var(--pf-accent);border-color:var(--pf-accent);color:#0A0A0A}
+
+/* note block uses portfolio type */
+.pfnote{font-family:var(--pf-body)!important}
+.pfnote-k{text-transform:uppercase;letter-spacing:.16em;font-size:.72rem!important;font-weight:500}
+
+/* v2 merged sections */
+body[data-cs="fis"] .impact-card,body[data-cs="fis"] .solution-card,body[data-cs="fis"] .decision-item,body[data-cs="fis"] .wireframe-card,body[data-cs="fis"] .sd-card,body[data-cs="fis"] .lv,body[data-cs="fis"] .comp-table,body[data-cs="fis"] .insight-table{border-radius:14px}
+body[data-cs="fis"] .impact-stat .up,body[data-cs="fis"] .impact-stat .down{color:#111!important}
+body[data-cs="fis"] .impact-stat .up:first-child,body[data-cs="fis"] .impact-stat .down:first-child{color:#2E8F0E!important}
+body[data-cs="fis"] .aw{background:#0A0A0A;border-radius:22px}
+body[data-cs="fis"] .aw .eyebrow{color:#A3A3A0!important}
+body[data-cs="fis"] .aw-links a{color:#7CFF3A}
+body[data-cs="fis"] .aw-cat{border-color:rgba(255,255,255,.1);background:#161616;border-radius:14px}
+body[data-cs="fis"] .im-tag{background:#F2F2EF;color:#111;border-radius:999px;padding:5px 12px}
+body[data-cs="fis"] .jr-item.key::before{background:#7CFF3A;border-color:#111}
+body[data-cs="fis"] .jr-tags span,body[data-cs="fis"] .af-tags span{border-radius:999px;background:#F2F2EF;color:#3A3A38}
+body[data-cs="fis"] .sd-n,body[data-cs="fis"] .decision-n{font-family:var(--pf-display);color:#8A8A87}
+body[data-cs="fis"] .sd-demo{background:#0A0A0A}
+body[data-cs="fis"] .sd-link{color:#111;text-decoration:underline;text-underline-offset:4px;text-decoration-color:#DADAD6}
+body[data-cs="fis"] .sd-link:hover{text-decoration-color:#111}
+
+/* ---------- Health: whole page on portfolio tokens; product artefacts restore CardioNexion brand ---------- */
+body[data-cs="health"]{--page:#FFFFFF;--surface:#FFFFFF;--surface-2:#FAFAF9;--surface-3:#F2F2EF;--hairline:#EAEAEA;--hairline-2:#EAEAEA;--ink:#111111;--ink-2:#3A3A38;--ink-3:#5F5F5C;--ink-4:#8A8A87;
+--brand-950:#0A0A0A;--brand-900:#111111;--brand-700:#111111;--brand-600:#111111;--brand-500:#3A3A38;--brand-400:#7CFF3A;--brand-200:#DADAD6;--brand-100:#EAEAEA;--brand-50:#F2F2EF;
+--c-page:#FFFFFF;--c-surface:#FFFFFF;--c-surface-2:#FAFAF9;--c-surface-3:#F2F2EF;--c-hairline:#EAEAEA;--c-ink:#111111;--c-ink-2:#3A3A38;--c-ink-3:#5F5F5C;--c-ink-4:#8A8A87;--c-primary:#111111;
+--font:var(--pf-body);--font-display:var(--pf-display);--font-num:var(--pf-display);
+--sh-1:0 1px 2px rgba(17,17,17,.04);--sh-2:0 1px 2px rgba(17,17,17,.04),0 18px 40px -24px rgba(17,17,17,.18);--sh-3:0 30px 70px -30px rgba(17,17,17,.35);--sh-float:0 18px 40px -24px rgba(17,17,17,.18);
+font-family:var(--pf-body);background:#FFFFFF;color:#111111}
+body[data-cs="health"] ::selection{background:#7CFF3A;color:#0A0A0A}
+body[data-cs="health"] .cs-fcard:hover{border-color:#DADAD6!important}
+body[data-cs="health"] .cn-artifact{--page:#F4F1EC;--surface:#FFFFFF;--surface-2:#FBFAF6;--surface-3:#F1EEE8;--hairline:#E7E2D9;--hairline-2:#EFEBE3;--ink:#16211F;--ink-2:#3C4946;--ink-3:#6C7976;--ink-4:#9AA6A2;
+--brand-950:#07262B;--brand-900:#0B3940;--brand-700:#0E6E78;--brand-600:#11838F;--brand-500:#16A6B2;--brand-400:#2BC0CB;--brand-200:#A6E6EA;--brand-100:#D2F2F4;--brand-50:#ECF8F9;
+--c-page:#F4F1EC;--c-surface:#FFFFFF;--c-surface-2:#FBFAF6;--c-surface-3:#F1EEE8;--c-hairline:#E7E2D9;--c-ink:#16211F;--c-ink-2:#3C4946;--c-ink-3:#6C7976;--c-ink-4:#9AA6A2;--c-primary:#0E6E78;
+--font:"DM Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;--font-display:"DM Serif Display","Times New Roman",Georgia,serif;--font-num:"DM Serif Display","Times New Roman",Georgia,serif;
+--sh-1:0 1px 2px rgba(16,47,52,.05),0 1px 1px rgba(16,47,52,.04);--sh-2:0 2px 6px rgba(16,47,52,.06),0 8px 24px rgba(16,47,52,.06);--sh-3:0 12px 40px rgba(11,57,64,.16);--sh-float:0 10px 30px rgba(11,57,64,.10);
+font-family:var(--font);color:var(--c-ink)}
+/* keep case-study headings/eyebrows in portfolio type even inside the design-system section */
+body[data-cs="health"] .cn-artifact .cs-h1,body[data-cs="health"] .cn-artifact .cs-h2,body[data-cs="health"] .cn-artifact .cs-h3{font-family:var(--pf-display);color:#111}
+body[data-cs="health"] .cn-artifact .cs-lede,body[data-cs="health"] .cn-artifact .cs-body,body[data-cs="health"] .cn-artifact .cs-cap{font-family:var(--pf-body)}
+body[data-cs="health"] section.cn-artifact{background:#FAFAF9!important;border-color:#EAEAEA!important}
+
+/* dark sections keep CardioNexion teal */
+body[data-cs="health"] .cs-dark{--brand-950:#07262B;--brand-900:#0B3940;--brand-700:#0E6E78;--brand-600:#11838F;--brand-500:#16A6B2;--brand-400:#2BC0CB;--brand-200:#A6E6EA;--brand-100:#D2F2F4;--brand-50:#ECF8F9;--pf-num:#2BC0CB;--pf-num-line:rgba(43,192,203,.3)}
+body[data-cs="health"] .cs-dark .cs-eyebrow{color:#9FB3B1!important}
+body[data-cs="health"] .cs-dark .cs-h1,body[data-cs="health"] .cs-dark .cs-h2,body[data-cs="health"] .cs-dark .cs-h3{color:#fff}
