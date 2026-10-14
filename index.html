@@ -15,6 +15,7 @@
 
 </head>
 <body data-treatment="light-led">
+<a class="skip-link" href="#work">Skip to main content</a>
 
 <div class="progress" id="progress"></div>
 
@@ -50,37 +51,16 @@
 <main id="top">
 
   <!-- ============ HERO ============ -->
-  <section class="hero panel section-pad" id="hero" data-theme="light" data-hero="split" data-screen-label="Hero">
-    <div class="wrap hero-grid">
-      <div class="hero-text">
-        <div class="hero-badges reveal">
-          <span class="badge badge--live"><span class="dot-live"></span> Open to senior roles</span>
-          <span class="badge">London, <span class="js-ldn-time">UK</span></span>
-        </div>
-        <h1 class="reveal" data-d="1">
-          Hi, I'm <span class="name-tag">Niyati,</span>
-          <span class="tag tag--solid"><i class="tdot"></i>UI/UX &amp; Product Designer</span>
-        </h1>
-        <div class="hero-cta reveal" data-d="3">
-          <a class="btn magnetic" href="#work">
-            View Work
-            <span class="btn-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
-          </a>
-          <a class="btn btn--ghost magnetic" href="#contact">
-            Get in touch
-          </a>
-        </div>
-      </div>
-      <div class="hero-portrait reveal" data-d="2">
-        <div class="portrait-frame" data-parallax>
-          <img src="uploads/hero-portrait-sq.png" alt="Niyati Trivedi" />
-        </div>
-      </div>
-    </div>
-  </section>
+  <section class="hv hA" id="hero" data-screen-label="Hero">
+<div class="nm"><span class="hvm hvl">Open to senior roles</span><h1 class="hvd">Niyati<br /> Trivedi</h1></div>
+<div class="pic"><img class="hvp" src="uploads/hero-portrait-sq.png" alt="Niyati Trivedi" /></div>
+<div class="role"><span class="hvm" style="color:#8b958f">Role</span><p>UI/UX &amp; Product Designer</p></div>
+<div class="st"><span class="hvm">Based in</span><span class="hvd">London</span></div>
+<div class="ct"><div class="hvc"><a class="hvb" href="#work">View Work</a><a class="hvb hvb--g" href="#contact">Get in touch</a></div></div>
+</section>
 
   <!-- ============ TRUSTED ============ -->
-  <section class="trusted panel" data-theme="light" aria-label="Where I've worked">
+  <section class="trusted panel" data-theme="dark" aria-label="Where I've worked">
     <div class="wrap route">
       <p class="trusted-lbl">Where I've worked, in order</p>
       <ol class="route-list">
@@ -191,7 +171,7 @@
       </div>
       <div class="skill-cols">
         <div class="skill-group reveal">
-          <h4>Practice</h4>
+          <h3 class="tk-h">Practice</h3>
           <div class="chip-row">
             <span class="chip"><i class="cd"></i>User Research</span>
             <span class="chip"><i class="cd"></i>Visual Design</span>
@@ -209,7 +189,7 @@
         </div>
         
         <div class="skill-group reveal" data-d="1">
-          <h4>Toolkit</h4>
+          <h3 class="tk-h">Toolkit</h3>
           <div class="tk-pile" id="tkPile" aria-label="Figma Make, Claude, Gemini, Framer, Miro, ChatGPT"></div>
           <p class="tk-hint">Drag them around.</p>
         </div>
@@ -309,5 +289,6 @@ const moving=P.length>4;el.closest('.poc-mq').classList.toggle('is-static',!movi
 <script src="js/hero-fx.js"></script>
 <script src="js/scroll-fx.js"></script>
 <script src="js/toolkit.js"></script>
+<script>document.querySelectorAll('a[target="_blank"]').forEach(a=>{if(!a.querySelector('.sr-only')){const s=document.createElement('span');s.className='sr-only';s.textContent=' (opens in a new tab)';a.append(s)}})</script>
 </body>
 </html>
